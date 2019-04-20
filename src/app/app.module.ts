@@ -11,10 +11,21 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './app.effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowseComponent } from './components/browse/browse.component';
+import { LibraryComponent } from './components/library/library.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AlbumComponent } from './common/album/album.component';
+import { AlbumViewComponent } from './components/album-view/album-view.component';
+import { AlbumArtPipe } from './pipes/album-art.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BrowseComponent,
+    LibraryComponent,
+    AlbumComponent,
+    AlbumViewComponent,
+    AlbumArtPipe
   ],
   imports: [
     BrowserModule,
@@ -23,7 +34,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([AppEffects]),
     StoreRouterConnectingModule.forRoot(),
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,18 @@
+<div class="col" *ngIf="selectedAlbum">
+
+  <div class="row">
+      <div class="col-12 col-sm-4 albumArt">
+          <img [src]="selectedAlbum.attributes.artwork.url | albumArt : 400" class="artwork" alt="">
+      </div>
+      
+      <div class="col-12 col-sm-8">
+        <h3>{{selectedAlbum.attributes.name}}</h3>
+        <p>{{selectedAlbum.attributes.recordLabel}}</p>
+        
+        <ol>
+           <li *ngFor="let track of tracks">{{track.attributes.name}}</li>
+        </ol>
+      </div>
+  </div>
+
+</div>

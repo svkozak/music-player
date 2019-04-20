@@ -4,8 +4,10 @@ import { Actions, Effect } from '@ngrx/effects';
 
 
 @Injectable()
-export class AppEffects {
-  
+export class AlbumsEffects {
+
+
+
   constructor(private actions$: Actions) {}
 
 }
