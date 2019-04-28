@@ -2,21 +2,21 @@ import { TestBed, inject } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
-import { AlbumsEffects } from './albums.effects';
+import { AlbumEffects } from './album.effects';
 
-describe('AlbumsEffects', () => {
+describe('AlbumEffects', () => {
   let actions$: Observable<any>;
-  let effects: AlbumsEffects;
+  let effects: AlbumEffects;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        AlbumsEffects,
+        AlbumEffects,
         provideMockActions(() => actions$)
       ]
     });
 
-    effects = TestBed.get(AlbumsEffects);
+    effects = TestBed.get(AlbumEffects);
   });
 
   it('should be created', () => {

@@ -1,10 +1,14 @@
+import { LoadAlbum } from './../../state/actions/album.actions';
+import { selectAlbumTracks, selectIsLoading } from './../../state/selectors/album.selectors';
+import { Store } from '@ngrx/store';
 import { Track } from './../../models/track.model';
 import { ApiServiceService } from './../../services/api-service.service';
 import { Album } from './../../models/album.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { switchMap, map, withLatestFrom, mergeMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { selectSelectedAlbum } from 'src/app/state/selectors/album.selectors';
 
 @Component({
   selector: 'app-album-view',
@@ -13,25 +17,21 @@ import { Observable } from 'rxjs';
 })
 export class AlbumViewComponent implements OnInit {
 
+  isLoading: boolean;
   selectedAlbum: Album;
-  tracks: Track[];
+  tracks: Track[] = [];
 
-  constructor(private route: ActivatedRoute, private api: ApiServiceService) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private api: ApiServiceService,
+    private store: Store<any>
+    ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(val => {
-       this.getAlbum((val.get('id')));
-    })
     
-  }
-
-  getAlbum(id: string) {
-    this.api.getAlbum(id).subscribe(res => {
-      this.selectedAlbum = res;
-      if (this.selectedAlbum.relationships) {
-        this.tracks = this.selectedAlbum.relationships.tracks.data;
-      }
-    })
+    this.route.params.pipe(map(param => param.id)).subscribe(val => this.store.dispatch(new LoadAlbum({id: val})));
+    this.store.select(selectSelectedAlbum).subscribe(album => this.selectedAlbum = album);
+    this.store.select(selectIsLoading).subscribe(val => this.isLoading = val);
   }
 
 

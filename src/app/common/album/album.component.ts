@@ -11,7 +11,7 @@ export class AlbumComponent implements OnInit {
   @Input() album: Album;
   @Input() imgSrc: string;
 
-  @Output() albumDetails: EventEmitter<any> = new EventEmitter();
+  @Output() onSelectAlbum: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -19,8 +19,8 @@ export class AlbumComponent implements OnInit {
   }
 
   onClick(album: Album) {
-    console.log(album.href);
-    this.albumDetails.emit(album.href);
+    console.log(`Emitting ${album.href}`);
+    this.onSelectAlbum.emit(album);
   }
 
 }

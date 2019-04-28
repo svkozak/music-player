@@ -36,6 +36,13 @@ export class ApiServiceService {
     return from( this.musicKitService.musicKit.api.charts(null, {types: types, genre: '17', limit: 20}))
   }
 
+
+  getDanceAlbums(): Observable<any> {
+    let types = ['albums'];
+    let result$ = from(this.musicKitService.musicKit.api.charts(null, {types: types, genre: '17', limit: 20}));
+    return result$.pipe(map(val => val));
+  }
+
   // request using url params
   getOtherCharts(): Observable<any> {
 
@@ -49,6 +56,7 @@ export class ApiServiceService {
 
 
   getAlbum(id: string): Observable<Album> {
+    console.log(`Get album called with id ${id}`);
     return from(this.musicKitService.musicKit.api.album(id));
   }
 

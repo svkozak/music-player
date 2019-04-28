@@ -4,11 +4,12 @@
         <h2>Top dance albums</h2>
     </div>
 
-    <div class="main">
+    <div class="main" *ngIf="!isLoading">
         
-        <app-album *ngFor="let album of otherAlbums" 
+        <app-album *ngFor="let album of topAlbums" 
             [album]="album" 
-            [imgSrc]="formatArtwork(album.attributes.artwork.url, 180)">
+            [imgSrc]="formatArtwork(album.attributes.artwork.url, 180)"
+            (onSelectAlbum)="onAlbumSelected($event)">
         </app-album>
 
     </div>

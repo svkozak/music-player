@@ -1,4 +1,4 @@
-<div class="col" *ngIf="selectedAlbum">
+<div class="col" *ngIf="selectedAlbum && selectedAlbum.attributes">
 
   <div class="row">
       <div class="col-12 col-sm-4 albumArt">
@@ -9,8 +9,8 @@
         <h3>{{selectedAlbum.attributes.name}}</h3>
         <p>{{selectedAlbum.attributes.recordLabel}}</p>
         
-        <ol>
-           <li *ngFor="let track of tracks">{{track.attributes.name}}</li>
+        <ol *ngIf="selectedAlbum.relationships">
+           <li *ngFor="let track of selectedAlbum.relationships.tracks.data">{{track.attributes.name}}</li>
         </ol>
       </div>
   </div>

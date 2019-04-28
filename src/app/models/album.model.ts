@@ -1,8 +1,10 @@
+import { Track } from './track.model';
+
 export interface Album {
-  attributes: Attributes;
-  href: string;
+  attributes?: Attributes;
+  href?: string;
   id: string;
-  type: string;
+  type?: string;
   relationships?: any;
 }
 
