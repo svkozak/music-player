@@ -22,6 +22,6 @@ export const selectSelectedAlbum = createSelector(
 
 export const selectAlbumTracks = createSelector(
   selectAlbumState,
-  (state: AlbumsState) => state.selectedAlbum.relationships.tracks.data
+  (state: AlbumsState) => state.selectedAlbum.relationships.tracks
 )
 

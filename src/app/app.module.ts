@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AlbumComponent } from './common/album/album.component';
 import { AlbumViewComponent } from './components/album-view/album-view.component';
 import { AlbumArtPipe } from './pipes/album-art.pipe';
+import { SpinnerComponent } from './common/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AlbumArtPipe } from './pipes/album-art.pipe';
     LibraryComponent,
     AlbumComponent,
     AlbumViewComponent,
-    AlbumArtPipe
+    AlbumArtPipe,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

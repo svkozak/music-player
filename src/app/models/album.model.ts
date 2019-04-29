@@ -1,3 +1,4 @@
+import { Artist } from './artist.model';
 import { Track } from './track.model';
 
 export interface Album {
@@ -5,7 +6,7 @@ export interface Album {
   href?: string;
   id: string;
   type?: string;
-  relationships?: any;
+  relationships?: Relationships;
 }
 
 export interface Attributes {
@@ -45,4 +46,9 @@ export interface EditorialNotes {
 export interface PlayParams {
   id: string;
   kind: string;
+}
+
+export interface Relationships {
+  tracks?: Track[];
+  artists?: Artist[];
 }

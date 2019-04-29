@@ -1,17 +1,22 @@
-<div class="col" *ngIf="selectedAlbum && selectedAlbum.attributes">
-
+<div class="col">
+  
   <div class="row">
       <div class="col-12 col-sm-4 albumArt">
-          <img [src]="selectedAlbum.attributes.artwork.url | albumArt : 400" class="artwork" alt="">
+          <app-spinner *ngIf="isLoading"></app-spinner>
+          <img *ngIf="!isLoading && selectedAlbum.attributes" [src]="selectedAlbum.attributes.artwork.url | albumArt : 400" class="artwork" alt="">
       </div>
       
       <div class="col-12 col-sm-8">
-        <h3>{{selectedAlbum.attributes.name}}</h3>
-        <p>{{selectedAlbum.attributes.recordLabel}}</p>
-        
-        <ol *ngIf="selectedAlbum.relationships">
-           <li *ngFor="let track of selectedAlbum.relationships.tracks.data">{{track.attributes.name}}</li>
-        </ol>
+        <app-spinner *ngIf="isLoading"></app-spinner>
+        <img class="spinner" *ngIf="isLoading" src="../../../assets/img/spinner.svg" alt="">
+          <div *ngIf="selectedAlbum.attributes && selectedAlbum.relationships">
+            <h3>{{selectedAlbum.attributes.name}}</h3>
+            <p>{{selectedAlbum.attributes.artistName}}</p>
+            
+            <ol *ngIf="tracks && tracks.length > 0">
+              <li *ngFor="let track of tracks">{{track.attributes.name}}</li>
+            </ol>
+        </div>
       </div>
   </div>
 
