@@ -1,14 +1,14 @@
 <div class="col">
 
     <div>
-        <h2>Top dance albums</h2>
+        <h2>Top albums</h2>
     </div>
 
     <div class="main" *ngIf="!isLoading">
         
         <app-album *ngFor="let album of topAlbums" 
             [album]="album" 
-            [imgSrc]="formatArtwork(album.attributes.artwork.url, 180)"
+            [imgSrc]="formatArtwork(album.attributes.artwork.url, 1000)"
             (onSelectAlbum)="onAlbumSelected($event)">
         </app-album>
 

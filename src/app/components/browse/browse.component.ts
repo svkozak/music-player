@@ -7,6 +7,7 @@ import { Album } from './../../models/album.model';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { LoadPlaylists } from 'src/app/state/actions/playlists.actions';
 
 @Component({
   selector: 'app-browse',
@@ -16,9 +17,8 @@ import { Router } from '@angular/router';
 export class BrowseComponent implements OnInit {
 
   isLoading: boolean;
-  genres = [];
   topAlbums: Album[];
-  otherAlbums: Album[];
+  topPlaylists: any;
 
   constructor(
     private musicKitService: MusicKitService,
@@ -27,8 +27,8 @@ export class BrowseComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-
     this.store.dispatch(new LoadAlbums());
+    this.store.dispatch(new LoadPlaylists());
     this.store.select(selectAlbums).subscribe(albums => this.topAlbums = albums);
     this.store.select(selectIsLoading).subscribe(isLoading => this.isLoading = isLoading);
   }

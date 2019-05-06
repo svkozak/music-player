@@ -7,13 +7,16 @@ import {
 } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
 import { albumReducer, AlbumsState } from './album.reducer';
+import { playlistReducer, PlaylistsState } from './playlist.reducer';
 
 export interface State {
-  albums: AlbumsState
+  albums: AlbumsState,
+  playlists: PlaylistsState
 }
 
 export const reducers: ActionReducerMap<State> = {
-  albums: albumReducer
+  albums: albumReducer,
+  playlists: playlistReducer
 };
 
 

@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700&subset=cyrillic');
+
+$font-family-base: 'Montserrat', sans-serif;
+$body-bg: #F7F8FA;
+$body-color: #2A3A4A;
+$enable-shadows: true;
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";

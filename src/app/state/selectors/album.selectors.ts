@@ -20,8 +20,8 @@ export const selectSelectedAlbum = createSelector(
   (state: AlbumsState) => state.selectedAlbum
 )
 
-export const selectAlbumTracks = createSelector(
+export const selectAlbumRelationships = createSelector(
   selectAlbumState,
-  (state: AlbumsState) => state.selectedAlbum.relationships.tracks
+  (state: AlbumsState) => state.selectedAlbum.relationships
 )
 

@@ -1,8 +1,8 @@
+import { Album } from './../models/album.model';
 import { MusicKitService } from './music-kit.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { from, Observable, of } from 'rxjs';
-import { Album } from '../models/album.model';
 import { switchMap, map } from 'rxjs/operators';
 
 @Injectable({
@@ -31,27 +31,20 @@ export class ApiServiceService {
   }
 
   // request using music kit method
-  getCharts(): Observable<any> {
-    let types = ['albums', 'songs', 'playlists'];
-    return from( this.musicKitService.musicKit.api.charts(null, {types: types, genre: '17', limit: 20}))
-  }
+  // let types = ['albums', 'songs', 'playlists'];
 
-
-  getDanceAlbums(): Observable<any> {
-    let types = ['albums'];
-    let result$ = from(this.musicKitService.musicKit.api.charts(null, {types: types, genre: '17', limit: 20}));
+  getDancePlaylists(): Observable<any> {
+    let types = ['playlists'];
+    let result$ = from(this.musicKitService.musicKit.api.charts(null, { types, genre: '17', limit: 20 }));
     return result$.pipe(map(val => val));
   }
 
-  // request using url params
-  getOtherCharts(): Observable<any> {
 
-    let params = new HttpParams()
-    .set("types", "albums")
-    .set("genre", "17")
-    .set("limit", "10")
-
-    return this.http.get(`${this.BASE_URL}/${this.STOREFRONT}/charts`, {headers: this.headers, params: params});
+  // {types: types, genre: '17', limit: 20}
+  getAlbumCharts(genre: string = '', limit: number = 20): Observable<any> {
+    let types = ['albums', 'songs', 'playlists'];
+    let result$ = from(this.musicKitService.musicKit.api.charts(types, {genre: genre, limit: limit}));
+    return result$.pipe(map(val => val));
   }
 
 

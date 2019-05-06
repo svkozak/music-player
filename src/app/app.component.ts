@@ -13,6 +13,14 @@ export class AppComponent {
   title = 'music';
   public isNavCollapsed = true;
 
+  value = 0;
+  options = {
+    floor: 0,
+    ceil: 6.59,
+    step: 0.01,
+    hidePointerLabels: true
+  }
+
   constructor(private musicKitService: MusicKitService) {}
 
   onClick(){

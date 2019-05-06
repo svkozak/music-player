@@ -6,7 +6,7 @@ export interface Album {
   href?: string;
   id: string;
   type?: string;
-  relationships?: Relationships;
+  relationships?: any;
 }
 
 export interface Attributes {
@@ -46,9 +46,4 @@ export interface EditorialNotes {
 export interface PlayParams {
   id: string;
   kind: string;
-}
-
-export interface Relationships {
-  tracks?: Track[];
-  artists?: Artist[];
 }

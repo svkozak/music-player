@@ -1,9 +1,7 @@
 <div class="card">
-    <img [src]="imgSrc" class="card-img-top" alt="...">
+    <a [routerLink]="" (click)="onClick(album)"><img [src]="imgSrc" class="card-img-top" alt="..."></a>
     <div class="card-body">
-        <h5 class="card-title">{{album.attributes.name}}</h5>
+        <a [routerLink]="" (click)="onClick(album)" class="card-title">{{album.attributes.name}}</a>
         <p class="card-text">{{album.attributes.artistName}}</p>
-        <button class="btn btn-primary" (click)="onClick(album)">Open</button>
-        <!-- <button class="btn btn-primary" [routerLink]="['/albums', album.id]">View</button> -->
     </div>
 </div>

@@ -19,6 +19,7 @@ import { AlbumComponent } from './common/album/album.component';
 import { AlbumViewComponent } from './components/album-view/album-view.component';
 import { AlbumArtPipe } from './pipes/album-art.pipe';
 import { SpinnerComponent } from './common/spinner/spinner.component';
+import { Ng5SliderModule } from 'ng5-slider';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SpinnerComponent } from './common/spinner/spinner.component';
     EffectsModule.forRoot([AppEffects, AlbumEffects]),
     StoreRouterConnectingModule.forRoot(),
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng5SliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

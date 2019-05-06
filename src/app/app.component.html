@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+<nav class="navbar navbar-expand-md navbar-light fixed-top">
     <a class="navbar-brand" href="#">music</a>
     <button class="navbar-toggler" type="button" (click)="isNavCollapsed = !isNavCollapsed" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -22,5 +22,19 @@
         <router-outlet></router-outlet>  
     </div>    
   </main>
+
+  <footer class="footer mt-auto py-3 w-100 fixed-bottom">
+    <div class="d-flex flex-row">
+        <div class="controls align-self-center">
+            <button class="btn btn-outline-light mx-1"><img src="../assets/img/skip-back.svg" alt="skip back" class="player-button"></button>
+            <button class="btn btn-outline-light mx-1"><img src="../assets/img/play.svg" alt="play" class="player-button"></button>
+            <button class="btn btn-outline-light mx-1"><img src="../assets/img/skip-forward.svg" alt="skip back" class="player-button"></button>
+          </div>
+          <div class="slider align-self-center flex-fill flex-grow-1">
+              <ng5-slider [(value)]="value" [options]="options" class="mx-3"></ng5-slider>
+          </div>
+    </div>
+    
+  </footer>
 
 

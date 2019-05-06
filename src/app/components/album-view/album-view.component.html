@@ -13,7 +13,7 @@
             <h3>{{selectedAlbum.attributes.name}}</h3>
             <p>{{selectedAlbum.attributes.artistName}}</p>
             
-            <ol *ngIf="tracks && tracks.length > 0">
+            <ol *ngIf="selectedAlbum.relationships.tracks.data as tracks">
               <li *ngFor="let track of tracks">{{track.attributes.name}}</li>
             </ol>
         </div>
