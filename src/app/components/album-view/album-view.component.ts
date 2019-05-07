@@ -1,3 +1,4 @@
+import { PlayerService } from './../../services/player.service';
 import { LoadAlbum } from './../../state/actions/album.actions';
 import { selectIsLoading, selectAlbumRelationships } from './../../state/selectors/album.selectors';
 import { Store } from '@ngrx/store';
@@ -23,7 +24,8 @@ export class AlbumViewComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private store: Store<any>
+    private store: Store<any>,
+    private playerService: PlayerService
     ) { }
 
   ngOnInit() {
@@ -35,6 +37,14 @@ export class AlbumViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+  }
+
+  onPlay(album: Album) {
+    this.playerService.setQueue(album).subscribe(res => this.playerService.play())
+  }
+
+  onStop() {
+    this.playerService.stop();
   }
 
 

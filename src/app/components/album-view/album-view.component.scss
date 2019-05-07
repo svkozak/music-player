@@ -1,9 +1,20 @@
+@import "../../../styles.scss";
+
 .albumArt {
   max-width: 30rem;
 }
-
 
 .artwork {
   width: 100%;
   max-width: 30rem;
 }
+
+.icon {
+  height: 1rem;
+  width: 1rem;
+
+  svg {
+    stroke: aqua;
+  }
+}
+

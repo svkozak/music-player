@@ -1,9 +1,11 @@
 <div class="col">
   
   <div class="row">
-      <div class="col-12 col-sm-4 albumArt">
+      <div class="col-12 col-sm-4 albumArt mb-3">
           <app-spinner *ngIf="isLoading"></app-spinner>
-          <img *ngIf="!isLoading && selectedAlbum.attributes" [src]="selectedAlbum.attributes.artwork.url | albumArt : 400" class="artwork" alt="">
+          <img *ngIf="!isLoading && selectedAlbum.attributes" [src]="selectedAlbum.attributes.artwork.url | albumArt : 400" class="artwork shadow mb-2 rounded" alt="">
+          <button class="btn btn-sm btn-outline-success mr-2" (click)="onPlay(selectedAlbum)"><img class="icon" src="../../../assets/img/play.svg" alt="play"> play</button>
+          <button class="btn btn-sm btn-outline-success mr-2" (click)="onStop()"><img class="icon" src="../../../assets/img/stop.svg" alt="play"> stop</button>
       </div>
       
       <div class="col-12 col-sm-8">
@@ -12,9 +14,9 @@
           <div *ngIf="selectedAlbum.attributes && selectedAlbum.relationships">
             <h3>{{selectedAlbum.attributes.name}}</h3>
             <p>{{selectedAlbum.attributes.artistName}}</p>
-            
-            <ol *ngIf="selectedAlbum.relationships.tracks.data as tracks">
-              <li *ngFor="let track of tracks">{{track.attributes.name}}</li>
+
+            <ol class="list-group" *ngIf="selectedAlbum.relationships.tracks.data as tracks">
+              <li *ngFor="let track of tracks" class="list-group-item p-2 my-1 shadow-sm bg-white rounded border-0">{{track.attributes.name}}</li>
             </ol>
         </div>
       </div>
