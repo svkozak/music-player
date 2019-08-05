@@ -5,7 +5,19 @@
 
 // Global settings
 $font-family-base: 'Nunito', sans-serif;
-$body-bg: #F7F8FA;
+// $body-bg: #F7F8FA;
+$body-bg: #ffffff;
 $body-color: #2A3A4A;
+$active-color: #0793b7;
+
+// mixins
+@mixin font-small {
+  font-size: 0.75rem;
+  font-weight: 300;
+}
+
+@mixin font-light {
+  font-weight: 300;
+}
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";

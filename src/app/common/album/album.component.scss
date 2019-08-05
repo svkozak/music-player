@@ -10,3 +10,10 @@
   font-weight: $font-weight-bold;
 }
 
+.card-body {
+  white-space: nowrap;
+  overflow: hidden;
+  word-wrap: none;
+  text-overflow: ellipsis;
+}
+

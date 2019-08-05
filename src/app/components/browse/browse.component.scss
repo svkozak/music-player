@@ -1,4 +1,6 @@
-.main {
+@import '../../../styles.scss';
+
+.scroller {
     display: flex;
     flex-direction: row;
     overflow: scroll;

@@ -1,13 +1,13 @@
+import { selectIsLoadingPlaylists, selectPlaylists } from './../../state/selectors/playlist.selector';
 import { selectAlbums, selectIsLoading } from './../../state/selectors/album.selectors';
 import { LoadAlbums, LoadAlbum } from './../../state/actions/album.actions';
 import { MusicKitService } from './../../services/music-kit.service';
-import { ApiServiceService } from "./../../services/api-service.service";
 import { Component, OnInit } from '@angular/core';
 import { Album } from './../../models/album.model';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { LoadPlaylists } from 'src/app/state/actions/playlists.actions';
+import { Playlist } from 'src/app/models/playlist.model';
 
 @Component({
   selector: 'app-browse',
@@ -16,9 +16,10 @@ import { LoadPlaylists } from 'src/app/state/actions/playlists.actions';
 })
 export class BrowseComponent implements OnInit {
 
-  isLoading: boolean;
+  isLoadingAlbums: boolean;
+  isLoadingPlaylists: boolean;
   topAlbums: Album[];
-  topPlaylists: any;
+  topPlaylists: Playlist[];
 
   constructor(
     private musicKitService: MusicKitService,
@@ -30,7 +31,9 @@ export class BrowseComponent implements OnInit {
     this.store.dispatch(new LoadAlbums());
     this.store.dispatch(new LoadPlaylists());
     this.store.select(selectAlbums).subscribe(albums => this.topAlbums = albums);
-    this.store.select(selectIsLoading).subscribe(isLoading => this.isLoading = isLoading);
+    this.store.select(selectPlaylists).subscribe(playlists => this.topPlaylists = playlists);
+    this.store.select(selectIsLoading).subscribe(isLoading => this.isLoadingAlbums = isLoading);
+    this.store.select(selectIsLoadingPlaylists).subscribe(isLoading => this.isLoadingPlaylists = isLoading);
   }
 
   formatArtwork(artwork: any, size: string): string {
@@ -43,6 +46,11 @@ export class BrowseComponent implements OnInit {
 
   onAlbumSelected(album: Album) {
     this.router.navigate(['albums', album.id]);
+  }
+
+  onPlaylistSelected(playlist: Playlist) {
+    console.log(`PLAYLIST ID IS ${playlist.id}`);
+    this.router.navigate(['playlists', playlist.id]);
   }
 
 }

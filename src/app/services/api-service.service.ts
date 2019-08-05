@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { from, Observable, of } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
+import { Playlist } from '../models/playlist.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { switchMap, map } from 'rxjs/operators';
 export class ApiServiceService {
 
   headers: HttpHeaders;
-  BASE_URL = "https://api.music.apple.com/v1/catalog";
+  BASE_URL = "https://api.music.apple.com/";
   STOREFRONT = "us";
 
   constructor(private http: HttpClient, private musicKitService: MusicKitService) {
@@ -20,10 +21,10 @@ export class ApiServiceService {
       'Authorization': 'Bearer ' + this.musicKitService.musicKit.developerToken,
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Music-User-Token': this.musicKitService.isAuthorized ? this.musicKitService.musicKit.musicUserToken : ''
+      'Music-User-Token': this.musicKitService.musicKit.isAuthorized ? this.musicKitService.musicKit.musicUserToken : ''
     });
 
-    console.log(this.musicKitService.musicKit.musicUserToken);
+    // console.log(this.musicKitService.musicKit.musicUserToken);
   }
 
   getGenres(): Observable<string[]> {
@@ -40,10 +41,11 @@ export class ApiServiceService {
   }
 
 
+  // CURRENTLY USING
   // {types: types, genre: '17', limit: 20}
-  getAlbumCharts(genre: string = '', limit: number = 20): Observable<any> {
+  getCharts(genre: string = '', limit: number = 20): Observable<any> {
     let types = ['albums', 'songs', 'playlists'];
-    let result$ = from(this.musicKitService.musicKit.api.charts(types, {genre: genre, limit: limit}));
+    let result$ = from(this.musicKitService.musicKit.api.charts(types, {genre: '', limit: limit}));
     return result$.pipe(map(val => val));
   }
 
@@ -51,6 +53,11 @@ export class ApiServiceService {
   getAlbum(id: string): Observable<Album> {
     console.log(`Get album called with id ${id}`);
     return from(this.musicKitService.musicKit.api.album(id));
+  }
+
+  getPlaylist(id: string): Observable<Playlist> {
+    console.log(`Get playlist called with id ${id}`);
+    return from(this.musicKitService.musicKit.api.playlist(id));
   }
 
 

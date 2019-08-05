@@ -8,7 +8,6 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { mergeMap, map, catchError, switchMap } from 'rxjs/operators';
 import { EMPTY, Observable } from 'rxjs';
-import * as albumActions from '../actions/album.actions';
 import * as playlistActions from '../actions/playlists.actions';
 
 
@@ -21,23 +20,21 @@ export class PlaylistEffects {
   @Effect()
   loadPlaylists$ = this.actions$.pipe(
     ofType(PlaylistsActionTypes.LoadPlaylists),
-    mergeMap(() => this.api.getDancePlaylists()
+    mergeMap(() => this.api.getCharts()
       .pipe(
         map(results => new playlistActions.LoadPlaylistsSuccess({playlists: results.playlists[0].data})),
         catchError(() => EMPTY)
     ))
   )
 
-
-  // @Effect()
-  // loadAlbum$ = this.actions$.pipe(
-  //   ofType<albumActions.LoadAlbum>(AlbumActionTypes.LoadAlbum),
-  //   map(action => action.payload.id),
-  //   mergeMap(id => this.api.getAlbum(id).pipe(
-  //     map(album => new albumActions.LoadAlbumSuccess({album: album}))
-  //   ))
-  // )
-
+  @Effect()
+  loadPlaylist$ = this.actions$.pipe(
+    ofType<playlistActions.LoadPlaylist>(PlaylistsActionTypes.LoadPlaylist),
+    map(action => action.payload.id),
+    mergeMap(id => this.api.getPlaylist(id).pipe(
+      map(playlist => new playlistActions.LoadPlaylistSuccess({playlist: playlist}))
+    ))
+  )
   
 
 

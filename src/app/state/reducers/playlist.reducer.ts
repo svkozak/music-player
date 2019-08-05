@@ -1,11 +1,12 @@
+import { Playlist } from './../../models/playlist.model';
 import { PlaylistsActionTypes, PlaylistsActions, LoadPlaylistsFailure } from './../actions/playlists.actions';
 
 
 export interface PlaylistsState {
   isLoading: boolean;
   error?: any,
-  playlists?: any,
-  selectedPlaylist?: any
+  playlists?: Playlist[],
+  selectedPlaylist?: Playlist
 }
 
 export const initialState: PlaylistsState = {
@@ -27,7 +28,7 @@ export function playlistReducer(state: PlaylistsState = initialState, action: Pl
     } 
       
     case PlaylistsActionTypes.LoadPlaylistsSuccess: {
-      const { playlists } = action.payload
+      const { playlists } = action.payload;
       return {
         ...state,
         isLoading: false,
@@ -36,6 +37,33 @@ export function playlistReducer(state: PlaylistsState = initialState, action: Pl
     }
     
     case PlaylistsActionTypes.LoadPlaylistsFailure: {
+      const { error } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        error
+      }
+    }
+
+    case PlaylistsActionTypes.LoadPlaylist: {
+      const { id } = action.payload
+      return {
+        ...state,
+        isLoading: true,
+        selectedPlaylist: {id : id}
+      }
+    }
+
+    case PlaylistsActionTypes.LoadPlaylistSuccess: {
+      const { playlist } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        selectedPlaylist: playlist
+      }
+    }
+    
+    case PlaylistsActionTypes.LoadPlaylistFailure: {
       const { error } = action.payload
       return {
         ...state,

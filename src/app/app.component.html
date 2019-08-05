@@ -1,19 +1,23 @@
 <nav class="navbar navbar-expand-md navbar-light fixed-top shadow-sm">
     <a class="navbar-brand" href="#">music</a>
-    <button class="navbar-toggler" type="button" (click)="isNavCollapsed = !isNavCollapsed" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="btn btn-outline menu-toggle p-0" type="button" (click)="isNavCollapsed = !isNavCollapsed" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- <span class="navbar-toggler-icon"></span> -->
+      <img src="../assets/img/menu.svg" class="menu-icon d-md-none" alt="">
     </button>
   
     <div class="collapse navbar-collapse" [ngbCollapse]="isNavCollapsed">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/browse" routerLinkActive="active">browse<span class="sr-only">(current)</span></a>
+          <a class="nav-link" (click)="isNavCollapsed = !isNavCollapsed" routerLink="/browse" routerLinkActive="active">browse<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/library" routerLinkActive="active">library</a>
         </li>
       </ul>
-      <button class="btn btn-sm btn-dark" (click)="onClick()" >Login</button>
+      <!-- <button class="btn btn-sm btn-outline-info" id="apple-music-authorize">Sign In</button>
+      <button class="btn btn-sm btn-outline-info" id="apple-music-unauthorize">Sign Out</button> -->
+      <button *ngIf="!isLoggedIn" class="btn btn-sm btn-outline-info" (click)="onClickLogin()" >Sign In</button>
+      <button *ngIf="isLoggedIn" class="btn btn-sm btn-outline-info" (click)="onClickLogOut()" >Sign Out</button>
     </div>
   </nav>
 
@@ -23,18 +27,6 @@
     </div>    
   </main>
 
-  <footer class="footer mt-auto py-3 w-100 fixed-bottom shadow-sm">
-    <div class="d-flex flex-row">
-        <div class="controls align-self-center">
-            <button class="btn btn-outline-light mx-1"><img src="../assets/img/skip-back.svg" alt="skip back" class="player-button"></button>
-            <button class="btn btn-outline-light mx-1"><img src="../assets/img/play.svg" alt="play" class="player-button"></button>
-            <button class="btn btn-outline-light mx-1"><img src="../assets/img/skip-forward.svg" alt="skip back" class="player-button"></button>
-          </div>
-          <div class="slider align-self-center flex-fill flex-grow-1">
-              <ng5-slider [(value)]="value" [options]="options" class="mx-3"></ng5-slider>
-          </div>
-    </div>
-    
-  </footer>
+<app-player></app-player>
 
 

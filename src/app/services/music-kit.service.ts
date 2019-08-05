@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { from , of, Observable } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { from , of, fromEvent, Observable } from 'rxjs';
+import { mergeMap, map, switchMap } from 'rxjs/operators';
 
 declare var MusicKit: any;
 
@@ -11,7 +11,7 @@ declare var MusicKit: any;
 export class MusicKitService {
 
   musicKit: any;
-  isAuthorized: boolean = false;
+  // isAuthorized: boolean = false;
 
   constructor() {
 
@@ -20,23 +20,51 @@ export class MusicKitService {
       app: {
       name: 'Music Player',
       build: '1.0'
-      }
+      },
+      declarativeMarkup: true
     });
 
     this.musicKit = MusicKit.getInstance();
-    this.isAuthorized = this.musicKit.isAuthorized;
+    // this.isAuthorized = this.musicKit.isAuthorized;
    }
 
-   authorize() {
-     from(this.musicKit.authorize()).subscribe(() => {
-       this.isAuthorized = true;
-     });
+    isUserAuthorized(): Observable<any> {
+      return of(this.musicKit.isAuthorized);
+    }
+
+
+    authorize(): Observable<any> {
+    return from(this.musicKit.authorize()).pipe(
+      switchMap(() => of(this.musicKit.isAuthorized))
+    );
    }
+
+  //  authorize() {
+  //   return from(this.musicKit.authorize()).pipe(
+  //     switchMap(() => fromEvent(this.musicKit, MusicKit.Events.authorizationStatusDidChange).pipe(
+  //       map((value: any) => {
+  //         console.log(value);
+  //         return value.authorizationStatus === 1;
+  //       })
+  //     ))
+  //   );
+  // }
+
+  // unauthorize(): Observable<any> {
+  //   return from(this.musicKit.unauthorize()).pipe(
+  //     switchMap(() => this.isUserAuthorized())
+  //   )
+  // }
 
     unauthorize() {
-      from(this.musicKit.unauthorize()).subscribe(() => {
-        this.isAuthorized = false;
-      })
+      return from(this.musicKit.unauthorize()).pipe(
+        switchMap(() => fromEvent(this.musicKit, MusicKit.Events.authorizationStatusDidChange).pipe(
+          map((value: any) => {
+            console.log(value);
+            return value.authorizationStatus === 1;
+          })
+        ))
+      );
     }
 
     formatArtworkURL(artwork: any, size: string): Observable<string> {

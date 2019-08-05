@@ -15,16 +15,19 @@ export interface Attributes {
   artwork: Artwork;
   contentRating: string;
   copyright: string;
-  isComplete: boolean;
-  isMasteredForItunes: boolean;
-  isSingle: boolean;
-  recordLabel: string;
-  releaseDate: string;
-  trackCount: number;
+  isComplete?: boolean;
+  isMasteredForItunes?: boolean;
+  isSingle?: boolean;
+  recordLabel?: string;
+  releaseDate?: string;
+  trackCount?: number;
   url: string;
-  editorialNotes: EditorialNotes;
+  editorialNotes?: EditorialNotes;
   genreNames: string[];
   playParams: PlayParams;
+  description?: Description;
+  playlistType?: string;
+  curatorName?: string;
 }
 
 export interface Artwork {
@@ -40,6 +43,10 @@ export interface Artwork {
 
 export interface EditorialNotes {
   short: string;
+  standard?: string;
+}
+
+export interface Description {
   standard?: string;
 }
 
