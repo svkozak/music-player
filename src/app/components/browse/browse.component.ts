@@ -25,16 +25,16 @@ export class BrowseComponent implements OnInit {
     private musicKitService: MusicKitService,
     private store: Store<any>,
     private router: Router
-    ) { }
+    ) { 
+      this.store.dispatch(new LoadAlbums());
+      this.store.dispatch(new LoadPlaylists());
+      this.store.select(selectAlbums).subscribe(albums => this.topAlbums = albums);
+      this.store.select(selectPlaylists).subscribe(playlists => this.topPlaylists = playlists);
+      this.store.select(selectIsLoading).subscribe(isLoading => this.isLoadingAlbums = isLoading);
+      this.store.select(selectIsLoadingPlaylists).subscribe(isLoading => this.isLoadingPlaylists = isLoading);
+    }
 
-  ngOnInit() {
-    this.store.dispatch(new LoadAlbums());
-    this.store.dispatch(new LoadPlaylists());
-    this.store.select(selectAlbums).subscribe(albums => this.topAlbums = albums);
-    this.store.select(selectPlaylists).subscribe(playlists => this.topPlaylists = playlists);
-    this.store.select(selectIsLoading).subscribe(isLoading => this.isLoadingAlbums = isLoading);
-    this.store.select(selectIsLoadingPlaylists).subscribe(isLoading => this.isLoadingPlaylists = isLoading);
-  }
+  ngOnInit() { }
 
   formatArtwork(artwork: any, size: string): string {
     let url = "";

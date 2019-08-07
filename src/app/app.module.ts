@@ -1,3 +1,4 @@
+import { LibraryEffects } from './state/effects/library.effects';
 import { PlayerEffects } from './state/effects/player.effects';
 import { AlbumEffects } from './state/effects/album.effects';
 import { BrowserModule } from '@angular/platform-browser';
@@ -50,7 +51,7 @@ import { ArtworkComponent } from './common/artwork/artwork.component';
     AppRoutingModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([AppEffects, AlbumEffects, PlaylistEffects, PlayerEffects]),
+    EffectsModule.forRoot([AppEffects, AlbumEffects, PlaylistEffects, LibraryEffects, PlayerEffects]),
     StoreRouterConnectingModule.forRoot(),
     NgbModule,
     HttpClientModule,

@@ -14,6 +14,7 @@ export class ApiServiceService {
   headers: HttpHeaders;
   BASE_URL = "https://api.music.apple.com/";
   STOREFRONT = "us";
+  private api;
 
   constructor(private http: HttpClient, private musicKitService: MusicKitService) {
 
@@ -24,8 +25,12 @@ export class ApiServiceService {
       'Music-User-Token': this.musicKitService.musicKit.isAuthorized ? this.musicKitService.musicKit.musicUserToken : ''
     });
 
+    this.api = this.musicKitService.musicKit.api
+
     // console.log(this.musicKitService.musicKit.musicUserToken);
   }
+
+  // Catalog
 
   getGenres(): Observable<string[]> {
     return from( this.musicKitService.musicKit.api.genres());
@@ -33,7 +38,6 @@ export class ApiServiceService {
 
   // request using music kit method
   // let types = ['albums', 'songs', 'playlists'];
-
   getDancePlaylists(): Observable<any> {
     let types = ['playlists'];
     let result$ = from(this.musicKitService.musicKit.api.charts(null, { types, genre: '17', limit: 20 }));
@@ -49,7 +53,6 @@ export class ApiServiceService {
     return result$.pipe(map(val => val));
   }
 
-
   getAlbum(id: string): Observable<Album> {
     console.log(`Get album called with id ${id}`);
     return from(this.musicKitService.musicKit.api.album(id));
@@ -58,6 +61,26 @@ export class ApiServiceService {
   getPlaylist(id: string): Observable<Playlist> {
     console.log(`Get playlist called with id ${id}`);
     return from(this.musicKitService.musicKit.api.playlist(id));
+  }
+
+  // User library
+
+  getAllLibraryAlbums(): Observable<any> {
+    console.log('get library albums called');
+    return from(this.api.library.albums(null, { limit: 11, offset: 0 }));
+  }
+
+  getLibraryAlbum(id: string): Observable<Album> {
+    console.log(`GET LIBRARY ITEM CALLED`);
+    return from(this.api.library.album(id));
+  }
+
+  getCollections() {
+    from(this.api.library.collection('recently-added', null, { limit: 10, offset: 0 } )).subscribe(val => console.log(val));
+  }
+
+  getRecommendations() {
+    from(this.api.recommendations()).subscribe(val => console.log(val));
   }
 
 

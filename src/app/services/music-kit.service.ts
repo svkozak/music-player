@@ -39,23 +39,6 @@ export class MusicKitService {
     );
    }
 
-  //  authorize() {
-  //   return from(this.musicKit.authorize()).pipe(
-  //     switchMap(() => fromEvent(this.musicKit, MusicKit.Events.authorizationStatusDidChange).pipe(
-  //       map((value: any) => {
-  //         console.log(value);
-  //         return value.authorizationStatus === 1;
-  //       })
-  //     ))
-  //   );
-  // }
-
-  // unauthorize(): Observable<any> {
-  //   return from(this.musicKit.unauthorize()).pipe(
-  //     switchMap(() => this.isUserAuthorized())
-  //   )
-  // }
-
     unauthorize() {
       return from(this.musicKit.unauthorize()).pipe(
         switchMap(() => fromEvent(this.musicKit, MusicKit.Events.authorizationStatusDidChange).pipe(

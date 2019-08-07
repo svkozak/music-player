@@ -7,11 +7,39 @@ import { BrowseComponent } from './components/browse/browse.component';
 import { LibraryComponent } from './components/library/library.component';
 
 const routes: Routes = [
-  { path: 'browse', component: BrowseComponent, data: { title: 'Browse' } },
-  { path: 'albums/:id', component: AlbumViewComponent },
-  { path: 'playlists/:id', component: PlaylistViewComponent },
-  { path: 'library', component: LibraryComponent, canActivate: [AuthGuard], data: { title: 'Library' } },
-  { path: '', redirectTo: '/browse', pathMatch: 'full' },
+  { 
+    path: 'browse',
+    component: BrowseComponent,
+    data: { title: 'Browse' },
+  },
+  { 
+    path: 'albums/:id',
+    component: AlbumViewComponent 
+  },
+  { 
+    path: 'playlists/:id', 
+    component: PlaylistViewComponent 
+  },
+  { 
+    path: 'library',
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: LibraryComponent
+      },
+      {
+        path: 'albums/:id',
+        component: AlbumViewComponent
+      }
+    ]
+  },
+  { 
+    path: '',
+    redirectTo: '/browse',
+    pathMatch: 'full' 
+  },
 ];
 
 @NgModule({

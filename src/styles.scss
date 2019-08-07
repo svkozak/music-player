@@ -20,4 +20,10 @@ $active-color: #0793b7;
   font-weight: 300;
 }
 
+@mixin scroller {
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+}
+
 @import "../node_modules/bootstrap/scss/bootstrap.scss";

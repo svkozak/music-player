@@ -1,3 +1,4 @@
+import { libraryReducer, LibraryState } from './library.reducer';
 import {
   ActionReducer,
   ActionReducerMap,
@@ -15,11 +16,13 @@ export interface State {
   app: AppState,
   albums: AlbumsState,
   playlists: PlaylistsState,
+  library: LibraryState,
   player: PlayerState
 }
 
 export const reducers: ActionReducerMap<State> = {
   app: appReducer,
+  library: libraryReducer,
   albums: albumReducer,
   playlists: playlistReducer,
   player: playerReducer

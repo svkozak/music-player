@@ -1,3 +1,5 @@
+import { LoadLibraryAlbum } from './../../state/actions/library.actions';
+import { selectSelectedLibraryAlbum } from './../../state/selectors/library.selectors';
 import { PlayerService } from './../../services/player.service';
 import { LoadAlbum } from './../../state/actions/album.actions';
 import { selectIsLoading, selectAlbumRelationships } from './../../state/selectors/album.selectors';
@@ -22,6 +24,7 @@ export class AlbumViewComponent implements OnInit, OnDestroy {
 
   isLoading: boolean;
   selectedAlbum: Album;
+  selectedLibraryAlbum: Album;
   tracks: Track[] = [];
   nowPlayingTrackId: string;
   currentPlaybackTimeRemaining;
@@ -30,10 +33,20 @@ export class AlbumViewComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private store: Store<any>,
     private playerService: PlayerService
-    ) { 
-      this.route.params.pipe(map(param => param.id)).subscribe(val => this.store.dispatch(new LoadAlbum({id: val})));
+    ) {
+
+      console.log(this.route.url)
+
+      this.route.params.pipe(map(param => param)).subscribe(val => {
+        console.log(val);
+        const id = val.id;
+        this.store.dispatch(new LoadAlbum({id: id}));
+        this.store.dispatch(new LoadLibraryAlbum({id: id}));
+      });
 
       this.store.select(selectSelectedAlbum).subscribe(album => this.selectedAlbum = album);
+      this.store.select(selectSelectedLibraryAlbum).subscribe(album => this.selectedAlbum = album);
+
       this.store.select(selectIsLoading).subscribe(val => this.isLoading = val);
       this.store.select(selectNowPlayingItem).subscribe(item => {
           if (item) {

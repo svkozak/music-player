@@ -1,4 +1,12 @@
+import { selectIsLibraryLoading, selectLibraryAlbums } from './../../state/selectors/library.selectors';
+import { Playlist } from './../../models/playlist.model';
+import { Album } from './../../models/album.model';
+import { Router } from '@angular/router';
+import { MusicKitService } from './../../services/music-kit.service';
+import { Store } from '@ngrx/store';
+import { ApiServiceService } from './../../services/api-service.service';
 import { Component, OnInit } from '@angular/core';
+import * as libraryActions from '../../state/actions/library.actions';
 
 @Component({
   selector: 'app-library',
@@ -7,9 +15,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LibraryComponent implements OnInit {
 
-  constructor() { }
+  isLoading: boolean;
+  albums: Album[];
+  playlists: Playlist[];
 
-  ngOnInit() {
+  constructor(    
+    private musicKitService: MusicKitService,
+    private store: Store<any>,
+    private router: Router
+    ) { 
+      
+      this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLoading = isLoading);
+      this.store.select(selectLibraryAlbums).subscribe(albums => this.albums = albums);
+    }
+
+  ngOnInit() { 
+    this.store.dispatch(new libraryActions.LoadLibraryAlbums());
+  }
+
+  formatArtwork(artwork: any, size: string): string {
+    let url = "";
+    this.musicKitService.formatArtworkURL(artwork, size).subscribe(res => {
+      url = res;
+    });
+    return url;
+  }
+
+  onAlbumSelected(album: Album) {
+    console.log(`LIBRARY ALBUM ID IS ${album.id}`);
+    this.router.navigate(['/library/albums', album.id]);
+  }
+
+  onPlaylistSelected(playlist: Playlist) {
+    console.log(`LIBRARY PLAYLIST ID IS ${playlist.id}`);
+    //this.router.navigate(['playlists', playlist.id]);
   }
 
 }
