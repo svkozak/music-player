@@ -5,7 +5,7 @@ const routes: Routes = [
   { 
     path: '',
     redirectTo: '/browse',
-    pathMatch: 'full' 
+    pathMatch: 'full'
   },
 ];
 

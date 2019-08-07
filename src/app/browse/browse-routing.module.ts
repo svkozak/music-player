@@ -1,3 +1,4 @@
+import { BrowseRootComponent } from './browse-root.component';
 import { PlaylistViewComponent } from './playlist-view/playlist-view.component';
 import { AlbumViewComponent } from './album-view/album-view.component';
 import { BrowseComponent } from './browse/browse.component';
@@ -7,6 +8,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const browseRoutes: Routes = [
+  {
+    path: '',
+    component: BrowseRootComponent
+  },
   { 
     path: 'browse',
     component: BrowseComponent,

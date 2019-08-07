@@ -7,10 +7,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const libraryRoutes: Routes = [
-  {
-    path: '',
-    component: LibraryRootComponent
-  },
   { 
     path: 'library',
     canActivate: [AuthGuard],
