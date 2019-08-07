@@ -1,0 +1,7 @@
+<div class="card mr-3 shadow-sm">
+    <a (click)="onClick(album)"><img [src]="imgSrc" class="card-img-top" alt="..."></a>
+    <div class="card-body">
+        <a (click)="onClick(album)" class="card-title">{{album.attributes.name}}</a>
+        <p class="card-text">{{album.attributes.artistName}}</p>
+    </div>
+</div>
