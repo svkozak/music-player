@@ -13,5 +13,5 @@
           <img class="icon" src="../../../assets/img/play.svg" alt="play">
         </button>
 
-        <button class="play-all btn btn btn-outline-light shadow-sm bg-white" (click)="onStopPressed()"><img class="icon" src="../../../assets/img/stop.svg" alt="play"></button>
+        <button *ngIf="selectedAlbum || selectedPlaylist" class="play-all btn btn btn-outline-light shadow-sm bg-white" (click)="onStopPressed()"><img class="icon" src="../../../assets/img/stop.svg" alt="play"></button>
     </div>

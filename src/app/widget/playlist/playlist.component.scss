@@ -6,6 +6,10 @@
   cursor: pointer;
 }
 
+.card-img-top {
+  background: url(../../../assets/img/loader.svg) center no-repeat;
+}
+
 .card-title, .card-title:hover {
   color: $body-color;
   font-weight: $font-weight-bold;

@@ -7,6 +7,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { TrackComponent } from './track/track.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { ArtworkComponent } from './artwork/artwork.component';
+import { LibraryAlbumComponent } from './library-album/library-album.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ArtworkComponent } from './artwork/artwork.component';
     AlbumComponent,
     PlaylistComponent,
     TrackComponent,
-    ArtworkComponent
+    ArtworkComponent,
+    LibraryAlbumComponent
   ],
   imports: [
     CommonModule
@@ -28,7 +30,8 @@ import { ArtworkComponent } from './artwork/artwork.component';
     AlbumComponent,
     PlaylistComponent,
     TrackComponent,
-    ArtworkComponent
+    ArtworkComponent,
+    LibraryAlbumComponent
   ]
 })
 export class WidgetModule { }

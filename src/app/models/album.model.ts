@@ -31,14 +31,14 @@ export interface Attributes {
 }
 
 export interface Artwork {
-  bgColor: string;
-  textColor1: string;
-  textColor2: string;
-  textColor3: string;
-  textColor4: string;
+  bgColor?: string;
+  textColor1?: string;
+  textColor2?: string;
+  textColor3?: string;
+  textColor4?: string;
   url: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
 }
 
 export interface EditorialNotes {

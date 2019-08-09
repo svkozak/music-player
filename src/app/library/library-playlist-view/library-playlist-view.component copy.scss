@@ -1,0 +1,9 @@
+@import "../../../styles.scss";
+
+.albumArt {
+  max-width: 40rem;
+}
+
+.playlist-description {
+  @include font-light;
+}

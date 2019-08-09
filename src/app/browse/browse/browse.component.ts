@@ -45,12 +45,12 @@ export class BrowseComponent implements OnInit {
   }
 
   onAlbumSelected(album: Album) {
-    this.router.navigate(['albums', album.id]);
+    this.router.navigate(['browse/albums', album.id]);
   }
 
   onPlaylistSelected(playlist: Playlist) {
     console.log(`PLAYLIST ID IS ${playlist.id}`);
-    this.router.navigate(['playlists', playlist.id]);
+    this.router.navigate(['browse/playlists', playlist.id]);
   }
 
 }

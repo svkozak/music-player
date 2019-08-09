@@ -1,3 +1,5 @@
+import { selectLibraryPlaylists } from './../state/library.selectors';
+import { LoadLibraryPlaylists } from './../state/library.actions';
 import { selectIsLibraryLoading, selectLibraryAlbums } from '../state/library.selectors';
 import { Playlist } from '../../models/playlist.model';
 import { Album } from '../../models/album.model';
@@ -23,14 +25,18 @@ export class LibraryComponent implements OnInit {
     private musicKitService: MusicKitService,
     private store: Store<any>,
     private router: Router
-    ) { 
-      
+    ) {
       this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLoading = isLoading);
       this.store.select(selectLibraryAlbums).subscribe(albums => this.albums = albums);
+      this.store.select(selectLibraryPlaylists).subscribe(playlists => this.playlists = playlists);
     }
 
   ngOnInit() { 
     this.store.dispatch(new libraryActions.LoadLibraryAlbums());
+    this.store.dispatch(new libraryActions.LoadLibraryPlaylists());
+  }
+
+  ngOnDestroy() {
   }
 
   formatArtwork(artwork: any, size: string): string {
@@ -43,12 +49,12 @@ export class LibraryComponent implements OnInit {
 
   onAlbumSelected(album: Album) {
     console.log(`LIBRARY ALBUM ID IS ${album.id}`);
-    this.router.navigate(['/library/albums', album.id]);
+    this.router.navigate(['library/albums', album.id]);
   }
 
   onPlaylistSelected(playlist: Playlist) {
     console.log(`LIBRARY PLAYLIST ID IS ${playlist.id}`);
-    //this.router.navigate(['playlists', playlist.id]);
+    this.router.navigate(['library/playlists', playlist.id]);
   }
 
 }

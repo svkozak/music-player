@@ -75,6 +75,18 @@ export class ApiServiceService {
     return from(this.api.library.album(id));
   }
 
+  getAllLibraryPlaylists(): Observable<any> {
+    console.log('get library playlists called');
+    return from(this.api.library.playlists(null, { limit: 10, offset: 0 }));
+  }
+
+  getLibraryPlaylist(id: string): Observable<Playlist> {
+    console.log(`GET LIBRARY playlist CALLED`);
+    return from(this.api.library.playlist(id));
+  }
+
+
+
   getCollections() {
     from(this.api.library.collection('recently-added', null, { limit: 10, offset: 0 } )).subscribe(val => console.log(val));
   }

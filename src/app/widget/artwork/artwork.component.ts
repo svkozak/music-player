@@ -12,6 +12,7 @@ export class ArtworkComponent implements OnInit {
   @Input() isLoading: boolean;
   @Input() selectedPlaylist: Playlist;
   @Input() selectedAlbum: Album;
+  @Input() artworkUrl: string;
 
   @Output() onPlayAll: EventEmitter<any> = new EventEmitter();
   @Output() onStop: EventEmitter<any> = new EventEmitter();

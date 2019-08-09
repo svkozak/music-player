@@ -9,22 +9,24 @@ import { RouterModule, Routes } from '@angular/router';
 
 const browseRoutes: Routes = [
   {
-    path: '',
-    component: BrowseRootComponent
-  },
-  { 
     path: 'browse',
-    component: BrowseComponent,
-    data: { title: 'Browse' },
-  },
-  { 
-    path: 'albums/:id',
-    component: AlbumViewComponent 
-  },
-  { 
-    path: 'playlists/:id', 
-    component: PlaylistViewComponent
-  },
+    component: BrowseRootComponent,
+    children: [
+      {
+        path: '',
+        component: BrowseComponent
+      },
+      {
+        path: 'albums/:id',
+        component: AlbumViewComponent
+      },
+      {
+        path: 'playlists/:id',
+        component: PlaylistViewComponent
+      }
+    ]
+  }
+
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-import { LibraryActionTypes } from './library.actions';
+import { LibraryActionTypes, LoadLibraryPlaylistSuccess } from './library.actions';
 import { Album } from './../../models/album.model';
 import { Action } from '@ngrx/store';
 import { ApiServiceService } from './../../services/api-service.service';
@@ -34,6 +34,24 @@ export class LibraryEffects {
     ))
   )
 
+  @Effect()
+  loadLibraryPlaylists$ = this.actions$.pipe(
+    ofType(LibraryActionTypes.LoadLibraryPlaylists),
+    mergeMap(() => this.api.getAllLibraryPlaylists()
+      .pipe(
+        map(playlists => new libraryActions.LoadLibraryPlaylistsSuccess({playlists: playlists})),
+        catchError(() => EMPTY)
+    ))
+  )
+
+  @Effect()
+  loadLibraryPlaylist$ = this.actions$.pipe(
+    ofType<libraryActions.LoadLibraryPlaylist>(LibraryActionTypes.LoadLibraryPlaylist),
+    map(action => action.payload.id),
+    mergeMap(id => this.api.getLibraryPlaylist(id).pipe(
+      map(playlist => new libraryActions.LoadLibraryPlaylistSuccess({playlist: playlist}))
+    ))
+  )
   
 
 
