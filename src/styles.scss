@@ -21,9 +21,18 @@ $active-color: #0793b7;
 }
 
 @mixin scroller {
-    display: flex;
-    flex-direction: row;
-    overflow: scroll;
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
 }
 
+
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+// nav pills colour overwrite
+ul.nav-pills li.nav-item {
+  list-style-type: none;
+  a { padding: 0; }
+  a.active { background-color: white; }
+  a.active .btn {color: $cyan}
+} 

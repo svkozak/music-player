@@ -1,3 +1,4 @@
+import { URLS } from './../state/app.constants';
 import { Album } from './../models/album.model';
 import { MusicKitService } from './music-kit.service';
 import { Injectable } from '@angular/core';
@@ -5,21 +6,23 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { from, Observable, of } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 import { Playlist } from '../models/playlist.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiServiceService {
 
+  
   headers: HttpHeaders;
-  BASE_URL = "https://api.music.apple.com/";
   STOREFRONT = "us";
   private api;
 
   constructor(private http: HttpClient, private musicKitService: MusicKitService) {
 
     this.headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + this.musicKitService.musicKit.developerToken,
+      // 'Authorization': 'Bearer ' + this.musicKitService.musicKit.developerToken,
+      'Authorization': 'Bearer ' + environment.token.token,
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Music-User-Token': this.musicKitService.musicKit.isAuthorized ? this.musicKitService.musicKit.musicUserToken : ''
@@ -65,19 +68,9 @@ export class ApiServiceService {
 
   // User library
 
-  getAllLibraryAlbums(): Observable<any> {
-    console.log('get library albums called');
-    return from(this.api.library.albums(null, { limit: 11, offset: 0 }));
-  }
-
   getLibraryAlbum(id: string): Observable<Album> {
     console.log(`GET LIBRARY ITEM CALLED`);
     return from(this.api.library.album(id));
-  }
-
-  getAllLibraryPlaylists(): Observable<any> {
-    console.log('get library playlists called');
-    return from(this.api.library.playlists(null, { limit: 10, offset: 0 }));
   }
 
   getLibraryPlaylist(id: string): Observable<Playlist> {
@@ -85,15 +78,79 @@ export class ApiServiceService {
     return from(this.api.library.playlist(id));
   }
 
-
-
-  getCollections() {
-    from(this.api.library.collection('recently-added', null, { limit: 10, offset: 0 } )).subscribe(val => console.log(val));
-  }
-
   getRecommendations() {
     from(this.api.recommendations()).subscribe(val => console.log(val));
   }
+
+  getRecentlyAdded(limit: string = '10', offset: string = '0') {
+    const options = {
+      headers: this.headers,
+      params: new HttpParams().set('limit', limit).set('offset', offset)
+    };
+    return this.http.get<any>(URLS.LIBRARY_RECENTLY_ADDED, options).pipe(
+      map(response => response.data)
+    )
+  }
+
+  getAllLibraryAlbums(limit: string = '10', offset: string = '0') {
+    const options = {
+      headers: this.headers,
+      params: new HttpParams().set('limit', limit).set('offset', offset)
+    };
+    return this.http.get<any>(URLS.LIBRARY_ALBUMS, options).pipe(
+      map(response => response.data)
+    )
+  }
+
+  getAllLibraryPlaylists(limit: string = '25', offset: string = '0') {
+    const options = {
+      headers: this.headers,
+      params: new HttpParams().set('limit', limit).set('offset', offset)
+    };
+    return this.http.get<any>(URLS.LIBRARY_PLAYLISTS, options).pipe(
+      map(response => response.data)
+    )
+  }
+
+  getAllLibraryArtists(limit: string = '10', offset: string = '0') {
+    const options = {
+      headers: this.headers,
+      params: new HttpParams().set('limit', limit).set('offset', offset)
+    };
+    return this.http.get<any>(URLS.LIBRARY_ARTISTS, options).pipe(
+      map(response => {
+        console.log(response);
+        return response.data
+      })
+    )
+  }
+
+  getLibraryArtist(id: string) {
+    const options = {
+      headers: this.headers,
+      params: new HttpParams().set('include', 'albums')
+    };
+    return this.http.get<any>(`${URLS.LIBRARY_ARTISTS}/${id}`, options).pipe(
+      map(response => {
+        console.log(response.data);
+        return response.data[0]
+      })
+    )
+  }
+
+
+
+
+
+
+  getPlaylistArtworkUrl(id: string) {
+    const options = {headers: this.headers};
+    return this.http.get<any>(`${URLS.LIBRARY_PLAYLISTS}/${id}`, options).pipe(
+      map(val => {
+        return val.data[0].attributes.artwork.url;
+      })
+    )
+  } 
 
 
 

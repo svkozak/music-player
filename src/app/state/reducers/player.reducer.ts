@@ -1,5 +1,5 @@
 import { Album } from './../../models/album.model';
-import { PlaybackStates } from './../../models/player.models';
+import { PlaybackStates, MediaItem } from './../../models/player.models';
 import { PlayerActions, PlayerActionTypes, NowPlayingAction, SetPlaybackStateAction, SetQueueAction } from './../actions/player.actions';
 import { Action } from '@ngrx/store';
 
@@ -8,7 +8,7 @@ export interface PlayerState {
   selectedAlbum: Album,
   playbackState: PlaybackStates,
   isShuffling: boolean,
-  nowPlayingItem: any,
+  nowPlayingItem: MediaItem,
   currentPlaybackDuration: any,
   currentPlaybackTime: any
 }
@@ -44,9 +44,10 @@ export function playerReducer(state: PlayerState = initialState, action: PlayerA
     }
 
     case PlayerActionTypes.PlayerNowPlaying: {
+      const {nowPlayingItem} = action.payload
       return {
         ...state,
-        nowPlayingItem: action.payload
+        nowPlayingItem: nowPlayingItem
       }
     }
 

@@ -34,7 +34,7 @@ export class PlaylistViewComponent implements OnInit {
     this.store.select(selectIsLoadingPlaylists).subscribe(isLoading => this.isLoading = isLoading);
     this.store.select(selectNowPlayingItem).subscribe(item => {
       if (item) {
-        this.nowPlayingTrackId = item.nowPlayingItem.id;
+        this.nowPlayingTrackId = item.id;
       }
     });
   this.playerService.getCurrentPlaybackTimeRemaining().subscribe(timeRemaining => this.currentPlaybackTimeRemaining = timeRemaining);

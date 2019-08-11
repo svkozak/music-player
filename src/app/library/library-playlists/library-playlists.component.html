@@ -1,0 +1,25 @@
+<div class="col">
+
+    <app-library-nav></app-library-nav>
+  
+      <div class="d-flex mt-3 align-content-start">
+          <h2 class="mb-2">Playlists</h2>
+          <span *ngIf="playlists" class="badge shadow-sm badge-pill badge-light mb-auto">{{ playlists.length }}</span>
+  
+          <button class="btn btn-link text-info ml-auto my-auto" (click)="onLoadMore()">
+              <span *ngIf="isLoading" class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true"></span>
+              <span *ngIf="!isLoading">more</span>
+          </button>
+      </div>
+  
+  
+      <div *ngIf="playlists" class="d-flex overflow-auto my-1 py-3" >                 
+          <div *ngFor="let playlist of playlists">
+              <app-album
+              [album]="playlist" 
+              [imgSrc]="playlist.attributes.artwork.url | albumArt : 1000"
+              (onSelectAlbum)="onPlaylistSelected(playlist)">
+              </app-album>
+          </div>
+      </div>
+  </div>

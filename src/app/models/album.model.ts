@@ -1,3 +1,4 @@
+import { Playlist } from 'src/app/models/playlist.model';
 import { Artist } from './artist.model';
 import { Track } from './track.model';
 
@@ -53,4 +54,9 @@ export interface Description {
 export interface PlayParams {
   id: string;
   kind: string;
+}
+
+export interface Relationships {
+  albums?: { data: Album[] }
+  playlists?: { data: Playlist[] }
 }

@@ -15,7 +15,7 @@
   font-weight: $font-weight-bold;
 }
 
-.card-body {
+.card-body, .card-text {
   white-space: nowrap;
   overflow: hidden;
   word-wrap: none;

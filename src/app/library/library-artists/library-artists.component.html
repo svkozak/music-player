@@ -1,0 +1,35 @@
+<div class="col">
+
+    <app-library-nav></app-library-nav>
+  
+      <div class="d-flex mt-3 align-content-start">
+          <h2 class="mb-2">Artists</h2>
+          <span *ngIf="artists" class="badge shadow-sm badge-pill badge-light mb-auto">{{ artists.length }}</span>
+  
+          <button class="btn btn-link text-info ml-auto my-auto" (click)="onLoadMore()">
+              <span *ngIf="isLoading" class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true"></span>
+              <span *ngIf="!isLoading">more</span>
+          </button>
+      </div>
+  
+  
+      <div *ngIf="artists" class="row">
+          <div class="col">
+              <app-artist *ngFor="let artist of artists"
+              [artist]="artist"
+              [selectedArtist]="selectedArtist"
+              (onSelectArtist)="onArtistSelected(artist)"
+              (onSelectAlbum)="onAlbumSelected($event)">
+              </app-artist>
+
+              <button (click)="onLoadMore(artists)"  class="btn btn-browse mt-3 btn-outline-light shadow-sm w-100 text-info">
+                  <span *ngIf="isLoading" class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true"></span>
+                  <span *ngIf="!isLoading">Load 25 more</span>
+              </button>
+          </div>
+      </div>
+
+</div>
+
+
+

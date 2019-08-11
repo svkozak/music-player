@@ -1,3 +1,6 @@
+import { LibraryArtistsComponent } from './library-artists/library-artists.component';
+import { LibraryPlaylistsComponent } from './library-playlists/library-playlists.component';
+import { LibraryAlbumsComponent } from './library-albums/library-albums.component';
 import { LibraryPlaylistViewComponent } from './library-playlist-view/library-playlist-view.component';
 import { LibraryAlbumViewComponent } from './library-album-view/library-album-view.component';
 import { LibraryRootComponent } from './library-root.component';
@@ -17,15 +20,42 @@ const libraryRoutes: Routes = [
     children: [
       { 
         path: '',
-        component: LibraryComponent,
+        redirectTo: 'recently-added',
+        pathMatch: 'full'
       },
       {
-        path: 'albums/:id',
-        component: LibraryAlbumViewComponent
+        path: 'recently-added',
+        component: LibraryComponent
       },
       {
-        path: 'playlists/:id',
-        component: LibraryPlaylistViewComponent
+        path: 'albums',
+        children: [
+          {
+            path: '',
+            component: LibraryAlbumsComponent
+          },
+          {
+            path: ':id',
+            component: LibraryAlbumViewComponent
+          }
+        ]
+      },
+      {
+        path: 'playlists',
+        children: [
+          {
+            path: '',
+            component: LibraryPlaylistsComponent
+          },
+          {
+            path: ':id',
+            component: LibraryPlaylistViewComponent
+          }
+        ]
+      },
+      {
+        path: 'artists',
+        component: LibraryArtistsComponent
       }
     ]
   },

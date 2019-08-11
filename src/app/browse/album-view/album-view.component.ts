@@ -35,9 +35,8 @@ export class AlbumViewComponent implements OnInit, OnDestroy {
       this.store.select(selectNowPlayingItem).subscribe(item => {
           if (item) {
             // TODO!!
-            
-            console.log(item.nowPlaylingItem);
-            this.nowPlayingTrackId = item.nowPlayingItem.id;
+            console.log(item);
+            this.nowPlayingTrackId = item.id;
           }
         });
       this.playerService.getCurrentPlaybackTimeRemaining().subscribe(timeRemaining => this.currentPlaybackTimeRemaining = timeRemaining);

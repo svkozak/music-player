@@ -50,6 +50,7 @@ footer {
       max-width: 25rem;
   }
 
+  // to do
   /deep/ ng5-slider {
       min-width: 4rem;
       margin: 0;
@@ -63,7 +64,7 @@ footer {
           height: 9px;
           background: $body-color;
           border-radius: 9;
-          top: -10px;
+          top: -11px;
       }
 
       .ng5-slider-pointer:after {

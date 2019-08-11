@@ -35,8 +35,8 @@ export class LibraryPlaylistViewComponent implements OnInit {
     this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLoading = isLoading);
     this.store.select(selectNowPlayingItem).subscribe(item => {
       if (item) {
-        this.nowPlayingTrackId = item.nowPlayingItem._container.id;
-        this.nowPlayingArtworkUrl = item.nowPlaylingItem.attributes.artwork.url;
+        this.nowPlayingTrackId = item._container.id;
+        this.nowPlayingArtworkUrl = item.attributes.artwork.url;
       }
     });
   }
@@ -58,6 +58,10 @@ export class LibraryPlaylistViewComponent implements OnInit {
 
   onStop() {
     this.store.dispatch(new playerActions.PauseAction());
+  }
+
+  playlistArtwork() {
+    // check if currently playing track is in the playlist and return the url
   }
 
 }

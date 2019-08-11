@@ -1,25 +1,34 @@
 <div class="col">
-                
-    <h2 *ngIf="!isLoading" class="mb-2">Albums</h2>
-        
-    <div class="scroller my-3 py-1" *ngIf="!isLoading">
 
-        <app-album *ngFor="let album of albums"
-        [album]="album" 
-        [imgSrc]="formatArtwork(album.attributes.artwork.url, 1000)"
-        (onSelectAlbum)="onAlbumSelected($event)">
-        </app-album>
+    <app-library-nav></app-library-nav>
 
+    <div class="d-flex mt-3 align-content-start">
+            <h2 class="mb-2">Recently added</h2>
+            <span *ngIf="albums" class="badge shadow-sm badge-pill badge-light mb-auto">{{ recentlyAddedItems.length }}</span>
+    
+            <button class="btn btn-link text-info ml-auto my-auto" (click)="loadMore()">
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true"></span>
+                <span *ngIf="!isLoading">more</span>
+            </button>
     </div>
 
-    <h2 *ngIf="!isLoadingPlaylists && playlists" class="mb-2">Playlists</h2>
-    
-    <div class="scroller my-3 py-2" *ngIf="!isLoadingPlaylists">
-        <app-playlist *ngFor="let playlist of playlists"
-        [playlist]="playlist"
-        [imgSrc]="formatArtwork(playlist.attributes.artwork.url, 1000)"
-        (onSelectPlaylist)="onPlaylistSelected($event)">
-        </app-playlist>
+
+    <div *ngIf="recentlyAddedItems" class="d-flex overflow-auto my-1 py-3" >                 
+            
+        <div *ngFor="let item of recentlyAddedItems">
+                <app-album *ngIf="item.type === 'library-albums'"
+                [album]="item" 
+                [imgSrc]="item.attributes.artwork.url | albumArt : 1000"
+                (onSelectAlbum)="onAlbumSelected(item)">
+                </app-album>
+            
+                <app-playlist *ngIf="item.type === 'library-playlists'"
+                [playlist]="item"
+                [imgSrc]="item.attributes.artwork.url | albumArt : 1000"
+                (onSelectPlaylist)="onPlaylistSelected(item)">
+                </app-playlist>
+        </div>
+
     </div>
 
 </div>

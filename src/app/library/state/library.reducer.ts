@@ -1,3 +1,4 @@
+import { Artist } from './../../models/artist.model';
 import { LibraryActions, LibraryActionTypes } from './library.actions';
 import { Playlist } from './../../models/playlist.model';
 import { Album } from './../../models/album.model';
@@ -9,16 +10,22 @@ export interface LibraryState {
   albums?: Album[],
   selectedAlbum?: Album,
   playlists?: Playlist[],
-  selectedPlaylist?: Playlist
+  selectedPlaylist?: Playlist,
+  recentlyAddedItems?: any;
+  artists?: Artist[],
+  selectedArtist?: Artist
 }
 
 export const initialState: LibraryState = {
   isLoading: false,
   error: null,
-  albums: null,
+  albums: [],
   selectedAlbum: null,
-  playlists: null,
-  selectedPlaylist: null
+  playlists: [],
+  selectedPlaylist: null,
+  recentlyAddedItems: [],
+  artists: [],
+  selectedArtist: null
 };
 
 export function libraryReducer(state: LibraryState = initialState, action: LibraryActions): LibraryState {
@@ -37,7 +44,7 @@ export function libraryReducer(state: LibraryState = initialState, action: Libra
       return {
         ...state,
         isLoading: false,
-        albums: albums
+        albums: [...state.albums, ...albums]
       }
     }
     
@@ -91,7 +98,7 @@ export function libraryReducer(state: LibraryState = initialState, action: Libra
       return {
         ...state,
         isLoading: false,
-        playlists: playlists
+        playlists: [...state.playlists, ...playlists]
       }
     }
     
@@ -123,6 +130,92 @@ export function libraryReducer(state: LibraryState = initialState, action: Libra
     }
     
     case LibraryActionTypes.LoadLibraryPlaylistFailure: {
+      const { error } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        error
+      }
+    }
+
+    // recently added
+
+    case LibraryActionTypes.LoadRecentlyAdded: {
+      return {
+        ...state,
+        isLoading: true
+      }
+    }
+
+    case LibraryActionTypes.LoadMoreRecentlyAdded: {
+      return {
+        ...state,
+        isLoading: true
+      }
+    }
+
+    case LibraryActionTypes.LoadRecentlyAddedSuccess: {
+      const { recentlyAddedItems } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        recentlyAddedItems: [...state.recentlyAddedItems, ...recentlyAddedItems]
+      }
+    }
+
+    case LibraryActionTypes.LoadRecentlyAddedFailure: {
+      const { error } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        error: error
+      }
+    }
+
+    // artists
+
+    case LibraryActionTypes.LoadLibraryArtists: {
+      return {
+        ...state,
+        isLoading: true,
+      }
+    } 
+      
+    case LibraryActionTypes.LoadLibraryArtistsSuccess: {
+      const { artists } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        artists: [...state.artists, ...artists]
+      }
+    }
+    
+    case LibraryActionTypes.LoadLibraryArtistsFailure: {
+      const { error } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        error
+      }
+    }
+
+    case LibraryActionTypes.LoadLibraryArtist: {
+      return {
+        ...state,
+        isLoading: true,
+      }
+    } 
+      
+    case LibraryActionTypes.LoadLibraryArtistSuccess: {
+      const { artist } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        selectedArtist: artist
+      }
+    }
+    
+    case LibraryActionTypes.LoadLibraryArtistFailure: {
       const { error } = action.payload
       return {
         ...state,

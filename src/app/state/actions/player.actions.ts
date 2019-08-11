@@ -1,5 +1,5 @@
 import { Album } from './../../models/album.model';
-import { PlaybackStates } from './../../models/player.models';
+import { PlaybackStates, MediaItem } from './../../models/player.models';
 import { Action } from '@ngrx/store';
 import { Track } from 'src/app/models/track.model';
 
@@ -54,7 +54,7 @@ export class SeekToTimeAction implements Action {
 
 export class NowPlayingAction implements Action {
   readonly type = PlayerActionTypes.PlayerNowPlaying;
-  constructor(public payload: { nowPlayingItem: any }) { }
+  constructor(public payload: { nowPlayingItem: MediaItem }) { }
 }
 
 export class SetPlaybackStateAction implements Action {

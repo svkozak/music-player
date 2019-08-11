@@ -3,3 +3,16 @@
 .scroller {
   @include scroller;
 }
+
+.recently-added {
+  min-height: 80vh;
+}
+
+.btn-browse {
+  color: $body-color;
+}
+
+.btn-browse:active {
+  transform: scale(0.95);
+}
+

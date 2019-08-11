@@ -1,3 +1,4 @@
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormattedTimePipe } from './pipes/formatted-time.pipe';
 import { AlbumArtPipe } from './pipes/album-art.pipe';
 import { NgModule } from '@angular/core';
@@ -8,6 +9,11 @@ import { TrackComponent } from './track/track.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { ArtworkComponent } from './artwork/artwork.component';
 import { LibraryAlbumComponent } from './library-album/library-album.component';
+import { PlaylistArtPipe } from './pipes/playlist-art.pipe';
+import { ArtistComponent } from './artist/artist.component';
+import { LibraryNavComponent } from './library-nav/library-nav.component';
+import { RouterModule } from '@angular/router';
+import { LibraryArtistsComponent } from '../library/library-artists/library-artists.component';
 
 @NgModule({
   declarations: [
@@ -18,10 +24,16 @@ import { LibraryAlbumComponent } from './library-album/library-album.component';
     PlaylistComponent,
     TrackComponent,
     ArtworkComponent,
-    LibraryAlbumComponent
+    LibraryAlbumComponent,
+    PlaylistArtPipe,
+    ArtistComponent,
+    LibraryNavComponent,
+    LibraryArtistsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgbModule,
+    RouterModule
   ],
   exports: [
     AlbumArtPipe,
@@ -31,7 +43,10 @@ import { LibraryAlbumComponent } from './library-album/library-album.component';
     PlaylistComponent,
     TrackComponent,
     ArtworkComponent,
-    LibraryAlbumComponent
+    LibraryAlbumComponent,
+    PlaylistArtPipe,
+    ArtistComponent,
+    LibraryNavComponent
   ]
 })
 export class WidgetModule { }

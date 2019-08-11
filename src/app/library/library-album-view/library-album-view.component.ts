@@ -32,8 +32,8 @@ export class LibraryAlbumViewComponent implements OnInit {
     this.store.select(selectSelectedLibraryAlbum).subscribe(album => this.selectedAlbum = album);
     this.store.select(selectNowPlayingItem).subscribe(item => {
       if (item) {
-        console.log(item.NowPlayingItem);
-        this.nowPlayingTrackId = item.nowPlayingItem._container.id;
+        console.log(item);
+        this.nowPlayingTrackId = item._container.id;
       }
     });
   }

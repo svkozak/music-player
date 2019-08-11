@@ -30,3 +30,18 @@ export const selectSelectedLibraryPlaylist = createSelector(
   (state: LibraryState) => state.selectedPlaylist
 )
 
+export const selectRecentlyAddedItems = createSelector(
+  selectLibraryState,
+  (state: LibraryState) => state.recentlyAddedItems
+)
+
+export const selectLibraryArtists = createSelector(
+  selectLibraryState,
+  (state: LibraryState) => state.artists
+)
+
+export const selectSelectedLibraryArtist = createSelector(
+  selectLibraryState,
+  (state: LibraryState) => state.selectedArtist
+)
+
