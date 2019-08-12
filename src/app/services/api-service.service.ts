@@ -15,13 +15,12 @@ export class ApiServiceService {
 
   
   headers: HttpHeaders;
-  STOREFRONT = "us";
+  storefront: string;
   private api;
 
   constructor(private http: HttpClient, private musicKitService: MusicKitService) {
 
     this.headers = new HttpHeaders({
-      // 'Authorization': 'Bearer ' + this.musicKitService.musicKit.developerToken,
       'Authorization': 'Bearer ' + environment.token.token,
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -29,8 +28,7 @@ export class ApiServiceService {
     });
 
     this.api = this.musicKitService.musicKit.api
-
-    // console.log(this.musicKitService.musicKit.musicUserToken);
+    this.storefront = this.musicKitService.musicKit.storekit.storefrontCountryCode;
   }
 
   // Catalog
@@ -55,6 +53,34 @@ export class ApiServiceService {
     let result$ = from(this.musicKitService.musicKit.api.charts(types, {genre: '', limit: limit}));
     return result$.pipe(map(val => val));
   }
+
+  getCatalogCharts(genre: string = '', limit: number = 20) {
+    const options = {
+      headers: this.headers,
+      params: new HttpParams().set('types', 'albums,playlists,songs')
+    };
+    return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/charts`, options).pipe(
+      map(response => {
+        console.log(response);
+        return response;
+      })
+    )
+  }
+
+  getCatalogGenres(genre: string = '', limit: number = 20) {
+    const options = {
+      headers: this.headers,
+      params: new HttpParams()
+    };
+    return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/genres`, options).pipe(
+      map(response => {
+        console.log(response);
+        return response.data;
+      })
+    )
+  }
+
+
 
   getAlbum(id: string): Observable<Album> {
     console.log(`Get album called with id ${id}`);

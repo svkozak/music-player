@@ -21,8 +21,11 @@ $active-color: #0793b7;
 }
 
 @mixin scroller {
+  height: 44rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
   overflow-x: scroll;
 }
 
