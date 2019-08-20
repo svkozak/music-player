@@ -1,14 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
-
-// @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700&subset=cyrillic');
 @import url('https://fonts.googleapis.com/css?family=Nunito:300,400,700');
 
-// Global settings
+// Override Bootstrap's global settings imported below
 $font-family-base: 'Nunito', sans-serif;
 // $body-bg: #F7F8FA;
-$body-bg: #ffffff;
+$body-bg: #fff;
 $body-color: #2A3A4A;
 $active-color: #0793b7;
+
+@media (prefers-color-scheme: light) {}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #000;
+  }
+}
 
 // mixins
 @mixin font-small {
@@ -21,7 +26,8 @@ $active-color: #0793b7;
 }
 
 @mixin scroller {
-  height: 44rem;
+  min-height: 40rem;
+  max-height: 44rem;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -29,13 +35,10 @@ $active-color: #0793b7;
   overflow-x: scroll;
 }
 
+@mixin single-scroller {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+}
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
-
-// nav pills colour overwrite
-ul.nav-pills li.nav-item {
-  list-style-type: none;
-  a { padding: 0; }
-  a.active { background-color: white; }
-  a.active .btn {color: $cyan}
-} 

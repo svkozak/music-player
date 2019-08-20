@@ -61,7 +61,7 @@ export class ApiServiceService {
     };
     return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/charts`, options).pipe(
       map(response => {
-        console.log(response);
+        console.log('get catalog charts', response);
         return response;
       })
     )
@@ -92,7 +92,61 @@ export class ApiServiceService {
     return from(this.musicKitService.musicKit.api.playlist(id));
   }
 
+  getCatalogArtist(id: string) {
+    const options = {
+      headers: this.headers,
+      params: new HttpParams().set('include', 'albums,playlists,songs')
+    };
+    return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/artists/${id}`, options).pipe(
+      map(response => {
+        console.log('get catalog artist', response);
+        return response.data[0];
+      })
+    )
+  }
+
+  getCatalogArtistRelatioship(artistId: string, relationship: string, limit: string = '10') {
+    console.log(`${URLS.BASE_CATALOG_URL}/${this.storefront}/artists/${artistId}/${relationship}`);
+    const options = {
+      headers: this.headers,
+      params: new HttpParams().set('limit', limit)
+    };
+    return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/artists/${artistId}/${relationship}`, options).pipe(
+      map(response => {
+        console.log('get artist relationships by name', response);
+        return response;
+      })
+    )
+  }
+
+
   // User library
+
+  getRecommendations(limit: string = '10', offset: string = '0') {
+    const options = {
+      headers: this.headers,
+      params: new HttpParams().set('limit', limit).set('offset', offset).set('types', 'playlists,albums')
+    };
+    return this.http.get<any>(URLS.DEFAULT_RECOMMENDATIONS, options).pipe(
+      map(response => {
+        console.log(response);
+        return response.data
+      })
+    )
+  }
+
+  getRecommendation(id: string, offset: string = '0') {
+    const options = {
+      headers: this.headers,
+      params: new HttpParams().set('offset', offset)
+    };
+    return this.http.get<any>(`${URLS.DEFAULT_RECOMMENDATIONS}/${id}`, options).pipe(
+      map(response => {
+        console.log(response);
+        return response.data
+      })
+    )
+  }
 
   getLibraryAlbum(id: string): Observable<Album> {
     console.log(`GET LIBRARY ITEM CALLED`);
@@ -104,9 +158,7 @@ export class ApiServiceService {
     return from(this.api.library.playlist(id));
   }
 
-  getRecommendations() {
-    from(this.api.recommendations()).subscribe(val => console.log(val));
-  }
+
 
   getRecentlyAdded(limit: string = '10', offset: string = '0') {
     const options = {

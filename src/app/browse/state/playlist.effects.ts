@@ -20,9 +20,9 @@ export class PlaylistEffects {
   @Effect()
   loadPlaylists$ = this.actions$.pipe(
     ofType(PlaylistsActionTypes.LoadPlaylists),
-    mergeMap(() => this.api.getCharts()
+    mergeMap(() => this.api.getCatalogCharts()
       .pipe(
-        map(results => new playlistActions.LoadPlaylistsSuccess({playlists: results.playlists[0].data})),
+        map(response => new playlistActions.LoadPlaylistsSuccess({playlists: response.results.playlists[0].data})),
         catchError(() => EMPTY)
     ))
   )

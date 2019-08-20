@@ -4,6 +4,7 @@ import { AlbumViewComponent } from './album-view/album-view.component';
 import { BrowseComponent } from './browse/browse.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ArtistViewComponent } from './artist-view/artist-view.component';
 
 
 
@@ -23,6 +24,10 @@ const browseRoutes: Routes = [
       {
         path: 'playlists/:id',
         component: PlaylistViewComponent
+      },
+      {
+        path: 'artists/:id',
+        component: ArtistViewComponent
       }
     ]
   }

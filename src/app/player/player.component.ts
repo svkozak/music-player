@@ -28,6 +28,7 @@ export class PlayerComponent implements OnInit {
     floor: 0,
     ceil: 0,
     step: 1,
+    showSelectionBar: true,
     hidePointerLabels: true,
     hideLimitLabels: true
   }

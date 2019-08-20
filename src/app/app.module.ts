@@ -1,3 +1,4 @@
+import { BrowseEffects } from './browse/state/browse.effects';
 import { BrowseModule } from './browse/browse.module';
 import { WidgetModule } from './widget/widget.module';
 import { LibraryModule } from './library/library.module';
@@ -20,6 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { Ng5SliderModule } from 'ng5-slider';
 import { PlayerComponent } from './player/player.component';
 import { PlaylistEffects } from './browse/state/playlist.effects';
+import { ForYouModule } from './for-you/for-you.module';
+import { ForYouEffects } from './for-you/state/for-you.effects';
 
 
 @NgModule({
@@ -31,13 +34,22 @@ import { PlaylistEffects } from './browse/state/playlist.effects';
     BrowserModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([AppEffects, AlbumEffects, PlaylistEffects, LibraryEffects, PlayerEffects]),
+    EffectsModule.forRoot([
+      AppEffects,
+      AlbumEffects,
+      PlaylistEffects,
+      LibraryEffects,
+      PlayerEffects,
+      ForYouEffects,
+      BrowseEffects
+    ]),
     StoreRouterConnectingModule.forRoot(),
     NgbModule,
     HttpClientModule,
     Ng5SliderModule,
     LibraryModule,
     BrowseModule,
+    ForYouModule,
     WidgetModule,
     AppRoutingModule
   ],

@@ -2,7 +2,7 @@
 
 footer {
   height: 5rem;
-  background-color: rgba(250, 250, 250, 0.95);
+  background-color: rgba(250, 250, 250, 0.98);
 //   background-color: rgba(239, 240, 245, 0.95);
 
   .player-artwork {
@@ -41,6 +41,10 @@ footer {
       height: 1rem;
   }
 
+  .player-button:active {
+      transform: scale(0.99);
+  }
+
   .player-spinner {
       width: 100%;
       height: 100%;
@@ -50,7 +54,7 @@ footer {
       max-width: 25rem;
   }
 
-  // to do
+
   /deep/ ng5-slider {
       min-width: 4rem;
       margin: 0;
@@ -60,11 +64,20 @@ footer {
       }
 
       .ng5-slider-pointer {
-          width: 9px;
-          height: 9px;
+          width: 6px;
+          height: 6px;
           background: $body-color;
-          border-radius: 9;
-          top: -11px;
+          border-radius: 6;
+          top: -8px;
+          outline: none;
+      }
+
+      .ng5-slider-pointer:active {
+        transform: scale(2)
+      }
+
+      .ng5-slider-selection {
+        background: $body-color;
       }
 
       .ng5-slider-pointer:after {
@@ -80,8 +93,7 @@ footer {
       }
 
       .ng5-slider-bar {
-          height: 1px;
-          background: $body-color;
+          height: 2px;
       }
 
   }

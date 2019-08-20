@@ -18,7 +18,7 @@
         <img class="spinner" *ngIf="isLoading" src="../../../assets/img/spinner.svg" alt="">
           <div *ngIf="selectedAlbum.attributes && selectedAlbum.relationships">
             <h3>{{selectedAlbum.attributes.name}}</h3>
-            <p>{{selectedAlbum.attributes.artistName}}</p>
+            <button (click)="onSelectArtist(selectedAlbum.relationships.artists.data[0].id)" class="btn btn-link text-info p-0">{{selectedAlbum.attributes.artistName}}</button>
 
             <div *ngIf="selectedAlbum.relationships.tracks.data as tracks">
               <app-track *ngFor="let track of tracks"

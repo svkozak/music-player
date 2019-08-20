@@ -29,6 +29,8 @@ export interface Attributes {
   description?: Description;
   playlistType?: string;
   curatorName?: string;
+  resourceTypes?: string[];
+  title?: { stringForDisplay? : string }
 }
 
 export interface Artwork {
@@ -57,6 +59,9 @@ export interface PlayParams {
 }
 
 export interface Relationships {
-  albums?: { data: Album[] }
-  playlists?: { data: Playlist[] }
+  artists?: { data: Artist[] };
+  albums?: { data: Album[] };
+  playlists?: { data: Playlist[] };
+  songs?: { data: Track[] };
+  contents?: { data: any[]};
 }

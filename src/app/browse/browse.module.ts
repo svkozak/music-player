@@ -6,13 +6,15 @@ import { BrowseComponent } from './browse/browse.component';
 import { WidgetModule } from './../widget/widget.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ArtistViewComponent } from './artist-view/artist-view.component';
 
 @NgModule({
   declarations: [
     BrowseRootComponent,
     BrowseComponent,
     AlbumViewComponent,
-    PlaylistViewComponent
+    PlaylistViewComponent,
+    ArtistViewComponent
   ],
   imports: [
     CommonModule,

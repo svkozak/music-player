@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { Track } from './../../models/track.model';
 import { Album } from './../../models/album.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map} from 'rxjs/operators';
 import { selectSelectedAlbum } from 'src/app/browse/state/album.selectors';
 import * as playerActions from '../../state/actions/player.actions';
@@ -27,7 +27,8 @@ export class AlbumViewComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private store: Store<any>,
-    private playerService: PlayerService
+    private playerService: PlayerService,
+    private router: Router
     ) {
       this.route.params.pipe(map(param => param.id)).subscribe(id => this.store.dispatch(new LoadAlbum({id: id})));
       this.store.select(selectSelectedAlbum).subscribe(album => this.selectedAlbum = album);
@@ -56,6 +57,10 @@ export class AlbumViewComponent implements OnInit, OnDestroy {
     let albumTracks: Track[] = this.selectedAlbum.relationships.tracks.data;
     let queue = albumTracks.slice(albumTracks.indexOf(track));
     this.store.dispatch(new playerActions.SetQueueAction({tracks: queue}));
+  }
+
+  onSelectArtist(id: string) {
+    this.router.navigate(['browse/artists', id]);
   }
 
   onStop() {

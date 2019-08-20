@@ -1,3 +1,5 @@
+import { BrowseState, browseReducer } from './../../browse/state/browse.reducer';
+import { ForYouState } from './../../for-you/state/for-you.reducer';
 import {
   ActionReducer,
   ActionReducerMap,
@@ -11,9 +13,12 @@ import { albumReducer, AlbumsState } from '../../browse/state/album.reducer';
 import { playlistReducer, PlaylistsState } from '../../browse/state/playlist.reducer';
 import { PlayerState, playerReducer } from './player.reducer';
 import { libraryReducer, LibraryState } from '../../library/state/library.reducer';
+import { forYouReducer } from 'src/app/for-you/state/for-you.reducer';
 
 export interface State {
   app: AppState,
+  forYou: ForYouState,
+  browse: BrowseState,
   albums: AlbumsState,
   playlists: PlaylistsState,
   library: LibraryState,
@@ -22,6 +27,8 @@ export interface State {
 
 export const reducers: ActionReducerMap<State> = {
   app: appReducer,
+  forYou: forYouReducer,
+  browse: browseReducer,
   library: libraryReducer,
   albums: albumReducer,
   playlists: playlistReducer,

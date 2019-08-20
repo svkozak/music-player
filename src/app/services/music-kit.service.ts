@@ -19,6 +19,7 @@ export class MusicKitService {
       developerToken: environment.token.token,
       app: {
       name: 'Music Player',
+      icon: 'src/assets/img/no-art.svg',
       build: '1.0'
       },
       declarativeMarkup: true

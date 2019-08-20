@@ -18,9 +18,9 @@ export class AlbumEffects {
   @Effect()
   loadAlbums$ = this.actions$.pipe(
     ofType(AlbumActionTypes.LoadAlbums),
-    mergeMap(() => this.api.getCatalogGenres()
+    mergeMap(() => this.api.getCatalogCharts()
     .pipe(
-        map(results => new albumActions.LoadAlbumsSuccess({albums: results.albums[0].data})),
+        map(response => new albumActions.LoadAlbumsSuccess({albums: response.results.albums[0].data})),
         catchError(() => EMPTY)
     ))
   )
