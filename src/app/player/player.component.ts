@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as playerActions from '../state/actions/player.actions';
 import { Options } from 'ng5-slider';
+import { Router } from '@angular/router';
 
 declare var MusicKit: any;
 
@@ -33,7 +34,7 @@ export class PlayerComponent implements OnInit {
     hideLimitLabels: true
   }
 
-  constructor(private store: Store<any>, private playerService: PlayerService) {
+  constructor(private store: Store<any>, private playerService: PlayerService, private router: Router) {
     this.store.select(selectNowPlayingItem).subscribe(item => this.nowPlayingItem = item);
     this.store.select(selectPlaybackState).subscribe(state => this.playbackState = state);
     this.store.select(selectPlaybackDuration).subscribe(duration => this.setPlaybackDuration(duration));
@@ -83,6 +84,14 @@ export class PlayerComponent implements OnInit {
 
   onPositionAdjust(time: any) {
     this.playerService.seekToTime(time);
+  }
+
+  onArtistClick(id: string) {
+    this.router.navigate(['browse/artists', id])
+  }
+
+  onTrackClick(id: string) {
+    this.router.navigate(['browse/albums', id])
   }
 
 }

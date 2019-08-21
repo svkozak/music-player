@@ -15,14 +15,15 @@ footer {
     width: 16rem;
     min-width: 6rem;
     max-width: 20rem;
-
-        .track-artist, .track-title {
-            white-space: nowrap;
-            word-wrap: none;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+      
+    .track-artist, .track-title {
+        white-space: nowrap;
+        word-wrap: none;
+        overflow: hidden;
+        text-overflow: ellipsis;       
     }
+
+  }
 
   .track-artist {
     @include font-small;

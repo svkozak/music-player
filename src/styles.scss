@@ -42,3 +42,15 @@ $active-color: #0793b7;
 }
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+// override nav pills style
+
+.nav-pills .nav-link, .nav-pills .nav-link.active {
+  background: none;
+  padding: 0;
+}
+
+.nav-pills .nav-link.active .btn-browse {
+  background: none;
+  color: $cyan;
+}
