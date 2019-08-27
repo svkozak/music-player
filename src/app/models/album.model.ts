@@ -1,3 +1,4 @@
+import { Playlist } from 'src/app/models/playlist.model';
 import { Artist } from './artist.model';
 import { Track } from './track.model';
 
@@ -28,17 +29,19 @@ export interface Attributes {
   description?: Description;
   playlistType?: string;
   curatorName?: string;
+  resourceTypes?: string[];
+  title?: { stringForDisplay? : string }
 }
 
 export interface Artwork {
-  bgColor: string;
-  textColor1: string;
-  textColor2: string;
-  textColor3: string;
-  textColor4: string;
+  bgColor?: string;
+  textColor1?: string;
+  textColor2?: string;
+  textColor3?: string;
+  textColor4?: string;
   url: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
 }
 
 export interface EditorialNotes {
@@ -53,4 +56,12 @@ export interface Description {
 export interface PlayParams {
   id: string;
   kind: string;
+}
+
+export interface Relationships {
+  artists?: { data: Artist[] };
+  albums?: { data: Album[] };
+  playlists?: { data: Playlist[] };
+  songs?: { data: Track[] };
+  contents?: { data: any[]};
 }

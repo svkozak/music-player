@@ -11,7 +11,10 @@
           <a class="nav-link" (click)="isNavCollapsed = !isNavCollapsed" routerLink="/browse" routerLinkActive="active">browse<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/library" routerLinkActive="active">library</a>
+          <a class="nav-link" (click)="isNavCollapsed = !isNavCollapsed" routerLink="/for-you" routerLinkActive="active">for you</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="isNavCollapsed = !isNavCollapsed" routerLink="/library" routerLinkActive="active">library</a>
         </li>
       </ul>
       <!-- <button class="btn btn-sm btn-outline-info" id="apple-music-authorize">Sign In</button>

@@ -1,0 +1,17 @@
+
+
+    <div *ngIf="isLoading" class="artwork shadow mb-3 rounded" alt=""></div>
+    <img *ngIf="!isLoading && selectedPlaylist" [src]="artworkUrl ? (artworkUrl | albumArt : 600) : (selectedPlaylist.attributes.artwork.url | albumArt : 600)" class="artwork shadow mb-3 rounded" alt="">
+    <img *ngIf="!isLoading && selectedAlbum" [src]="selectedAlbum.attributes.artwork.url | albumArt : 600" class="artwork shadow mb-3 rounded" alt="">
+
+
+    <div *ngIf="!isLoading" class="d-flex flex-row">
+        <button *ngIf="selectedPlaylist" class="play-all btn btn-outline-light mr-2 flex-grow-1 shadow-sm bg-white" (click)="onPlayPlaylist(selectedPlaylist)">
+          <img class="icon" src="../../../assets/img/play.svg" alt="play">
+        </button>
+        <button *ngIf="selectedAlbum" class="play-all btn btn-outline-light mr-2 flex-grow-1 shadow-sm bg-white" (click)="onPlayAlbum(selectedAlbum)">
+          <img class="icon" src="../../../assets/img/play.svg" alt="play">
+        </button>
+
+        <button *ngIf="selectedAlbum || selectedPlaylist" class="play-all btn btn btn-outline-light shadow-sm bg-white" (click)="onStopPressed()"><img class="icon" src="../../../assets/img/stop.svg" alt="play"></button>
+    </div>

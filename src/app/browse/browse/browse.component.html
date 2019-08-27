@@ -1,0 +1,23 @@
+<div class="col">
+                
+    <h2 *ngIf="!isLoadingAlbums" class="mb-2">Top albums</h2>
+        
+    <div class="scroller my-3 py-2" *ngIf="!isLoadingAlbums">
+        <app-album *ngFor="let album of topAlbums" 
+        [album]="album" 
+        [imgSrc]="formatArtwork(album.attributes.artwork.url, 1000)"
+        (onSelectAlbum)="onAlbumSelected($event)">
+        </app-album>
+    </div>
+    
+    <h2 *ngIf="!isLoadingPlaylists && topPlaylists" class="mb-2">Top playlists</h2>
+    
+    <div class="scroller my-3 py-2" *ngIf="!isLoadingPlaylists">
+        <app-playlist *ngFor="let playlist of topPlaylists"
+        [playlist]="playlist"
+        [imgSrc]="formatArtwork(playlist.attributes.artwork.url, 1000)"
+        (onSelectPlaylist)="onPlaylistSelected($event)">
+        </app-playlist>
+    </div>
+
+</div>

@@ -1,0 +1,36 @@
+<div class="col">
+  
+    <div class="row">
+  
+        <div class="col-12 col-sm-4 albumArt mb-3">
+          <app-artwork *ngIf="selectedAlbum && selectedAlbum.attributes"
+          [selectedAlbum]="selectedAlbum"
+          [isLoading]="isLoading"
+          (onPlayAll)="onPlayAlbum($event)"
+          (onStop)="onStop()">
+          </app-artwork>
+        </div>
+  
+        
+        
+        <div class="col-12 col-sm-8">
+          <app-spinner *ngIf="isLoading"></app-spinner>
+          <img class="spinner" *ngIf="isLoading" src="../../../assets/img/spinner.svg" alt="">
+            <div *ngIf="selectedAlbum.attributes && selectedAlbum.relationships">
+              <h3>{{selectedAlbum.attributes.name}}</h3>
+              <p>{{selectedAlbum.attributes.artistName}}</p>
+  
+              <div *ngIf="selectedAlbum.relationships.tracks.data as tracks">
+                <app-track *ngFor="let track of tracks"
+                [selectedAlbum]="selectedAlbum"
+                [track]="track" 
+                [isNowPlaying]="nowPlayingTrackId === track.id" 
+                [timeRemaining]="currentPlaybackTimeRemaining" 
+                (onSelectTrack)="onPlayTrack(track)">
+                </app-track>
+              </div>
+          </div>
+        </div>
+    </div>
+  
+  </div>

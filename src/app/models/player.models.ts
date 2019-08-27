@@ -1,3 +1,11 @@
+import { Attributes } from './album.model';
+export interface MediaItem {
+  id: string;
+  attributes?: Attributes;
+  _container?: { id: string;}
+}
+
+
 export enum PlaybackStates {
   none,
   loading ,
@@ -11,20 +19,6 @@ export enum PlaybackStates {
   stalled,
   completed
 }
-
-// export enum PlaybackStates {
-//   none = "none",
-//   loading = "loading",
-//   playing = "playing",
-//   paused = "paused",
-//   stopped = "stopped",
-//   ended = "ended",
-//   seeking = "seeking",
-//   null = "null",
-//   waiting = "waiting",
-//   stalled = "stalled",
-//   completed = "completed"
-// }
 
 export enum RepeatMode {
   all,

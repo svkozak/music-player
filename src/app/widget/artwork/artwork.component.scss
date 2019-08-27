@@ -1,0 +1,21 @@
+@import "../../../styles.scss";
+
+.play-all:active {
+  transform: scale(0.95);
+}
+
+.albumArt {
+  min-width: 10rem;
+  max-width: 40rem;
+}
+
+.artwork {
+  width: 100%;
+  max-width: 40rem;
+  background: url(../../../assets/img/loader.svg) center no-repeat;
+}
+
+.icon {
+  height: 1rem;
+  width: 1rem;
+}

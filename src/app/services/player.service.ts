@@ -84,7 +84,10 @@ export class PlayerService {
   // utility to return now playing item
   getNowPlayingItem(): Observable<any> {
     return of(this.player.nowPlayingItem).pipe(
-      map(item => item)
+      map(item => {
+        console.log(item);
+        return item;
+      })
       )
   }
 

@@ -1,0 +1,42 @@
+<div class="col">
+
+  <ngb-tabset type="pills">
+
+    <ngb-tab *ngFor="let recommendation of recommendations" title="">
+      <ng-template ngbTabTitle><button class="btn btn-browse btn-lg mr-2 mb-2 btn-outline-light shadow-sm">{{recommendation.attributes.title.stringForDisplay}}</button></ng-template>
+      <ng-template ngbTabContent>
+
+        <div class="d-flex mt-3 align-content-start">
+          <h2 class="mb-2">{{recommendation.attributes.title.stringForDisplay}}</h2>
+          <span class="badge shadow-sm badge-pill badge-light mb-auto">{{ recommendation.relationships.contents.data.length }}</span>
+        </div>
+                
+        <div class="my-1 py-3" 
+        [class.single-scroller]="(recommendation.relationships.contents.data.length < 10)"                 
+        [class.scroller]="(recommendation.relationships.contents.data.length >= 10)" >                 
+                          
+          <div *ngFor="let item of recommendation.relationships.contents.data">
+                  <app-album *ngIf="item.type === 'albums'"
+                  [album]="item" 
+                  [imgSrc]="item.attributes.artwork.url | albumArt : 1000"
+                  (onSelectAlbum)="onAlbumSelected(item)">
+                  </app-album>
+              
+                  <app-playlist *ngIf="item.type === 'playlists'"
+                  [playlist]="item"
+                  [imgSrc]="item.attributes.artwork.url | albumArt : 1000"
+                  (onSelectPlaylist)="onPlaylistSelected(item)">
+                  </app-playlist>
+          </div>
+            
+        </div>
+
+
+      </ng-template>
+    </ngb-tab>
+
+
+  </ngb-tabset>
+
+
+</div>

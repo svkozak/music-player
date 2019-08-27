@@ -1,0 +1,13 @@
+@import '../../../styles.scss';
+
+.artist {
+  cursor: pointer;
+}
+
+.artist:active {
+  transform: scale(0.99);
+}
+
+.artist-image {
+  width: 40px;
+}

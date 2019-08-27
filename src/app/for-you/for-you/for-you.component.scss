@@ -1,0 +1,23 @@
+@import '../../../styles.scss';
+
+
+.scroller {
+  @include scroller;
+}
+
+.single-scroller {
+  @include single-scroller;
+}
+
+
+.btn-browse {
+  color: $body-color;
+}
+
+a.active .btn-browse {
+  color: $cyan;
+}
+
+.btn-browse:active {
+  transform: scale(0.95);
+}

@@ -1,0 +1,22 @@
+@import '../../../styles.scss';
+
+.scroller {
+  @include scroller;
+}
+
+.two-row {
+  height: 44rem;
+}
+
+.recently-added {
+  min-height: 80vh;
+}
+
+.btn-browse {
+  color: $body-color;
+}
+
+.btn-browse:active {
+  transform: scale(0.95);
+}
+
