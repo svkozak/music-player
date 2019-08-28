@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { from , of, fromEvent, Observable } from 'rxjs';
 import { mergeMap, map, switchMap } from 'rxjs/operators';
+import { TOKEN } from 'src/secret/token';
 
 declare var MusicKit: any;
 
@@ -16,7 +17,7 @@ export class MusicKitService {
   constructor() {
 
     MusicKit.configure({
-      developerToken: environment.token.token,
+      developerToken: TOKEN,
       app: {
       name: 'Music Player',
       icon: 'src/assets/img/no-art.svg',

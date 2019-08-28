@@ -1,3 +1,4 @@
+import { TOKEN } from './../../secret/token';
 import { URLS } from './../state/app.constants';
 import { Album } from './../models/album.model';
 import { MusicKitService } from './music-kit.service';
@@ -6,7 +7,6 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { from, Observable, of } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 import { Playlist } from '../models/playlist.model';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class ApiServiceService {
   constructor(private http: HttpClient, private musicKitService: MusicKitService) {
 
     this.headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + environment.token.token,
+      'Authorization': 'Bearer ' + TOKEN,
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Music-User-Token': this.musicKitService.musicKit.isAuthorized ? this.musicKitService.musicKit.musicUserToken : ''
