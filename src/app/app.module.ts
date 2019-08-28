@@ -23,6 +23,8 @@ import { PlayerComponent } from './player/player.component';
 import { PlaylistEffects } from './browse/state/playlist.effects';
 import { ForYouModule } from './for-you/for-you.module';
 import { ForYouEffects } from './for-you/state/for-you.effects';
+import { SearchModule } from './search/search.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -50,8 +52,10 @@ import { ForYouEffects } from './for-you/state/for-you.effects';
     LibraryModule,
     BrowseModule,
     ForYouModule,
+    SearchModule,
     WidgetModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
