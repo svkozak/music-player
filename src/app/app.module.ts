@@ -25,6 +25,7 @@ import { ForYouModule } from './for-you/for-you.module';
 import { ForYouEffects } from './for-you/state/for-you.effects';
 import { SearchModule } from './search/search.module';
 import { FormsModule } from '@angular/forms';
+import { SearchEffects } from './search/state/search.effects';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { FormsModule } from '@angular/forms';
       LibraryEffects,
       PlayerEffects,
       ForYouEffects,
-      BrowseEffects
+      BrowseEffects,
+      SearchEffects
     ]),
     StoreRouterConnectingModule.forRoot(),
     NgbModule,

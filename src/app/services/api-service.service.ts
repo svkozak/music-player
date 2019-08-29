@@ -119,6 +119,20 @@ export class ApiServiceService {
     )
   }
 
+  searchCatalog(term: string, limit: string = '20', offset: string = '0') {
+    console.log(`${URLS.BASE_CATALOG_URL}/${this.storefront}/search`);
+    const options = {
+      headers: this.headers,
+      params: new HttpParams().set('term', term).set('limit', limit).set('offset', offset).set('types', 'artists,albums,playlists,songs')
+    };
+    return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/search`, options).pipe(
+      map(response => {
+        console.log('search catalog resources', response);
+        return response;
+      })
+    )
+  }
+
 
   // User library
 

@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlayerService } from './services/player.service';
 import { fromEvent } from 'rxjs';
 import * as appActions from './state/actions/app.actions';
+import * as feather from 'feather-icons';
 
 
 declare var MusicKit: any;

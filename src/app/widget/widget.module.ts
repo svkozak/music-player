@@ -1,3 +1,4 @@
+import { FeatherIconsModule } from './feather-icons.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormattedTimePipe } from './pipes/formatted-time.pipe';
 import { AlbumArtPipe } from './pipes/album-art.pipe';
@@ -33,7 +34,8 @@ import { LibraryArtistsComponent } from '../library/library-artists/library-arti
   imports: [
     CommonModule,
     NgbModule,
-    RouterModule
+    RouterModule,
+    FeatherIconsModule
   ],
   exports: [
     AlbumArtPipe,
@@ -46,7 +48,8 @@ import { LibraryArtistsComponent } from '../library/library-artists/library-arti
     LibraryAlbumComponent,
     PlaylistArtPipe,
     ArtistComponent,
-    LibraryNavComponent
+    LibraryNavComponent,
+    FeatherIconsModule
   ]
 })
 export class WidgetModule { }

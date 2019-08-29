@@ -3,7 +3,13 @@
   <h2 id="searchHeader">Search</h2>
 
   <div class="input-group my-3">
-    <input type="text" class="form-control" [placeholder]="searchOption === 'catalog' ? 'Apple Music' : 'Your library'" aria-labelledby="searchHeader">
+    <input type="text" [(ngModel)]="searchTerm" (keyup.enter)="search()" class="form-control" [placeholder]="searchOption === 'catalog' ? 'Apple Music' : 'Your library'" aria-labelledby="searchHeader">
+    <div class="input-group-append">
+        <button (click)="search()" class="btn btn-outline-info" type="button">
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          <i-feather *ngIf="!isLoading" name="search" class="feather"></i-feather>
+        </button>
+      </div>
   </div>
 
   <div class="btn-group btn-group-toggle" ngbRadioGroup name="searchOption" [(ngModel)]="searchOption">

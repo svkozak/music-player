@@ -1,3 +1,4 @@
+import { WidgetModule } from './../widget/widget.module';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,7 +13,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     NgbModule,
     SearchRoutingModule,
-    FormsModule
+    FormsModule,
+    WidgetModule
   ]
 })
 export class SearchModule { }

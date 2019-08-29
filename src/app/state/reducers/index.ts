@@ -1,3 +1,4 @@
+import { SearchState, searchReducer } from './../../search/state/search.reducer';
 import { BrowseState, browseReducer } from './../../browse/state/browse.reducer';
 import { ForYouState } from './../../for-you/state/for-you.reducer';
 import {
@@ -22,6 +23,7 @@ export interface State {
   albums: AlbumsState,
   playlists: PlaylistsState,
   library: LibraryState,
+  search: SearchState,
   player: PlayerState
 }
 
@@ -32,6 +34,7 @@ export const reducers: ActionReducerMap<State> = {
   library: libraryReducer,
   albums: albumReducer,
   playlists: playlistReducer,
+  search: searchReducer,
   player: playerReducer
 };
 
