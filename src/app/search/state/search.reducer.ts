@@ -8,7 +8,6 @@ import { Track } from 'src/app/models/track.model';
 export interface SearchState {
   isLoading?: boolean;
   error?: any,
-  searchResults?: any,
   albums?: Album[],
   playlists?: Playlist[],
   tracks?: Track[],
@@ -18,7 +17,6 @@ export interface SearchState {
 export const initialState: SearchState = {
   isLoading: false,
   error: null,
-  searchResults: [],
   albums: [],
   playlists: [],
   artists: [],
@@ -41,7 +39,10 @@ export function searchReducer(state: SearchState = initialState, action: SearchA
       return {
         ...state,
         isLoading: false,
-        searchResults
+        albums: searchResults.albums ? [...state.albums, ...searchResults.albums.data] : state.albums,
+        playlists: searchResults.playlists ? [...state.playlists, ...searchResults.playlists.data] : state.playlists,
+        artists: searchResults.artists ? [...state.artists, ...searchResults.artists.data] : state.artists,
+        tracks: searchResults.songs? [...state.tracks, ...searchResults.songs.data] : state.tracks
       }
     }
     
@@ -51,6 +52,12 @@ export function searchReducer(state: SearchState = initialState, action: SearchA
         ...state,
         isLoading: false,
         error
+      }
+    }
+
+    case SearchActionTypes.SearchClear: {
+      return {
+        ...initialState
       }
     }
 

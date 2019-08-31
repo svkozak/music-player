@@ -10,7 +10,32 @@ export const selectIsSearchLoading = createSelector(
   (state: SearchState) => state.isLoading
 )
 
-export const selectSearchResults = createSelector(
+export const selectSearchAlbums = createSelector(
   selectSearchState,
-  (state: SearchState) => state.searchResults
+  (state: SearchState) => state.albums
+)
+
+export const selectSearchPlaylists = createSelector(
+  selectSearchState,
+  (state: SearchState) => state.playlists
+)
+
+export const selectSearchArtists = createSelector(
+  selectSearchState,
+  (state: SearchState) => state.artists
+)
+
+export const selectSearchTracks = createSelector(
+  selectSearchState,
+  (state: SearchState) => state.tracks
+)
+
+export const selectSearchResults = createSelector(
+  selectSearchAlbums,
+  selectSearchPlaylists,
+  selectSearchArtists,
+  selectSearchTracks,
+  (albums, playlists, artists, tracks) => {
+    return {albums, playlists, artists, tracks}
+  }
 )

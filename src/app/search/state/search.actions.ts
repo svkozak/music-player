@@ -5,7 +5,7 @@ export enum SearchActionTypes {
   SearchCatalog = '[Search] Search Catalog',
   SearchCatalogSuccess = '[Search] Search Catalog Success',
   SearchCatalogFailure = '[Search] Search Catalog Failure',
-
+  SearchClear = '[Search] Clear Search'
 }
 
 export class SearchCatalog implements Action {
@@ -23,10 +23,17 @@ export class SearchCatalogFailure implements Action {
   constructor(public payload: { error: any }) { }
 }
 
+export class SearchClear implements Action {
+  readonly type = SearchActionTypes.SearchClear;
+}
+
+
+
 
 export type SearchActions = 
 SearchCatalog |
 SearchCatalogSuccess |
-SearchCatalogFailure
+SearchCatalogFailure |
+SearchClear
 ;
 

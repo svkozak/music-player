@@ -21,4 +21,21 @@
     </label>
   </div>
 
+  <h2 *ngIf="!isLoading && artists.length" class="my-3">Artists</h2>
+  <div class="artist-scroller my-3 py-2">
+        <app-artist *ngFor="let artist of artists"
+        [artist]="artist"
+        (onSelectArtist)="onArtistSelected(artist)">
+        </app-artist>
+  </div>
+
+  <h2 *ngIf="!isLoading && albums.length" class="my-3">Albums</h2>
+  <div class="scroller my-3 py-2">
+      <app-album *ngFor="let album of albums" 
+      [album]="album" 
+      [imgSrc]="album.attributes.artwork.url | albumArt : 400"
+      (onSelectAlbum)="onAlbumSelected($event)">
+      </app-album>
+  </div>
+
 </div>

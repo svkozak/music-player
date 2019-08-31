@@ -39,7 +39,9 @@ export class PlayerComponent implements OnInit {
     this.store.select(selectPlaybackState).subscribe(state => this.playbackState = state);
     this.store.select(selectPlaybackDuration).subscribe(duration => this.setPlaybackDuration(duration));
 
-    this.playerService.getCurrentPlaybackTime().subscribe(time => this.currentPlaybackTime = time - this.currentPlaybackDuration);
+    this.playerService.getCurrentPlaybackTime().subscribe(time => {
+      this.currentPlaybackTime = time;
+    });
     this.playerService.getCurrentPlaybackTimeRemaining().subscribe(timeRemaining => this.currentPlaybackTimeRemaining = timeRemaining);
 
   }
@@ -76,6 +78,7 @@ export class PlayerComponent implements OnInit {
 
   // ng5-slider options setting
   setPlaybackDuration(duration: any) {
+    this.currentPlaybackDuration = duration;
     const newOptions: Options = Object.assign({}, this.options);
     newOptions.ceil = duration;
     newOptions.step = 0.1;
@@ -84,6 +87,10 @@ export class PlayerComponent implements OnInit {
 
   onPositionAdjust(time: any) {
     this.playerService.seekToTime(time);
+  }
+
+  onRangeInput(event) {
+    console.log('range input', event);
   }
 
   onArtistClick(id: string) {
