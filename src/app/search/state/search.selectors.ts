@@ -30,6 +30,28 @@ export const selectSearchTracks = createSelector(
   (state: SearchState) => state.tracks
 )
 
+export const selectSearchLibraryAlbums = createSelector(
+  selectSearchState,
+  (state: SearchState) => state.libraryAlbums
+)
+
+export const selectSearchLibraryPlaylists = createSelector(
+  selectSearchState,
+  (state: SearchState) => state.libraryPlaylists
+)
+
+export const selectSearchLibraryArtists = createSelector(
+  selectSearchState,
+  (state: SearchState) => state.libraryArtists
+)
+
+export const selectSearchLibraryTracks = createSelector(
+  selectSearchState,
+  (state: SearchState) => state.libraryTracks
+)
+
+
+
 export const selectSearchResults = createSelector(
   selectSearchAlbums,
   selectSearchPlaylists,
@@ -37,5 +59,15 @@ export const selectSearchResults = createSelector(
   selectSearchTracks,
   (albums, playlists, artists, tracks) => {
     return {albums, playlists, artists, tracks}
+  }
+)
+
+export const selectLibrarySearchResults = createSelector(
+  selectSearchLibraryAlbums,
+  selectSearchLibraryPlaylists,
+  selectSearchLibraryArtists,
+  selectSearchLibraryTracks,
+  (libAlbums, libPlaylists, libArtists, libTracks) => {
+    return {libAlbums, libPlaylists, libArtists, libTracks}
   }
 )

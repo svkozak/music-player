@@ -11,7 +11,11 @@ export interface SearchState {
   albums?: Album[],
   playlists?: Playlist[],
   tracks?: Track[],
-  artists?: Artist[]
+  artists?: Artist[],
+  libraryAlbums?: Album[],
+  libraryPlaylists?: Playlist[],
+  libraryArtists?: Artist[],
+  libraryTracks?: Track[]
 }
 
 export const initialState: SearchState = {
@@ -20,7 +24,11 @@ export const initialState: SearchState = {
   albums: [],
   playlists: [],
   artists: [],
-  tracks: []
+  tracks: [],
+  libraryAlbums: [],
+  libraryPlaylists: [],
+  libraryArtists: [],
+  libraryTracks: []
 };
 
 export function searchReducer(state: SearchState = initialState, action: SearchActions): SearchState {
@@ -47,6 +55,34 @@ export function searchReducer(state: SearchState = initialState, action: SearchA
     }
     
     case SearchActionTypes.SearchCatalogFailure: {
+      const { error } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        error
+      }
+    }
+
+    case SearchActionTypes.SearchLibrary: {
+      return {
+        ...state,
+        isLoading: true,
+      }
+    } 
+      
+    case SearchActionTypes.SearchLibrarySuccess: {
+      const { searchResults } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        libraryAlbums: searchResults['library-albums'] ? [...state.libraryAlbums, ...searchResults['library-albums'].data] : state.libraryAlbums,
+        libraryPlaylists: searchResults['library-playlists'] ? [...state.libraryPlaylists, ...searchResults['library-playlists'].data] : state.libraryPlaylists,
+        libraryArtists: searchResults['library-artists'] ? [...state.libraryArtists, ...searchResults['library-artists'].data] : state.libraryArtists,
+        libraryTracks: searchResults['library-songs'] ? [...state.libraryTracks, ...searchResults['library-songs'].data] : state.libraryTracks
+      }
+    }
+    
+    case SearchActionTypes.SearchLibraryFailure: {
       const { error } = action.payload
       return {
         ...state,

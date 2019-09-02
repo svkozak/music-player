@@ -14,7 +14,7 @@
 
     <!-- track progress -->
       <div *ngIf="nowPlayingItem" class="slider mx-3 align-self-center d-none d-sm-block">
-        <input type="range" class="custom-range" [value]="currentPlaybackTime" step="1" min="0" [max]="currentPlaybackDuration" (change)="onPositionAdjust($event.target.value)">
+        <input type="range" class="custom-range" [value]="currentPlaybackTime" step="0.1" min="0" [max]="currentPlaybackDuration" (change)="onPositionAdjust($event.target.value)">
       </div>
 
       <div *ngIf="nowPlayingItem" class="ml-3 mr-3 mb-1 align-self-center d-none d-sm-block">

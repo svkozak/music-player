@@ -10,11 +10,11 @@
   </div>
 
 
-  <!-- if playlist -->
-  <div *ngIf="selectedPlaylist" class="">
+  <!-- if playlist or search result, display artwork -->
+  <div *ngIf="selectedPlaylist || searchResult" class="">
     <img class="track-artwork mr-2 rounded shadow-sm" src="{{track.attributes.artwork.url | albumArt: 50}}" alt="">
   </div>
-  <div *ngIf="selectedPlaylist" class="track-info mr-2 flex-grow-0">
+  <div *ngIf="selectedPlaylist || searchResult" class="track-info mr-2 flex-grow-0">
       <span class="track-name mr-2">{{track.attributes.name}}</span><br>
       <span class="artist-name mr-2">{{track.attributes.artistName}}</span>
   </div>

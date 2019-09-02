@@ -1,11 +1,15 @@
+import { selectNowPlayingItem } from './../../state/selectors/player.selectors';
+import { selectSelectedLibraryArtist } from './../../library/state/library.selectors';
 import { Router } from '@angular/router';
 import { Track } from 'src/app/models/track.model';
 import { Artist } from './../../models/artist.model';
 import { Album } from './../../models/album.model';
-import { selectIsSearchLoading, selectSearchAlbums, selectSearchResults } from './../state/search.selectors';
+import { selectIsSearchLoading, selectSearchAlbums, selectSearchResults, selectLibrarySearchResults } from './../state/search.selectors';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import * as searchActions from '../state/search.actions';
+import * as libraryActions from '../../library/state/library.actions';
+import * as playerActions from '../../state/actions/player.actions';
 import { Playlist } from 'src/app/models/playlist.model';
 
 @Component({
@@ -16,12 +20,20 @@ import { Playlist } from 'src/app/models/playlist.model';
 export class SearchComponent implements OnInit {
 
   isLoading: boolean;
-  searchOption: string = 'catalog';
+  searchCatalog: boolean = true;
   placeholder = 'Search Apple Music';
+
   albums: Album[];
   playlists: Playlist[];
   artists: Artist[];
   tracks: Track[];
+
+  libraryAlbums: Album[];
+  libraryPlaylists: Playlist[];
+  libraryArtists: Artist[];
+  libraryTracks: Track[];
+  selectedLibraryArtist: Artist;
+  nowPlayingTrackId: string;
 
   searchTerm = '';
 
@@ -33,6 +45,18 @@ export class SearchComponent implements OnInit {
       this.artists = results.artists;
       this.tracks = results.tracks;
     });
+    this.store.select(selectLibrarySearchResults).subscribe(results => {
+      this.libraryAlbums = results.libAlbums;
+      this.libraryPlaylists = results.libPlaylists;
+      this.libraryArtists = results.libArtists;
+      this.libraryTracks = results.libTracks;
+    });
+    this.store.select(selectSelectedLibraryArtist).subscribe(artist => this.selectedLibraryArtist = artist);
+    this.store.select(selectNowPlayingItem).subscribe(item => {
+      if (item) {
+        this.nowPlayingTrackId = item.id;
+      }
+    });
   }
 
   ngOnInit() {
@@ -43,24 +67,43 @@ export class SearchComponent implements OnInit {
     this.store.dispatch(new searchActions.SearchClear());
   }
 
-
-  onChange(event) {
-    console.log(event);
-  }
-
   search() {
     if (this.searchTerm) {
       this.store.dispatch(new searchActions.SearchClear());
-      this.store.dispatch(new searchActions.SearchCatalog({term: this.searchTerm}))
+      this.store.dispatch(new searchActions.SearchCatalog({term: this.searchTerm}));
+      this.store.dispatch(new searchActions.SearchLibrary({term: this.searchTerm}));
     }
   }
 
   onArtistSelected(artist: Artist) {
-    this.router.navigate(['browse/artists', artist.id]);
+    if (artist.type === 'artists') {
+      this.router.navigate(['browse/artists', artist.id]);
+    } else {
+      this.store.dispatch(new libraryActions.LoadLibraryArtist({id: artist.id}));
+    }
   }
 
   onAlbumSelected(album: Album) {
-    this.router.navigate(['browse/albums', album.id]);
+    if (album.type === 'albums') {
+      this.router.navigate(['browse/albums', album.id]);
+    } else {
+      this.router.navigate(['library/albums', album.id]);
+    }
+    
+  }
+
+  onPlaylistSelected(playlist: Playlist) {
+    if (playlist.type === 'playlists') {
+      this.router.navigate(['browse/playlists', playlist.id]);
+    } else {
+      this.router.navigate(['library/playlists', playlist.id]);
+    }
+  }
+
+  onPlayTrack(track: Track) {
+    let tracks: Track[] = [];
+    tracks.push(track);
+    this.store.dispatch(new playerActions.SetQueueAction({tracks: tracks}));
   }
 
 }
