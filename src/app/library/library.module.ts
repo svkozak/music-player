@@ -21,7 +21,7 @@ import { LibraryPlaylistsComponent } from './library-playlists/library-playlists
   ],
   imports: [
     CommonModule,
-    NgbModule,
+    // NgbModule,
     WidgetModule,
     LibraryRoutingModule
   ]

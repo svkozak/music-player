@@ -7,6 +7,7 @@ import { PlayerService } from './services/player.service';
 import { fromEvent } from 'rxjs';
 import * as appActions from './state/actions/app.actions';
 import * as feather from 'feather-icons';
+import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
 
 
 declare var MusicKit: any;
@@ -15,6 +16,7 @@ declare var MusicKit: any;
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
 

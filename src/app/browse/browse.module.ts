@@ -7,6 +7,7 @@ import { WidgetModule } from './../widget/widget.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArtistViewComponent } from './artist-view/artist-view.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ArtistViewComponent } from './artist-view/artist-view.component';
     ArtistViewComponent
   ],
   imports: [
+    // NgbModule,
     CommonModule,
     WidgetModule,
     BrowseRoutingModule

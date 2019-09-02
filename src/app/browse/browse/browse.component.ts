@@ -53,4 +53,9 @@ export class BrowseComponent implements OnInit {
     this.router.navigate(['browse/playlists', playlist.id]);
   }
 
+  toggle(popover) {
+    console.log('toggling popover');
+    popover.toggle();
+  }
+
 }

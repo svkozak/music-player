@@ -33,11 +33,12 @@ import { LibraryArtistsComponent } from '../library/library-artists/library-arti
   ],
   imports: [
     CommonModule,
-    NgbModule,
     RouterModule,
-    FeatherIconsModule
+    FeatherIconsModule,
+    NgbModule
   ],
   exports: [
+    NgbModule,
     AlbumArtPipe,
     FormattedTimePipe,
     SpinnerComponent,
