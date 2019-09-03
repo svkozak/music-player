@@ -1,2 +1,38 @@
 @import '../../../styles.scss';
 
+.scroller {
+  @include scroller;
+}
+
+.single-scroller {
+  @include single-scroller;
+}
+
+.artist-track-scroller {
+  min-height: 6rem;
+  max-height: 12rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+  overflow-x: scroll;
+}
+
+
+.btn-browse {
+  color: $body-color;
+}
+
+a.active .btn-browse {
+  color: $cyan;
+}
+
+.btn-browse:active {
+  transform: scale(0.95);
+}
+
+.search-track {
+  min-width: 15rem;
+  max-width: 20rem;
+}

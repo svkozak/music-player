@@ -33,7 +33,7 @@ export class ApiServiceService {
 
   // Catalog
 
-  getGenres(): Observable<string[]> {
+  getGenres(): Observable<any> {
     return from( this.musicKitService.musicKit.api.genres());
   }
 
@@ -82,12 +82,12 @@ export class ApiServiceService {
 
 
 
-  getAlbum(id: string): Observable<Album> {
+  getAlbum(id: string): Observable<any> {
     console.log(`Get album called with id ${id}`);
     return from(this.musicKitService.musicKit.api.album(id));
   }
 
-  getPlaylist(id: string): Observable<Playlist> {
+  getPlaylist(id: string): Observable<any> {
     console.log(`Get playlist called with id ${id}`);
     return from(this.musicKitService.musicKit.api.playlist(id));
   }
@@ -120,7 +120,7 @@ export class ApiServiceService {
   }
 
   searchCatalog(term: string, limit: string = '20', offset: string = '0') {
-    console.log(`${URLS.BASE_CATALOG_URL}/${this.storefront}/search`);
+    console.log(`${term}`);
     const options = {
       headers: this.headers,
       params: new HttpParams().set('term', term).set('limit', limit).set('offset', offset).set('types', 'artists,albums,playlists,songs')
@@ -128,7 +128,7 @@ export class ApiServiceService {
     return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/search`, options).pipe(
       map(response => {
         console.log('search catalog resources', response);
-        return response;
+        return response.results;
       })
     )
   }
@@ -162,12 +162,12 @@ export class ApiServiceService {
     )
   }
 
-  getLibraryAlbum(id: string): Observable<Album> {
+  getLibraryAlbum(id: string): Observable<any> {
     console.log(`GET LIBRARY ITEM CALLED`);
     return from(this.api.library.album(id));
   }
 
-  getLibraryPlaylist(id: string): Observable<Playlist> {
+  getLibraryPlaylist(id: string): Observable<any> {
     console.log(`GET LIBRARY playlist CALLED`);
     return from(this.api.library.playlist(id));
   }
@@ -226,6 +226,19 @@ export class ApiServiceService {
       map(response => {
         console.log(response.data);
         return response.data[0]
+      })
+    )
+  }
+
+  searchLibrary(term: string, limit: string = '20', offset: string = '0') {
+    const options = {
+      headers: this.headers,
+      params: new HttpParams().set('term', term).set('limit', limit).set('offset', offset).set('types', 'library-artists,library-albums,library-playlists,library-songs')
+    };
+    return this.http.get<any>(`${URLS.BASE_LIBRARY_URL}/search`, options).pipe(
+      map(response => {
+        console.log('search library resources', response);
+        return response.results;
       })
     )
   }

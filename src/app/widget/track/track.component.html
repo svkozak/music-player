@@ -1,24 +1,39 @@
-<div (click)="onClick(track)" [class.text-info]="isNowPlaying"  class="track d-flex flex-row align-items-start p-2 my-2 shadow-sm bg-white border-0">
-  
+<div [class.text-info]="isNowPlaying"  class="track d-flex flex-row align-items-stretch p-2 my-2 shadow-sm bg-white border-0">
 
-  <!-- if album -->
-  <span *ngIf="selectedAlbum" class="track-number mr-2" >{{track.attributes.trackNumber}}. </span>
   
-  <div *ngIf="selectedAlbum" class="track-info mr-2">
-    <span class="track-name mr-2">{{track.attributes.name}}</span><br>
-    <span *ngIf="track.attributes.artistName != selectedAlbum.attributes.artistName" class="artist-name mr-2">{{track.attributes.artistName}}</span>
-  </div>
+  <div class="d-flex align-items-start flex-fill" (click)="onClick(track)">
+
+      <!-- if album -->
+      <div *ngIf="selectedAlbum" class="track-number mr-2" >{{track.attributes.trackNumber}}. </div>
+      <div *ngIf="selectedAlbum" class="track-info mr-2">
+        <span class="track-name mr-2">{{track.attributes.name}}</span><br>
+        <span *ngIf="track.attributes.artistName != selectedAlbum.attributes.artistName" class="artist-name mr-2">{{track.attributes.artistName}}</span>
+      </div>
 
 
-  <!-- if playlist -->
-  <div *ngIf="selectedPlaylist" class="">
-    <img class="track-artwork mr-2 rounded shadow-sm" src="{{track.attributes.artwork.url | albumArt: 50}}" alt="">
-  </div>
-  <div *ngIf="selectedPlaylist" class="track-info mr-2 flex-grow-0">
-      <span class="track-name mr-2">{{track.attributes.name}}</span><br>
-      <span class="artist-name mr-2">{{track.attributes.artistName}}</span>
+      <!-- if playlist or search result, display artwork -->
+      <div *ngIf="selectedPlaylist || searchResult" class="">
+        <img class="track-artwork mr-2 rounded shadow-sm" src="{{track.attributes.artwork.url | albumArt: 50}}" alt="">
+      </div>
+      <div *ngIf="selectedPlaylist || searchResult" class="track-info mr-2 flex-grow-0">
+          <span class="track-name mr-2">{{track.attributes.name}}</span><br>
+          <span class="artist-name mr-2">{{track.attributes.artistName}}</span>
+      </div>
+
   </div>
   
+  <div class="ml-auto">
+
+      <ng-template #addToLib>
+        <a>add to library</a><br>
+        <a>add to playlist</a><br>
+      </ng-template>
+      <button type="button" class="btn btn-sm p-0" containerClass="shadow-sm" [adaptivePosition]="false"
+      [popover]="addToLib" [outsideClick]="true" container="body" placement="left">
+      <i-feather name="more-vertical"></i-feather>
+      </button>
+      
+  </div>
   <!-- <span *ngIf="!isNowPlaying" class="ml-auto mr-2">{{track.attributes.durationInMillis / 1000 | formattedTime}}</span>
   <span *ngIf="isNowPlaying" class="ml-auto mr-2">{{timeRemaining | formattedTime}}</span> -->
 </div>

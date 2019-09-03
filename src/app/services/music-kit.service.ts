@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { from , of, fromEvent, Observable } from 'rxjs';
 import { mergeMap, map, switchMap } from 'rxjs/operators';

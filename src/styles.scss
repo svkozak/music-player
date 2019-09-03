@@ -1,19 +1,28 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:300,400,700');
 
-// Override Bootstrap's global settings imported below
+// override Bootstrap's global settings imported below
 $font-family-base: 'Nunito', sans-serif;
-// $body-bg: #F7F8FA;
-$body-bg: #fff;
 $body-color: #2A3A4A;
 $active-color: #0793b7;
 
-@media (prefers-color-scheme: light) {}
+$theme-colors: (
+  "secondary": $body-color,
+);
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #000;
-  }
-}
+$spinner-border-width: 0.15rem;
+$spinner-border-width-sm: 0.08rem;
+
+// override Bootstrap custom range input
+$custom-range-track-height: 0.125rem;
+$custom-range-thumb-width: 0.5rem;
+$custom-range-thumb-bg: $body-color;
+$custom-range-thumb-active-bg: $body-color;
+
+// dark & light mode
+@media (prefers-color-scheme: light) {}
+@media (prefers-color-scheme: dark) {}
+
+
 
 // mixins
 @mixin font-small {
@@ -43,6 +52,10 @@ $active-color: #0793b7;
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+h2 {
+  font-weight: 700;
+}
+
 // override nav pills style
 
 .nav-pills .nav-link, .nav-pills .nav-link.active {
@@ -60,3 +73,8 @@ $active-color: #0793b7;
   height: 1rem;
 }
 
+.custom-range:active {
+  outline: none;
+}
+
+$nav-color: rgba(239, 240, 245, 0.95);

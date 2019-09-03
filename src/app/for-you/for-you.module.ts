@@ -16,7 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     WidgetModule,
     BrowseModule,
-    NgbModule,
+    // NgbModule,
     ForYouRoutingModule
   ]
 })

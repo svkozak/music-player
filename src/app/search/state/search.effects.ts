@@ -25,6 +25,17 @@ export class SearchEffects {
         catchError(() => EMPTY)
     ))
   )
+
+  @Effect()
+  searchLibrary$ = this.actions$.pipe(
+    ofType<searchActions.SearchLibrary>(SearchActionTypes.SearchLibrary),
+    map(action => action.payload),
+    mergeMap(payload => this.api.searchLibrary(payload.term)
+    .pipe(
+        map(results => new searchActions.SearchLibrarySuccess({searchResults: results})),
+        catchError(() => EMPTY)
+    ))
+  )
   
 
 

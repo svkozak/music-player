@@ -2,11 +2,12 @@ import { selectIsLoggedIn } from './state/selectors/app.selectors';
 import { PlayerActions, SkipToNextAction } from './state/actions/player.actions';
 import { Store } from '@ngrx/store';
 import { MusicKitService } from './services/music-kit.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { PlayerService } from './services/player.service';
 import { fromEvent } from 'rxjs';
 import * as appActions from './state/actions/app.actions';
 import * as feather from 'feather-icons';
+import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
 
 
 declare var MusicKit: any;
@@ -15,6 +16,7 @@ declare var MusicKit: any;
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
 
@@ -22,7 +24,7 @@ export class AppComponent {
   title = 'music';
   public isNavCollapsed = true;
 
-  constructor(private musicKitService: MusicKitService, private store: Store<any>) {
+  constructor(private store: Store<any>) {
     this.store.dispatch(new appActions.AppCheckAuthorization());
     this.store.select(selectIsLoggedIn).subscribe(isLoggedIn => this.isLoggedIn = isLoggedIn);
   }

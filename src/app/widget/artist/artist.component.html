@@ -1,9 +1,9 @@
-<div (click)="onClick(artist)" class="artist col-12 col-md-6 d-flex flex-row align-items-start p-2 my-2 shadow-sm bg-white border-0">
+<div (click)="onClick(artist)" class="artist d-flex flex-row align-items-start p-2 my-2 mr-2 shadow-sm bg-white border-0">
     <div class="">
       <img class="artist-image mr-2 rounded shadow-sm" src="../../../assets/img/no-art.svg" alt="">
     </div>
-    <div class="mr-2 flex-grow-0">
-        <span class="track-name mr-2">{{artist.attributes.name}}</span>
+    <div class="artist-name mr-2 flex-grow-0">
+        <span class="mr-2">{{artist.attributes.name}}</span>
     </div>
 </div>
 

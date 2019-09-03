@@ -15,6 +15,7 @@ export class TrackComponent implements OnInit {
 @Input() track: Track;
 @Input() isNowPlaying: boolean;
 @Input() timeRemaining: number;
+@Input() searchResult: boolean = false;
 
 @Output() onSelectTrack: EventEmitter<any> = new EventEmitter();
 
