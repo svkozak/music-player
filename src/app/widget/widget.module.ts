@@ -15,6 +15,7 @@ import { ArtistComponent } from './artist/artist.component';
 import { LibraryNavComponent } from './library-nav/library-nav.component';
 import { RouterModule } from '@angular/router';
 import { LibraryArtistsComponent } from '../library/library-artists/library-artists.component';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { LibraryArtistsComponent } from '../library/library-artists/library-arti
     CommonModule,
     RouterModule,
     FeatherIconsModule,
-    NgbModule
+    NgbModule,
+    PopoverModule.forRoot()
   ],
   exports: [
     NgbModule,
@@ -50,7 +52,8 @@ import { LibraryArtistsComponent } from '../library/library-artists/library-arti
     PlaylistArtPipe,
     ArtistComponent,
     LibraryNavComponent,
-    FeatherIconsModule
+    FeatherIconsModule,
+    PopoverModule
   ]
 })
 export class WidgetModule { }

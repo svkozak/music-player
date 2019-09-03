@@ -1,7 +1,7 @@
-<div [class.text-info]="isNowPlaying"  class="track d-flex flex-row align-items-start p-2 my-2 shadow-sm bg-white border-0">
+<div [class.text-info]="isNowPlaying"  class="track d-flex flex-row align-items-stretch p-2 my-2 shadow-sm bg-white border-0">
 
   
-  <div class="d-flex align-items-start flex-fill" style="background-color:bisque;" (click)="onClick(track)">
+  <div class="d-flex align-items-start flex-fill" (click)="onClick(track)">
 
       <!-- if album -->
       <div *ngIf="selectedAlbum" class="track-number mr-2" >{{track.attributes.trackNumber}}. </div>
@@ -23,9 +23,13 @@
   </div>
   
   <div class="ml-auto">
-    
-      <button type="button" class="btn btn-sm" placement="left"
-      ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="Popover on left">
+
+      <ng-template #addToLib>
+        <a>add to library</a><br>
+        <a>add to playlist</a><br>
+      </ng-template>
+      <button type="button" class="btn btn-sm p-0" containerClass="shadow-sm" [adaptivePosition]="false"
+      [popover]="addToLib" [outsideClick]="true" container="body" placement="left">
       <i-feather name="more-vertical"></i-feather>
       </button>
       

@@ -20,8 +20,6 @@
             <h3>{{selectedAlbum.attributes.name}}</h3>
             <button (click)="onSelectArtist(selectedAlbum.relationships.artists.data[0].id)" class="btn btn-link text-info p-0">{{selectedAlbum.attributes.artistName}}</button>
 
-            <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
-
             <div *ngIf="selectedAlbum.relationships.tracks.data as tracks">
               <app-track *ngFor="let track of tracks"
               [selectedAlbum]="selectedAlbum"
