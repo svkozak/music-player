@@ -1,5 +1,5 @@
 import { Artist } from './../../models/artist.model';
-import { LibraryActions, LibraryActionTypes } from './library.actions';
+import { LibraryActions, LibraryActionTypes, AddToPlaylistFailure } from './library.actions';
 import { Playlist } from './../../models/playlist.model';
 import { Album } from './../../models/album.model';
 
@@ -216,6 +216,52 @@ export function libraryReducer(state: LibraryState = initialState, action: Libra
     }
     
     case LibraryActionTypes.LoadLibraryArtistFailure: {
+      const { error } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        error
+      }
+    }
+
+    case LibraryActionTypes.AddToLibrary: {
+      return {
+        ...state,
+        isLoading: true,
+      }
+    } 
+      
+    case LibraryActionTypes.AddToLibrarySuccess: {
+      return {
+        ...state,
+        isLoading: false
+      }
+    }
+    
+    case LibraryActionTypes.AddToLibraryFailure: {
+      const { error } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        error
+      }
+    }
+
+    case LibraryActionTypes.AddToPlaylist: {
+      return {
+        ...state,
+        isLoading: true,
+      }
+    } 
+      
+    case LibraryActionTypes.AddToPlaylistSucess: {
+      return {
+        ...state,
+        isLoading: false
+      }
+    }
+    
+    case LibraryActionTypes.AddToPlaylistFailure: {
       const { error } = action.payload
       return {
         ...state,

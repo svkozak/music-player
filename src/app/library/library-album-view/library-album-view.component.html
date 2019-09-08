@@ -1,3 +1,5 @@
+<app-spinner [isLoading]="isLoading"></app-spinner>
+
 <div class="col">
   
     <div class="row">
@@ -14,8 +16,6 @@
         
         
         <div class="col-12 col-sm-8">
-          <app-spinner *ngIf="isLoading"></app-spinner>
-          <img class="spinner" *ngIf="isLoading" src="../../../assets/img/spinner.svg" alt="">
             <div *ngIf="selectedAlbum.attributes && selectedAlbum.relationships">
               <h3>{{selectedAlbum.attributes.name}}</h3>
               <p>{{selectedAlbum.attributes.artistName}}</p>
@@ -25,7 +25,8 @@
                 [selectedAlbum]="selectedAlbum"
                 [track]="track" 
                 [isNowPlaying]="nowPlayingTrackId === track.id" 
-                [timeRemaining]="currentPlaybackTimeRemaining" 
+                [timeRemaining]="currentPlaybackTimeRemaining"
+                (onAddToPlaylist)="onAddToPlaylist($event)"
                 (onSelectTrack)="onPlayTrack(track)">
                 </app-track>
               </div>

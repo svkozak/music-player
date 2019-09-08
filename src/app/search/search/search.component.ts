@@ -1,5 +1,5 @@
 import { selectNowPlayingItem } from './../../state/selectors/player.selectors';
-import { selectSelectedLibraryArtist } from './../../library/state/library.selectors';
+import { selectSelectedLibraryArtist, selectIsLibraryLoading } from './../../library/state/library.selectors';
 import { Router } from '@angular/router';
 import { Track } from 'src/app/models/track.model';
 import { Artist } from './../../models/artist.model';
@@ -11,6 +11,8 @@ import * as searchActions from '../state/search.actions';
 import * as libraryActions from '../../library/state/library.actions';
 import * as playerActions from '../../state/actions/player.actions';
 import { Playlist } from 'src/app/models/playlist.model';
+import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
+import { PlaylistsModalComponent } from 'src/app/widget/playlists-modal/playlists-modal.component';
 
 @Component({
   selector: 'app-search',
@@ -20,6 +22,7 @@ import { Playlist } from 'src/app/models/playlist.model';
 export class SearchComponent implements OnInit {
 
   isLoading: boolean;
+  isLibraryLoading: boolean;
   searchCatalog: boolean = true;
   placeholder = 'Search Apple Music';
 
@@ -34,11 +37,13 @@ export class SearchComponent implements OnInit {
   libraryTracks: Track[];
   selectedLibraryArtist: Artist;
   nowPlayingTrackId: string;
+  bsModalRef: BsModalRef;
 
   searchTerm = '';
 
-  constructor(private store: Store<any>, private router: Router) {
+  constructor(private store: Store<any>, private router: Router, private modalService: BsModalService) {
     this.store.select(selectIsSearchLoading).subscribe(isLoading => this.isLoading = isLoading);
+    this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLibraryLoading = isLoading);
     this.store.select(selectSearchResults).subscribe(results => {
       this.albums = results.albums;
       this.playlists = results.playlists;
@@ -104,6 +109,17 @@ export class SearchComponent implements OnInit {
     let tracks: Track[] = [];
     tracks.push(track);
     this.store.dispatch(new playerActions.SetQueueAction({tracks: tracks}));
+  }
+
+  onAddToLibrary(track?: Track, album?: Album) {
+    const type  = track.type || album.type;
+    const id = track.id || album.id;
+    this.store.dispatch(new libraryActions.AddToLibrary({type: type, id: id}));
+  }
+
+  onAddToPlaylist(track: Track) {
+    const options: ModalOptions = { backdrop: false, initialState: {track: track} };
+    this.bsModalRef = this.modalService.show(PlaylistsModalComponent, options);
   }
 
 }

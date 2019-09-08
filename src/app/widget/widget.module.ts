@@ -16,6 +16,11 @@ import { LibraryNavComponent } from './library-nav/library-nav.component';
 import { RouterModule } from '@angular/router';
 import { LibraryArtistsComponent } from '../library/library-artists/library-artists.component';
 import { PopoverModule } from 'ngx-bootstrap/popover';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ToastComponent } from './toast/toast.component';
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { PlaylistsModalComponent } from './playlists-modal/playlists-modal.component';
 
 @NgModule({
   declarations: [
@@ -30,14 +35,19 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
     PlaylistArtPipe,
     ArtistComponent,
     LibraryNavComponent,
-    LibraryArtistsComponent
+    LibraryArtistsComponent,
+    ToastComponent,
+    PlaylistsModalComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     FeatherIconsModule,
     NgbModule,
-    PopoverModule.forRoot()
+    PopoverModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    AlertModule.forRoot(),
+    ModalModule.forRoot()
   ],
   exports: [
     NgbModule,
@@ -53,7 +63,15 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
     ArtistComponent,
     LibraryNavComponent,
     FeatherIconsModule,
-    PopoverModule
+    PopoverModule,
+    BsDropdownModule,
+    ToastComponent,
+    AlertModule,
+    ModalModule,
+    PlaylistsModalComponent
+  ],
+  entryComponents: [
+    PlaylistsModalComponent
   ]
 })
 export class WidgetModule { }

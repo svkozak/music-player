@@ -2,8 +2,10 @@
 
 // override Bootstrap's global settings imported below
 $font-family-base: 'Nunito', sans-serif;
+// $font-family-base: 'SF Pro', sans-serif;
 $body-color: #2A3A4A;
 $active-color: #0793b7;
+$link-color: #003459;
 
 $theme-colors: (
   "secondary": $body-color,
@@ -76,5 +78,16 @@ h2 {
 .custom-range:active {
   outline: none;
 }
+
+.alert {
+  margin-bottom: 0;
+}
+
+.modal-content {
+  opacity: 0.98;
+  border: 0;
+  box-shadow: $box-shadow-lg;
+}
+
 
 $nav-color: rgba(239, 240, 245, 0.95);

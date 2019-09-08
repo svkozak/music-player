@@ -6,12 +6,24 @@
 
 
     <div *ngIf="!isLoading" class="d-flex flex-row">
-        <button *ngIf="selectedPlaylist" class="play-all btn btn-outline-light mr-2 flex-grow-1 shadow-sm bg-white" (click)="onPlayPlaylist(selectedPlaylist)">
-          <img class="icon" src="../../../assets/img/play.svg" alt="play">
-        </button>
-        <button *ngIf="selectedAlbum" class="play-all btn btn-outline-light mr-2 flex-grow-1 shadow-sm bg-white" (click)="onPlayAlbum(selectedAlbum)">
-          <img class="icon" src="../../../assets/img/play.svg" alt="play">
+        <button class="play-all btn btn-outline-light flex-grow-1 shadow-sm text-secondary" (click)="selectedAlbum ? onPlayAlbum(selectedAlbum) : onPlayPlaylist(selectedPlaylist)">
+          <i-feather name="play"></i-feather>
         </button>
 
-        <button *ngIf="selectedAlbum || selectedPlaylist" class="play-all btn btn btn-outline-light shadow-sm bg-white" (click)="onStopPressed()"><img class="icon" src="../../../assets/img/stop.svg" alt="play"></button>
+
+        <div *ngIf="(selectedAlbum && selectedAlbum.type === 'albums') || (selectedPlaylist && selectedPlaylist.type === 'playlists')" class="btn-group" dropdown placement="bottom right">
+            <button id="button-alignment" dropdownToggle type="button" class="drop btn btn-outline-light shadow-sm text-secondary ml-2" aria-controls="dropdown-alignment">
+                <i-feather name="more-horizontal"></i-feather>
+            </button>
+            <ul id="dropdown-alignment" *dropdownMenu class="dropdown-menu dropdown-menu-right shadow-sm" role="menu" aria-labelledby="button-alignment">
+                <li role="menuitem">
+                    <button *ngIf="(selectedAlbum && selectedAlbum.type === 'albums') || (selectedPlaylist && selectedPlaylist.type === 'playlists')" 
+                      (click)="selectedAlbum ? addToLibrary(selectedAlbum) : addToLibrary(selectedPlaylist)" 
+                      class="add-button btn btn-sm mx-1 mt-1">
+                      <i-feather name="plus"></i-feather>add to library</button>
+                  </li>
+            </ul>
+        </div>
+            
+
     </div>

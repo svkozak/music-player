@@ -5,7 +5,7 @@ import { createSelector } from '@ngrx/store';
 
 export const selectForYouState = (state: State) => state.forYou
 
-export const selectIsLoading = createSelector(
+export const selectIsForYouLoading = createSelector(
   selectForYouState,
   (state: ForYouState) => state.isLoading
 )

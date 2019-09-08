@@ -1,0 +1,9 @@
+@import "../../../styles.scss";
+
+.global-toast {
+  opacity: 0.95;
+  position: fixed;
+  top: 3vh;
+  right: 2vh;
+  z-index: 1500;
+}

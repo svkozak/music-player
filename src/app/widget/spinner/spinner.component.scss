@@ -1,5 +1,11 @@
-.spinner {
-  margin: auto;
-  height: 3rem;
-  width: 3rem;
+@import '../../../styles.scss';
+
+.new-spinner {
+  z-index: 2000;
+  width: 5rem;
+  height: 5rem;
+  background-color: rgba($color: white, $alpha: 0.8);
+  position: fixed;
+  top: 30vh;
+  left: 45vw;
 }

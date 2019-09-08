@@ -1,3 +1,4 @@
+import { Playlist } from './../../models/playlist.model';
 import * as playerActions from '../../state/actions/player.actions';
 import { selectNowPlayingItem } from '../../state/selectors/player.selectors';
 import { selectSelectedPlaylist, selectIsLoadingPlaylists } from '../state/playlist.selector';
@@ -6,9 +7,12 @@ import { PlayerService } from '../../services/player.service';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Playlist } from 'src/app/models/playlist.model';
 import { Track } from 'src/app/models/track.model';
 import { switchMap, map } from 'rxjs/operators';
+import { selectIsLibraryLoading } from 'src/app/library/state/library.selectors';
+import * as libraryActions from '../../library/state/library.actions';
+import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
+import { PlaylistsModalComponent } from 'src/app/widget/playlists-modal/playlists-modal.component';
 
 @Component({
   selector: 'app-playlist-view',
@@ -18,16 +22,23 @@ import { switchMap, map } from 'rxjs/operators';
 export class PlaylistViewComponent implements OnInit {
 
   isLoading: boolean;
+  isLibraryLoading: boolean;
   selectedPlaylist: Playlist;
   tracks: Track[];
   nowPlayingTrackId: string;
   currentPlaybackTimeRemaining: number = 0;
+  libraryPlaylists: Playlist[];
+
+  // to show a modal with playlists
+  bsModalRef: BsModalRef;
+
 
 
   constructor(
     private route: ActivatedRoute,
     private store: Store<any>,
-    private playerService: PlayerService
+    private playerService: PlayerService,
+    private modalService: BsModalService
   ) { 
     this.route.params.pipe(map(param => param.id)).subscribe(val => this.store.dispatch(new LoadPlaylist({id: val})));
     this.store.select(selectSelectedPlaylist).subscribe(playlist => this.selectedPlaylist = playlist);
@@ -38,7 +49,7 @@ export class PlaylistViewComponent implements OnInit {
       }
     });
   this.playerService.getCurrentPlaybackTimeRemaining().subscribe(timeRemaining => this.currentPlaybackTimeRemaining = timeRemaining);
-
+  this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLibraryLoading = isLoading);
   }
 
   ngOnInit() {
@@ -46,7 +57,6 @@ export class PlaylistViewComponent implements OnInit {
 
   onPlayPlaylist(playlist: Playlist) {
     const tracks: Track[] = playlist.relationships.tracks.data;
-    // this.playerService.setQueue(tracks).subscribe();
     this.store.dispatch(new playerActions.SetQueueAction({tracks: tracks}));
   }
 
@@ -58,6 +68,17 @@ export class PlaylistViewComponent implements OnInit {
 
   onStop() {
     this.store.dispatch(new playerActions.PauseAction());
+  }
+
+  onAddToLibrary(track?: Track, playlist?: Playlist) {
+    const type  = track.type || playlist.type;
+    const id = track.id || playlist.id;
+    this.store.dispatch(new libraryActions.AddToLibrary({type: type, id: id}));
+  }
+
+  onAddToPlaylist(track: Track) {
+    const options: ModalOptions = { backdrop: false, initialState: {track: track} };
+    this.bsModalRef = this.modalService.show(PlaylistsModalComponent, options);
   }
 
 }

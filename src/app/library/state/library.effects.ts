@@ -5,8 +5,9 @@ import { ApiServiceService } from './../../services/api-service.service';
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { mergeMap, map, catchError, switchMap } from 'rxjs/operators';
-import { EMPTY, Observable } from 'rxjs';
+import { EMPTY, Observable, of } from 'rxjs';
 import * as libraryActions from './library.actions';
+import * as appActions from '../../state/actions/app.actions';
 
 
 
@@ -67,7 +68,7 @@ export class LibraryEffects {
     mergeMap(() => this.api.getRecentlyAdded()
     .pipe(
       map(items => new libraryActions.LoadRecentlyAddedSuccess({recentlyAddedItems: items})),
-    catchError(() => EMPTY)
+      catchError(() => EMPTY)
     ))
   )
 
@@ -98,6 +99,37 @@ export class LibraryEffects {
     mergeMap(id => this.api.getLibraryArtist(id).pipe(
       map(artist => new libraryActions.LoadLibraryArtistSuccess({artist: artist}))
     ))
+  )
+
+  @Effect()
+  addToLibrary$ = this.actions$.pipe(
+    ofType<libraryActions.AddToLibrary>(LibraryActionTypes.AddToLibrary),
+    map(action => action.payload),
+    mergeMap(payload => this.api.addToLibrary(payload.type, payload.id).pipe(
+      map(() => new libraryActions.AddToLibrarySuccess())
+    ))
+  )
+
+  @Effect()
+  addToPlaylist$ = this.actions$.pipe(
+    ofType<libraryActions.AddToPlaylist>(LibraryActionTypes.AddToPlaylist),
+    map(action => action.payload),
+    mergeMap(payload => this.api.addToLibraryPlaylist(payload.playlistId, payload.track).pipe(
+      map(() => new libraryActions.AddToPlaylistSucess()),
+      catchError(error => of(new libraryActions.AddToPlaylistFailure({error : error})))
+    ))
+  )
+
+  @Effect()
+  successToast$ = this.actions$.pipe(
+    ofType(LibraryActionTypes.AddToLibrarySuccess, LibraryActionTypes.AddToPlaylistSucess),
+    map(() => new appActions.AppShowToast({type: 'success'}))
+  )
+
+  @Effect()
+  errorToast$ = this.actions$.pipe(
+    ofType(LibraryActionTypes.AddToLibraryFailure, LibraryActionTypes.AddToPlaylistFailure),
+    map(() => new appActions.AppShowToast({type: 'danger'}))
   )
 
 

@@ -30,7 +30,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              
+              "node_modules/bootstrap/js/dist/util.js"
             ],
             "es5BrowserSupport": true
           },

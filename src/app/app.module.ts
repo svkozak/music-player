@@ -51,7 +51,6 @@ import { SearchEffects } from './search/state/search.effects';
     ]),
     StoreRouterConnectingModule.forRoot(),
     HttpClientModule,
-    // Ng5SliderModule,
     LibraryModule,
     BrowseModule,
     ForYouModule,

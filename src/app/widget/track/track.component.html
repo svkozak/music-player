@@ -1,7 +1,7 @@
 <div [class.text-info]="isNowPlaying"  class="track d-flex flex-row align-items-stretch p-2 my-2 shadow-sm bg-white border-0">
 
   
-  <div class="d-flex align-items-start flex-fill" (click)="onClick(track)">
+  <div class="track-info d-flex align-items-start flex-fill" (click)="onClick(track)">
 
       <!-- if album -->
       <div *ngIf="selectedAlbum" class="track-number mr-2" >{{track.attributes.trackNumber}}. </div>
@@ -24,14 +24,27 @@
   
   <div class="ml-auto">
 
-      <ng-template #addToLib>
-        <a>add to library</a><br>
-        <a>add to playlist</a><br>
-      </ng-template>
-      <button type="button" class="btn btn-sm p-0" containerClass="shadow-sm" [adaptivePosition]="false"
-      [popover]="addToLib" [outsideClick]="true" container="body" placement="left">
-      <i-feather name="more-vertical"></i-feather>
-      </button>
+      <div class="btn-group" dropdown placement="bottom right">
+          <button id="button-alignment" dropdownToggle type="button"
+                  class="btn btn-sm p-0" aria-controls="dropdown-alignment">
+                  <i-feather name="more-vertical"></i-feather>       
+          </button>
+          <ul id="dropdown-alignment" *dropdownMenu class="dropdown-menu dropdown-menu-right shadow-sm"
+              role="menu" aria-labelledby="button-alignment">
+            <li role="menuitem">
+                <button *ngIf="track.type === 'songs'" 
+                (click)="addToLibrary(track)" 
+                class="add-button btn btn-sm mx-1 mt-1">
+                <i-feather *ngIf="!isLibraryLoading" name="plus"></i-feather>
+                <div *ngIf="isLibraryLoading" class="spinner-border spinner-border-sm mx-1 mt-1" role="status" aria-hidden="true"></div>
+                <span class="ml-1">add to library</span></button>
+            </li>
+            <li role="menuitem">
+                <button class="add-button btn btn-sm m-1" (click)="addToPlaylist(track)">
+                  <i-feather name="list" class="mr-1"></i-feather>add to playlist</button>
+            </li>
+          </ul>
+        </div>
       
   </div>
   <!-- <span *ngIf="!isNowPlaying" class="ml-auto mr-2">{{track.attributes.durationInMillis / 1000 | formattedTime}}</span>

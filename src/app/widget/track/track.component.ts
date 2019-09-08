@@ -16,8 +16,11 @@ export class TrackComponent implements OnInit {
 @Input() isNowPlaying: boolean;
 @Input() timeRemaining: number;
 @Input() searchResult: boolean = false;
+@Input() isLibraryLoading: boolean = false;
 
 @Output() onSelectTrack: EventEmitter<any> = new EventEmitter();
+@Output() onAddToLibrary: EventEmitter<any> = new EventEmitter();
+@Output() onAddToPlaylist: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -26,6 +29,16 @@ export class TrackComponent implements OnInit {
 
   onClick(track: Track) {
     this.onSelectTrack.emit(track);
+  }
+
+  addToLibrary(track: Track) {
+    console.log('track to add', track);
+    this.onAddToLibrary.emit(track);
+  }
+
+  addToPlaylist(track: Track) {
+    console.log('Add to playlist');
+    this.onAddToPlaylist.emit(track);
   }
 
 }

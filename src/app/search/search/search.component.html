@@ -1,3 +1,5 @@
+<app-spinner [isLoading]="isLoading || isLibraryLoading"></app-spinner>
+
 <div class="col">
 
   <h2 id="searchHeader">Search</h2>
@@ -47,11 +49,13 @@
 
             <h2 *ngIf="!isLoading && tracks.length" class="my-3">Tracks</h2>
             <div class="artist-track-scroller my-3 py-2">
-              <div *ngFor="let track of tracks" class="search-track">
+              <div *ngFor="let track of tracks" class="search-track mr-2">
                   <app-track
                   [searchResult]="true"
                   [track]="track" 
                   [isNowPlaying]="nowPlayingTrackId === track.id"
+                  (onAddToLibrary)="onAddToLibrary($event)"
+                  (onAddToPlaylist)="onAddToPlaylist($event)"
                   (onSelectTrack)="onPlayTrack(track)">
                   </app-track>
               </div>
@@ -87,11 +91,12 @@
 
             <h2 *ngIf="!isLoading && libraryTracks.length" class="my-3">Tracks</h2>
             <div *ngIf="!isLoading && libraryTracks.length" class="artist-track-scroller my-3 py-2">
-              <div *ngFor="let track of libraryTracks" class="search-track">
+              <div *ngFor="let track of libraryTracks" class="search-track mr-2">
                   <app-track
                   [searchResult]="true"
                   [track]="track" 
                   [isNowPlaying]="nowPlayingTrackId === track.id"
+                  (onAddToPlaylist)="onAddToPlaylist($event)"
                   (onSelectTrack)="onPlayTrack(track)">
                   </app-track>
               </div>

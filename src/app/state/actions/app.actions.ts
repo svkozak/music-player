@@ -9,7 +9,9 @@ export enum AppActionTypes {
   AppLogInFailure = '[App] Log in failure',
   AppLogOut = '[App] Log out',
   AppLogOutSuccess = '[App] Log out success',
-  AppLogOutFailure = '[App] Log out failure'
+  AppLogOutFailure = '[App] Log out failure',
+  AppShowToast = '[App] Show toast message',
+  AppDismissToast = '[App] Dismiss toast message'
 }
 
 export class AppCheckAuthorization implements Action {
@@ -54,6 +56,17 @@ export class AppLogOutFailure implements Action {
   constructor(public payload: { error: any }) { }
 }
 
+// add errors, etc
+export class AppShowToast implements Action {
+  readonly type = AppActionTypes.AppShowToast;
+  constructor(public payload?: { type: any }) { }
+}
+
+export class AppDismissToast implements Action {
+  readonly type = AppActionTypes.AppDismissToast;
+}
+
+
 export type AppActions =
 AppCheckAuthorization |
 AppCheckAuthorizationSuccess |
@@ -63,5 +76,8 @@ AppLogInSuccess |
 AppLogInFailure |
 AppLogOut | 
 AppLogOutSuccess |
-AppLogOutFailure;
+AppLogOutFailure |
+AppShowToast |
+AppDismissToast
+;
 

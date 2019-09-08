@@ -1,6 +1,6 @@
 import { Playlist } from './../../models/playlist.model';
 import { Album } from './../../models/album.model';
-import { selectRecommendations } from './../state/for-you.selectors';
+import { selectRecommendations, selectIsForYouLoading } from './../state/for-you.selectors';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import * as forYouActions from '../state/for-you.actions';
@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class ForYouComponent implements OnInit {
 
+  isLoading: boolean;
   recommendations: Recommendation[];
   newReleases: Album[];
   carouselImages: any[];
@@ -21,7 +22,8 @@ export class ForYouComponent implements OnInit {
   constructor(
     private store: Store<any>,
     private router: Router
-  ) { 
+  ) {
+    this.store.select(selectIsForYouLoading).subscribe(isLoading => this.isLoading = isLoading);
     this.store.select(selectRecommendations).subscribe(recommendations => this.recommendations = recommendations);
   }
 

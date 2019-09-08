@@ -17,6 +17,8 @@ export class ArtworkComponent implements OnInit {
   @Output() onPlayAll: EventEmitter<any> = new EventEmitter();
   @Output() onStop: EventEmitter<any> = new EventEmitter();
 
+  @Output() onAddToLibrary: EventEmitter<any> = new EventEmitter();
+
 
   constructor() { }
 
@@ -32,6 +34,11 @@ export class ArtworkComponent implements OnInit {
 
   onStopPressed(stop: any) {
     this.onStop.emit(stop);
+  }
+
+  addToLibrary(album?: Album, playlist?: Playlist) {
+    console.log('Artwork component: adding to library', album || playlist)
+    this.onAddToLibrary.emit(album || playlist);
   }
 
 }

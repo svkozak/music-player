@@ -1,3 +1,5 @@
+<app-toast [options]="toastOptions" (alertClosed)="dismissAlert()"></app-toast>
+
 <nav class="navbar navbar-expand-md navbar-light fixed-top shadow-sm">
     <a class="navbar-brand" href="#">music</a>
     <button class="btn btn-outline menu-toggle p-0" type="button" (click)="isNavCollapsed = !isNavCollapsed" aria-expanded="false" aria-label="Toggle navigation">

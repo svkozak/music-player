@@ -4,11 +4,15 @@ import { Album } from './../../models/album.model';
 
 export interface AppState {
   isLoggedIn: boolean;
+  showToast?: boolean;
+  toastType?: string;
   error?: any;
 }
 
 export const initialState: AppState = {
   isLoggedIn: false,
+  showToast: false,
+  toastType: '',
   error: null
 };
 
@@ -71,6 +75,23 @@ export function appReducer(state: AppState = initialState, action: AppActions): 
       return {
         ...state,
         error: error
+      }
+    }
+
+    case AppActionTypes.AppShowToast: {
+      const { payload } = action;
+      return {
+        ...state,
+        showToast: true,
+        toastType: payload.type
+      }
+    }
+
+    case AppActionTypes.AppDismissToast: {
+      return {
+        ...state,
+        showToast: false,
+        toastType: ''
       }
     }
       

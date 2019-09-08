@@ -1,3 +1,4 @@
+import { Track } from './../../models/track.model';
 import { Artist } from './../../models/artist.model';
 import { Playlist } from 'src/app/models/playlist.model';
 import { Album } from './../../models/album.model';
@@ -32,6 +33,15 @@ export enum LibraryActionTypes {
   LoadLibraryArtist = "[Library] Load library artist",
   LoadLibraryArtistSuccess = "[Library] Load library artist success",
   LoadLibraryArtistFailure = "[Library] Load library artist failure",
+
+  // add to library
+  AddToLibrary = "[Library] Add To Library",
+  AddToLibrarySuccess = "[Library] Add To Library Success",
+  AddToLibraryFailure = "[Library] Add To Library Failure",
+
+  AddToPlaylist = '[Library] Add To Playlist',
+  AddToPlaylistSucess = '[Library] Add To Playlist Success',
+  AddToPlaylistFailure = '[Library] Add To Playlist Failure'
 }
 
 // load multiple albums or playlists from library 
@@ -65,6 +75,8 @@ export class LoadLibraryPlaylistsFailure implements Action {
   readonly type = LibraryActionTypes.LoadLibraryPlaylistsFailure;
   constructor(public payload: { error: any }) { }
 }
+
+
 
 // load single album or playlist from library
 
@@ -151,8 +163,35 @@ export class LoadLibraryArtistFailure implements Action {
   constructor(public payload: { error: any }) { }
 }
 
+// add to library
 
+export class AddToLibrary implements Action {
+  readonly type = LibraryActionTypes.AddToLibrary;
+  constructor(public payload?: { type: string, id: string }) {}
+}
 
+export class AddToLibrarySuccess implements Action {
+  readonly type = LibraryActionTypes.AddToLibrarySuccess;
+}
+
+export class AddToLibraryFailure implements Action {
+  readonly type = LibraryActionTypes.AddToLibraryFailure;
+  constructor(public payload: { error: any }) { }
+}
+
+export class AddToPlaylist implements Action {
+  readonly type = LibraryActionTypes.AddToPlaylist;
+  constructor(public payload?: { playlistId: string, track: Track }) {}
+}
+
+export class AddToPlaylistSucess implements Action {
+  readonly type = LibraryActionTypes.AddToPlaylistSucess;
+}
+
+export class AddToPlaylistFailure implements Action {
+  readonly type = LibraryActionTypes.AddToPlaylistFailure;
+  constructor(public payload: { error: any }) { }
+}
 
 
 export type LibraryActions = 
@@ -177,6 +216,12 @@ LoadLibraryArtistsSuccess |
 LoadLibraryArtistsFailure |
 LoadLibraryArtist |
 LoadLibraryArtistSuccess |
-LoadLibraryArtistFailure
+LoadLibraryArtistFailure |
+AddToLibrary |
+AddToLibrarySuccess |
+AddToLibraryFailure |
+AddToPlaylist |
+AddToPlaylistSucess |
+AddToPlaylistFailure
 ;
 

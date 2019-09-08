@@ -1,7 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FeatherModule } from 'angular-feather';
-import { Search, LogIn, LogOut, SkipForward, SkipBack, Play, Pause, MoreHorizontal, MoreVertical } from 'angular-feather/icons';
+import { 
+  Search, 
+  LogIn, 
+  LogOut, 
+  SkipForward, 
+  SkipBack, 
+  Play, 
+  Pause, 
+  MoreHorizontal, 
+  MoreVertical,
+  List,
+  Plus,
+  Check,
+  AlertCircle
+} from 'angular-feather/icons';
 
 const icons = {
   Search, 
@@ -12,7 +26,11 @@ const icons = {
   SkipForward,
   SkipBack,
   MoreHorizontal,
-  MoreVertical
+  MoreVertical,
+  Plus,
+  List,
+  Check,
+  AlertCircle
 }
 
 @NgModule({

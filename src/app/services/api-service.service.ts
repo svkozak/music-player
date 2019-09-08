@@ -1,3 +1,4 @@
+import { Track } from 'src/app/models/track.model';
 import { TOKEN } from './../../secret/token';
 import { URLS } from './../state/app.constants';
 import { Album } from './../models/album.model';
@@ -243,10 +244,25 @@ export class ApiServiceService {
     )
   }
 
+  addToLibrary(type: string, id: string) {
+    console.log('adding to library');
+    const options = {
+      headers: this.headers,
+      params: new HttpParams().set(`ids[${type}]`, id)
+    };
+    return this.http.post(`${URLS.BASE_LIBRARY_URL}`, {}, options).pipe(
+      map(val => console.log('return from POST', val))
+    )
+  }
 
-
-
-
+  addToLibraryPlaylist(playlistId: string, track: Track) {
+    console.log('adding to library playlist');
+    const options = { headers: this.headers };
+    const data = {data:[ { id: track.id, type : track.type} ]};
+    return this.http.post(`${URLS.BASE_LIBRARY_URL}/playlists/${playlistId}/tracks`, data, options).pipe(
+      map(val => console.log('return from POST', val))
+    )
+  }
 
   getPlaylistArtworkUrl(id: string) {
     const options = {headers: this.headers};

@@ -33,5 +33,17 @@
 }
 
 .now-playing {
-  color: cadetblue;
+  color: $indigo;
+}
+
+
+
+.dropdown-menu {
+  padding: 0;
+}
+
+.spinner-border {
+  padding: 0.25rem;
+  width: 1rem;
+  height: 1rem;
 }

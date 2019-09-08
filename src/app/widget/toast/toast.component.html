@@ -1,0 +1,7 @@
+<div *ngFor="let alert of alerts" class="global-toast shadow-lg">
+    <alert class="shadow-sm" [type]="alert.type" [dismissOnTimeout]="alert.timeout" (onClosed)="onClosed(alert)">
+      <i-feather *ngIf="options.type === 'success'" name="check"></i-feather>
+      <i-feather *ngIf="options.type === 'danger'" name="alert-circle"></i-feather>
+      {{ alert.msg }}
+    </alert>
+</div>

@@ -1,0 +1,10 @@
+@import '../../../styles.scss';
+
+.modal-header {
+  border: 0;
+}
+
+.modal-body {
+  max-height: 20rem;
+  overflow: scroll;
+}

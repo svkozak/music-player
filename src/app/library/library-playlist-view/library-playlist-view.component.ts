@@ -10,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
 import * as libraryActions from '../state/library.actions';
 import { switchMap, map } from 'rxjs/operators';
 import * as playerActions from '../../state/actions/player.actions';
+import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
+import { PlaylistsModalComponent } from 'src/app/widget/playlists-modal/playlists-modal.component';
 
 @Component({
   selector: 'app-library-playlist-view',
@@ -25,10 +27,14 @@ export class LibraryPlaylistViewComponent implements OnInit {
   nowPlayingArtworkUrl: string;
   currentPlaybackTimeRemaining: number = 0;
 
+  // to show a modal with playlists
+  bsModalRef: BsModalRef;
+
   constructor(
     private route: ActivatedRoute,
     private store: Store<any>,
-    private playerService: PlayerService
+    private playerService: PlayerService,
+    private modalService: BsModalService
   ) { 
     this.route.params.pipe(map(param => param.id)).subscribe(id => this.store.dispatch(new libraryActions.LoadLibraryPlaylist({id: id})));
     this.store.select(selectSelectedLibraryPlaylist).subscribe(playlist => this.selectedPlaylist = playlist);
@@ -62,6 +68,11 @@ export class LibraryPlaylistViewComponent implements OnInit {
 
   playlistArtwork() {
     // check if currently playing track is in the playlist and return the url
+  }
+
+  onAddToPlaylist(track: Track) {
+    const options: ModalOptions = { backdrop: false, initialState: {track: track} };
+    this.bsModalRef = this.modalService.show(PlaylistsModalComponent, options);
   }
 
 }
