@@ -100,5 +100,9 @@ export class PlayerComponent implements OnInit {
   onTrackClick(id: string) {
     this.router.navigate(['browse/albums', id])
   }
+  
+  openAlbum() {
+    this.router.navigate(['browse/albums', this.nowPlayingItem.relationships.albums.data[0].id])
+  }
 
 }

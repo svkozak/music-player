@@ -8,6 +8,7 @@ import { fromEvent } from 'rxjs';
 import * as appActions from './state/actions/app.actions';
 import * as feather from 'feather-icons';
 import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
+import { top100 } from './state/app.constants';
 
 
 declare var MusicKit: any;
@@ -20,6 +21,7 @@ declare var MusicKit: any;
 })
 export class AppComponent {
 
+  sidebarOpened: boolean = false;
   isLoggedIn: boolean;
   title = 'music';
   public isNavCollapsed = true;
@@ -47,6 +49,11 @@ export class AppComponent {
 
   dismissAlert() {
     this.store.dispatch(new appActions.AppDismissToast());
+  }
+
+  toggleSidebar() {
+    this.sidebarOpened = !this.sidebarOpened;
+    console.log(this.sidebarOpened);
   }
 
 }

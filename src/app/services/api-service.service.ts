@@ -1,6 +1,6 @@
 import { Track } from 'src/app/models/track.model';
 import { TOKEN } from './../../secret/token';
-import { URLS } from './../state/app.constants';
+import { URLS, activities } from './../state/app.constants';
 import { Album } from './../models/album.model';
 import { MusicKitService } from './music-kit.service';
 import { Injectable } from '@angular/core';
@@ -14,7 +14,7 @@ import { Playlist } from '../models/playlist.model';
 })
 export class ApiServiceService {
 
-  
+  activities;
   headers: HttpHeaders;
   storefront: string;
   private api;
@@ -30,6 +30,7 @@ export class ApiServiceService {
 
     this.api = this.musicKitService.musicKit.api
     this.storefront = this.musicKitService.musicKit.storekit.storefrontCountryCode;
+    this.activities = activities;
   }
 
   // Catalog
@@ -64,6 +65,19 @@ export class ApiServiceService {
       map(response => {
         console.log('get catalog charts', response);
         return response;
+      })
+    )
+  }
+
+  getCatalogActivities() {
+    const options = {
+      headers: this.headers,
+      params: new HttpParams().set('ids', `${Object.values(this.activities).toString()}`)
+    };
+    return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/activities`, options).pipe(
+      map(response => {
+        console.log('get catalog activities', response);
+        return response.data;
       })
     )
   }

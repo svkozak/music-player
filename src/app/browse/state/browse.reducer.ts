@@ -1,3 +1,5 @@
+import { activities } from './../../state/app.constants';
+import { Activity } from './../../models/activity.model';
 import { BrowseActions, BrowseActionTypes } from './browse.actions';
 import { Artist } from './../../models/artist.model';
 import { Playlist } from './../../models/playlist.model';
@@ -11,7 +13,8 @@ export interface BrowseState {
   albums?: Album[],
   playlists?: Playlist[],
   selectedAlbum?: Album,
-  selectedPlaylist?: Playlist
+  selectedPlaylist?: Playlist,
+  activities?: Activity[]
 }
 
 export const initialState: BrowseState = {
@@ -21,7 +24,8 @@ export const initialState: BrowseState = {
   albums: [],
   playlists: [],
   selectedAlbum: null,
-  selectedPlaylist: null
+  selectedPlaylist: null,
+  activities: []
 };
 
 export function browseReducer(state: BrowseState = initialState, action: BrowseActions): BrowseState {
@@ -47,6 +51,31 @@ export function browseReducer(state: BrowseState = initialState, action: BrowseA
     }
     
     case BrowseActionTypes.LoadCatalogArtistFailure: {
+      const { error } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        error
+      }
+    }
+
+    case BrowseActionTypes.LoadActivities: {
+      return {
+        ...state,
+        isLoading: true
+      }
+    } 
+      
+    case BrowseActionTypes.LoadActivitiesSuccess: {
+      const { activities } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        activities: activities
+      }
+    }
+    
+    case BrowseActionTypes.LoadActivitiesFailure: {
       const { error } = action.payload
       return {
         ...state,

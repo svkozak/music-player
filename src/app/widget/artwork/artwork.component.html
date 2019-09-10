@@ -1,11 +1,17 @@
 
 
-    <div *ngIf="isLoading" class="artwork shadow mb-3 rounded" alt=""></div>
-    <img *ngIf="!isLoading && selectedPlaylist" [src]="artworkUrl ? (artworkUrl | albumArt : 600) : (selectedPlaylist.attributes.artwork.url | albumArt : 600)" class="artwork shadow mb-3 rounded" alt="">
-    <img *ngIf="!isLoading && selectedAlbum" [src]="selectedAlbum.attributes.artwork.url | albumArt : 600" class="artwork shadow mb-3 rounded" alt="">
+    <img *ngIf="selectedPlaylist && selectedPlaylist.attributes" [src]="artworkUrl ? (artworkUrl | albumArt : 600) : (selectedPlaylist.attributes.artwork.url | albumArt : 600)" class="artwork shadow mb-3 rounded" alt="">
+    <img *ngIf="selectedAlbum && selectedAlbum.attributes" [src]="selectedAlbum.attributes.artwork.url | albumArt : 600" class="artwork shadow mb-3 rounded" alt="">
 
+    <div *ngIf="selectedAlbum && selectedAlbum.attributes" class="mb-2">
+        <span *ngIf="selectedAlbum.type === 'albums'" class="small">{{selectedAlbum.attributes.genreNames[0]}}  &#183;  {{parseDate(selectedAlbum.attributes.releaseDate)}}</span>
+    </div>
+    <div *ngIf="selectedPlaylist && selectedPlaylist.attributes" class="mb-2">
+        <span class="small"><span *ngIf="selectedPlaylist.type === 'playlists'">Last modified: {{parseDate(selectedPlaylist.attributes.lastModifiedDate, true)}} &#183; </span>{{selectedPlaylist.relationships.tracks.data.length}} tracks</span>
+    </div>
 
-    <div *ngIf="!isLoading" class="d-flex flex-row">
+    <div class="d-flex flex-row">
+        
         <button class="play-all btn btn-outline-light flex-grow-1 shadow-sm text-secondary" (click)="selectedAlbum ? onPlayAlbum(selectedAlbum) : onPlayPlaylist(selectedPlaylist)">
           <i-feather name="play"></i-feather>
         </button>

@@ -14,16 +14,6 @@ export class PlayerEffects {
 
   constructor(private actions$: Actions, private store: Store<any>, private playerService: PlayerService) {}
 
-  // @Effect()
-  // setQueue$ = this.actions$
-  //   .pipe(
-  //     ofType<playerActions.SetQueueAction>(PlayerActionTypes.PlayerSetQueue),
-  //     map(action => action.payload.tracks),
-  //     mergeMap(tracks => this.playerService.setQueue(tracks)),
-  //     // taking an emitted value from setQueue
-  //     map(() => new playerActions.PlayAction())
-  //   )
-
   @Effect()
   setQueue$ = this.actions$
     .pipe(
@@ -52,6 +42,13 @@ export class PlayerEffects {
   skipToNext$ = this.actions$.pipe(
     ofType(PlayerActionTypes.PlayerSkipToNext),
     mergeMap(() => this.playerService.skipToNext()),
+    switchMap(() => this.setNowPlayingItem())
+  )
+
+  @Effect()
+  skipToPrev$ = this.actions$.pipe(
+    ofType(PlayerActionTypes.PlayerSkipToPrevious),
+    mergeMap(() => this.playerService.skipToPrevious()),
     switchMap(() => this.setNowPlayingItem())
   )
 

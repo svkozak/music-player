@@ -1,0 +1,7 @@
+<div class="card mr-3 mb-3 shadow-sm text-white">
+    <a (click)="onClick(activity)"><img [src]="activity.attributes.artwork.url | albumArt : 600" class="card-img" alt="..."></a>
+    <div class="card-img-overlay">
+        <a (click)="onClick(activity)" class="card-title"><h3>{{activity.attributes.name}}</h3></a>
+        <p class="card-text">{{activity.attributes.editorialNotes.short}}</p>
+    </div>
+</div>

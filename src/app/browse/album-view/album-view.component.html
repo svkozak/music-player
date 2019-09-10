@@ -18,9 +18,12 @@
       <div class="col-12 col-sm-8">
           <div *ngIf="selectedAlbum.attributes && selectedAlbum.relationships">
             <h3>{{selectedAlbum.attributes.name}}</h3>
-            <button (click)="onSelectArtist(selectedAlbum.relationships.artists.data[0].id)" class="btn btn-link text-info p-0">{{selectedAlbum.attributes.artistName}}</button>
+            <button (click)="onSelectArtist(selectedAlbum.relationships.artists.data[0].id)" class="btn btn-link text-info p-0"><h5>{{selectedAlbum.attributes.artistName}}</h5></button>
 
-            <div *ngIf="selectedAlbum.relationships.tracks.data as tracks">
+            <!-- <div *ngIf="selectedAlbum" class="mb-2"><span class="small">{{selectedAlbum.attributes.genreNames[0]}}  &#183;  {{selectedAlbum.attributes.releaseDate}}</span></div> -->
+
+
+            <div class="mt-2" *ngIf="selectedAlbum.relationships.tracks.data as tracks">
               <app-track *ngFor="let track of tracks"
               [selectedAlbum]="selectedAlbum"
               [track]="track" 
@@ -31,6 +34,10 @@
               (onAddToPlaylist)="onAddToPlaylist($event)"
               (onSelectTrack)="onPlayTrack(track)">
               </app-track>
+            </div>
+
+            <div class="mt-4 mb-3">
+              <p class="small">{{selectedAlbum.attributes.copyright}}</p>
             </div>
         </div>
       </div>

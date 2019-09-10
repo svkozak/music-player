@@ -14,7 +14,14 @@ import {
   List,
   Plus,
   Check,
-  AlertCircle
+  AlertCircle,
+  Menu,
+  X,
+  Music,
+  Globe,
+  Heart,
+  Headphones
+
 } from 'angular-feather/icons';
 
 const icons = {
@@ -30,7 +37,13 @@ const icons = {
   Plus,
   List,
   Check,
-  AlertCircle
+  AlertCircle,
+  Menu,
+  X,
+  Music,
+  Globe,
+  Heart,
+  Headphones
 }
 
 @NgModule({

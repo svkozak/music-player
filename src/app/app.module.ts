@@ -35,7 +35,6 @@ import { SearchEffects } from './search/state/search.effects';
   ],
   imports: [
     BrowserModule,
-    // NgbModule,
     WidgetModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],

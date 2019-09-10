@@ -1,0 +1,27 @@
+@import "../../../styles.scss";
+
+.card {
+  width: 20rem;
+  border: none;
+  cursor: pointer;
+}
+
+.card-img-top {
+  background: url(../../../assets/img/loader.svg) center no-repeat;
+}
+
+.card-title, .card-title:hover {
+  color: $body-color;
+  font-weight: $font-weight-bold;
+}
+
+.card-body {
+  min-height: 4rem;
+}
+
+.card-body, .card-text {
+  white-space: nowrap;
+  overflow: hidden;
+  word-wrap: none;
+  text-overflow: ellipsis;
+}

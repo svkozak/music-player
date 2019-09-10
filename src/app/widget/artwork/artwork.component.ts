@@ -41,4 +41,10 @@ export class ArtworkComponent implements OnInit {
     this.onAddToLibrary.emit(album || playlist);
   }
 
+  parseDate(dateString: string, includeDay: boolean = false): string {
+    const event = new Date(dateString);
+    const options = includeDay ? { year: 'numeric', month: 'short', day: 'numeric'} : { year: 'numeric', month: 'short'};
+    return event.toLocaleString([], options);
+  }
+
 }

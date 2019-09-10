@@ -1,3 +1,4 @@
+import { activities } from './../../state/app.constants';
 import { BrowseActionTypes } from './browse.actions';
 import { ApiServiceService } from '../../services/api-service.service';
 import { Injectable } from '@angular/core';
@@ -19,6 +20,14 @@ export class BrowseEffects {
     map(action => action.payload.id),
     mergeMap(id => this.api.getCatalogArtist(id).pipe(
       map(artist => new browseActions.LoadCatalogArtistSuccess({ artist: artist }))
+    ))
+  )
+
+  @Effect()
+  loadActivities$ = this.actions$.pipe(
+    ofType<browseActions.LoadActivities>(BrowseActionTypes.LoadActivities),
+    mergeMap(() => this.api.getCatalogActivities().pipe(
+      map(activities => new browseActions.LoadActivitiesSuccess({ activities: activities }))
     ))
   )
 

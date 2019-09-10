@@ -1,3 +1,4 @@
+import { activities } from './../../state/app.constants';
 import { BrowseState } from './browse.reducer';
 import { State } from '../../state/reducers/index';
 import { createSelector } from '@ngrx/store';
@@ -13,4 +14,9 @@ export const selectIsLoading = createSelector(
 export const selectSelectedCatalogArtist = createSelector(
   selectBrowseState,
   (state: BrowseState) => state.selectedArtist
+)
+
+export const selectActivities = createSelector(
+  selectBrowseState,
+  (state: BrowseState) => state.activities
 )

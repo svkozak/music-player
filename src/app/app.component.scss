@@ -1,7 +1,26 @@
 @import "../styles.scss";
 
-.navbar, .menu-toggle {
-    background-color: rgba(239, 240, 245, 0.95);
+ng-sidebar-container {
+    height: 100vh;
+}
+
+.navbar {
+    // background-color: rgba(239, 240, 245, 0.95);
+    background-color: rgba($color: white, $alpha: 0.9)
+    // background: transparent;
+}
+
+.nav-link.active {
+    color: $cyan;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: $link-color !important;
+
+    .feather {
+        stroke-width: 3 !important;
+    }
 }
 
 .menu-icon {

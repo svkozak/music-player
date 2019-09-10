@@ -1,6 +1,13 @@
 <app-spinner [isLoading]="isLoadingAlbums || isLoadingPlaylists"></app-spinner>
 
 <div class="col">
+        
+    <div class="single-scroller my-3 py-2" *ngIf="!isLoadingAlbums">
+        <app-activity *ngFor="let activity of activities"
+        [activity]="activity"
+        (onSelectActivity)="onActivitySelected(activity)">
+        </app-activity>
+    </div>
  
     <h2 *ngIf="!isLoadingAlbums" class="mb-2">Top albums</h2>
         

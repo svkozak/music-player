@@ -21,6 +21,9 @@ import { ToastComponent } from './toast/toast.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PlaylistsModalComponent } from './playlists-modal/playlists-modal.component';
+import { SidebarModule } from 'ng-sidebar';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ActivityComponent } from './activity/activity.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { PlaylistsModalComponent } from './playlists-modal/playlists-modal.compo
     LibraryNavComponent,
     LibraryArtistsComponent,
     ToastComponent,
-    PlaylistsModalComponent
+    PlaylistsModalComponent,
+    SidebarComponent,
+    ActivityComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +52,8 @@ import { PlaylistsModalComponent } from './playlists-modal/playlists-modal.compo
     PopoverModule.forRoot(),
     BsDropdownModule.forRoot(),
     AlertModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    SidebarModule.forRoot()
   ],
   exports: [
     NgbModule,
@@ -68,7 +74,10 @@ import { PlaylistsModalComponent } from './playlists-modal/playlists-modal.compo
     ToastComponent,
     AlertModule,
     ModalModule,
-    PlaylistsModalComponent
+    PlaylistsModalComponent,
+    SidebarModule,
+    SidebarComponent,
+    ActivityComponent
   ],
   entryComponents: [
     PlaylistsModalComponent

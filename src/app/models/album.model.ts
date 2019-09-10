@@ -15,7 +15,7 @@ export interface Attributes {
   name: string;
   artwork: Artwork;
   contentRating: string;
-  copyright: string;
+  copyright?: string;
   isComplete?: boolean;
   isMasteredForItunes?: boolean;
   isSingle?: boolean;
@@ -29,6 +29,7 @@ export interface Attributes {
   description?: Description;
   playlistType?: string;
   curatorName?: string;
+  lastModifiedDate?: string;
   resourceTypes?: string[];
   title?: { stringForDisplay? : string }
 }

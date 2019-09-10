@@ -3,8 +3,11 @@
 
     <!-- artwork and track id -->
     <div class="track-info d-flex flex-grow-1">
-      <img *ngIf="nowPlayingItem && nowPlayingItem.attributes.artwork" class="player-artwork rounded shadow-sm ml-3" [src]="nowPlayingItem.attributes.artwork.url | albumArt : 50" alt="">
-      <img *ngIf="!nowPlayingItem || !nowPlayingItem.attributes.artwork" class="player-artwork rounded shadow-sm ml-3" src="../assets/img/no-art.svg" alt="">
+
+      <div class="player-artwork rounded shadow-sm ml-3" (click)="openAlbum()">
+        <img *ngIf="nowPlayingItem && nowPlayingItem.attributes.artwork" class="player-artwork rounded" [src]="nowPlayingItem.attributes.artwork.url | albumArt : 50" alt="">
+        <img *ngIf="!nowPlayingItem || !nowPlayingItem.attributes.artwork" class="player-artwork rounded" src="../assets/img/no-art.svg" alt="">
+      </div>
 
       <div class="track-id mx-3 align-self-center" *ngIf="nowPlayingItem">
         <div class="track-title">{{nowPlayingItem.attributes.name}}</div>
@@ -13,19 +16,20 @@
     </div>
 
     <!-- track progress -->
-      <div *ngIf="nowPlayingItem" class="slider mx-3 align-self-center d-none d-sm-block">
+      <div *ngIf="nowPlayingItem" class="slider ml-3 align-self-center d-none d-sm-block">
         <input type="range" class="custom-range" [value]="currentPlaybackTime" step="1" min="0" [max]="currentPlaybackDuration" (change)="onPositionAdjust($event.target.value)">
       </div>
-
-      <div *ngIf="nowPlayingItem" class="ml-3 mr-3 mb-1 align-self-center d-none d-sm-block">
+    
+      <div *ngIf="nowPlayingItem" class="ml-3 mr-5 mb-1 align-self-center d-none d-sm-block">
         <span *ngIf="currentPlaybackTimeRemaining" class="small">{{currentPlaybackTimeRemaining | formattedTime}}</span>
         <span *ngIf="!currentPlaybackTimeRemaining" class="small">0:00</span>
       </div>
 
+
     <!-- player controls -->
       <div class="controls d-flex align-self-center justify-content-end ml-auto mr-2">
 
-          <!-- <button (click)="skipToPrevious()"  class="player-button btn btn-sm mx-1 px-1 d-none d-sm-block"><i-feather name="skip-back"></i-feather></button> -->
+          <button (click)="skipToPrevious()"  class="player-button btn btn-sm mx-1 px-1 d-none d-sm-block"><i-feather name="skip-back"></i-feather></button>
           
           <button (click)="togglePlayPause()"  class="player-button btn btn-sm mx-1 px-1">
             <span *ngIf="isLoading() && !isPlaying()" class="spinner-border spinner-border-sm m-1" role="status" aria-hidden="true"></span>

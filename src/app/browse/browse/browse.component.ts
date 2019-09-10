@@ -1,3 +1,6 @@
+import { selectActivities } from './../state/browse.selectors';
+import { Activity } from './../../models/activity.model';
+import { LoadActivities } from './../state/browse.actions';
 import { selectIsLoadingPlaylists, selectPlaylists } from '../state/playlist.selector';
 import { selectAlbums, selectIsLoading } from '../state/album.selectors';
 import { LoadAlbums, LoadAlbum } from '../state/album.actions';
@@ -20,6 +23,7 @@ export class BrowseComponent implements OnInit {
   isLoadingPlaylists: boolean;
   topAlbums: Album[];
   topPlaylists: Playlist[];
+  activities: Activity[];
 
   constructor(
     private musicKitService: MusicKitService,
@@ -28,8 +32,10 @@ export class BrowseComponent implements OnInit {
     ) { 
       this.store.dispatch(new LoadAlbums());
       this.store.dispatch(new LoadPlaylists());
+      this.store.dispatch(new LoadActivities());
       this.store.select(selectAlbums).subscribe(albums => this.topAlbums = albums);
       this.store.select(selectPlaylists).subscribe(playlists => this.topPlaylists = playlists);
+      this.store.select(selectActivities).subscribe(activities => this.activities = activities);
       this.store.select(selectIsLoading).subscribe(isLoading => this.isLoadingAlbums = isLoading);
       this.store.select(selectIsLoadingPlaylists).subscribe(isLoading => this.isLoadingPlaylists = isLoading);
     }
@@ -51,6 +57,11 @@ export class BrowseComponent implements OnInit {
   onPlaylistSelected(playlist: Playlist) {
     console.log(`PLAYLIST ID IS ${playlist.id}`);
     this.router.navigate(['browse/playlists', playlist.id]);
+  }
+
+  onActivitySelected(activity: Activity) {
+    console.log(`Activity ID IS ${activity.id}`);
+    // this.router.navigate(['browse/playlists', playlist.id]);
   }
 
   toggle(popover) {
