@@ -1,11 +1,10 @@
-
-<div class="side-menu px-2 pt-4 mr-3 mt-5">
+<div class="side-menu mt-5 px-3">
   
-  <div class="d-flex flex-column">
-      <a class="nav-link w-100" routerLink="/browse" routerLinkActive="active">browse<span class="sr-only">(current)</span></a>
-      <a class="nav-link w-100" routerLink="/for-you" routerLinkActive="active">for you</a>
-      <a class="nav-link w-100" routerLink="/library" routerLinkActive="active">library</a>
-      <a class="nav-link w-100" routerLink="/search" routerLinkActive="active">search</a>
+  <div class="d-flex flex-column pt-4">
+      <button (click)="onClick()" class="btn btn-light nav-link w-100 text-left mb-2" routerLink="/browse" routerLinkActive="active"><i-feather name="globe"></i-feather>browse</button>
+      <button (click)="onClick()" class="btn btn-light nav-link w-100 text-left mb-2" routerLink="/for-you" routerLinkActive="active"><i-feather name="heart"></i-feather>for you</button>
+      <button (click)="onClick()" class="btn btn-light nav-link w-100 text-left mb-2" routerLink="/library" routerLinkActive="active"><i-feather name="headphones"></i-feather>library</button>
+      <button (click)="onClick()" class="btn btn-light nav-link w-100 text-left mb-2" routerLink="/search" routerLinkActive="active"><i-feather name="search"></i-feather>search</button>
 
       <button class="btn btn-sm btn-outline-info m-2" id="apple-music-authorize">Sign In</button>
       <button class="btn btn-sm btn-outline-info m-2" id="apple-music-unauthorize">Sign Out</button>

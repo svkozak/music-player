@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class SidebarComponent implements OnInit {
 
   @Input() opened: boolean;
+  @Input() closeOnClick: boolean;
   @Output() toggle: EventEmitter<boolean> = new EventEmitter();
 
   constructor() { }
@@ -15,8 +16,10 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
 
-  private toggleSidebar() {
-    this.opened = !this.opened;
+  private onClick() {
+    if (this.closeOnClick) {
+      this.toggle.emit(true);
+    }
   }
 
 }

@@ -1,22 +1,20 @@
 <app-toast [options]="toastOptions" (alertClosed)="dismissAlert()"></app-toast>
 
-<ng-sidebar-container>
 
-  <ng-sidebar [(opened)]="sidebarOpened" [mode]="'push'">
-    <app-sidebar (toggle)="toggleSidebar()"></app-sidebar>
-  </ng-sidebar>
 
-<div ng-sidebar-content>
 
-  <nav class="navbar navbar-expand-md navbar-light fixed-top shadow-sm">
+
+
+
+  <nav class="navbar navbar-expand-md navbar-light fixed-top shadow-sm mb-1">
     
-    <!-- <button class="btn btn-light shadow-sm menu-toggle" type="button" (click)="toggleSidebar()" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="btn btn-light menu-toggle bg-white border-0" type="button" (click)="toggleSidebar()" aria-expanded="false" aria-label="Toggle navigation">
       <i-feather *ngIf="sidebarOpened" name="x"></i-feather>
       <i-feather *ngIf="!sidebarOpened" name="menu"></i-feather>
-    </button> -->
+    </button>
   
     <!--  -->
-    <div class="d-flex">
+    <!-- <div class="d-flex">
         <a class="d-flex align-content-center  nav-link" (click)="isNavCollapsed = !isNavCollapsed" routerLink="/browse" routerLinkActive="active">
           <i-feather name="globe"></i-feather><span class="d-none d-sm-block">browse</span>
         </a>
@@ -36,8 +34,8 @@
           <i-feather name="log-out"></i-feather><span class="d-none d-sm-block"></span>
         </button>
         
-    </div>
-    <!-- <a class="navbar-brand ml-auto mr-0"><i-feather name="music"></i-feather>aaplayer</a> -->
+    </div> -->
+    <a class="navbar-brand ml-auto mr-0"><i-feather name="music"></i-feather>aaplayer</a>
 
 
       <!-- <ul class="navbar-nav mr-auto">
@@ -68,14 +66,24 @@
     
     
   </nav>
+<ng-sidebar-container>
+
+  <ng-sidebar 
+    [(opened)]="sidebarOpened" 
+    [mode]="sidebarMode" 
+    [autoFocus]="false"
+    [closeOnClickOutside]="sidebarMode === 'over' ? true : false"
+    [animate]="true"> 
+    <app-sidebar (toggle)="toggleSidebar()" [closeOnClick]="sidebarMode === 'over' ? true : false"></app-sidebar>
+  </ng-sidebar>
 
 
-  <main role="main" >
-    <div class="content">
+  <main role="main" ng-sidebar-content>
+    <div class="content my-5 pt-4 pb-5">
         <router-outlet></router-outlet>  
     </div>    
   </main>
-</div>
+
 
 </ng-sidebar-container>
 

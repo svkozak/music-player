@@ -1,14 +1,8 @@
-import { selectIsLoggedIn, selectShowToast, selectToastOptiions } from './state/selectors/app.selectors';
-import { PlayerActions, SkipToNextAction } from './state/actions/player.actions';
+import { selectIsLoggedIn, selectToastOptiions } from './state/selectors/app.selectors';
 import { Store } from '@ngrx/store';
-import { MusicKitService } from './services/music-kit.service';
-import { Component, OnInit, NgZone, ElementRef, ViewChild } from '@angular/core';
-import { PlayerService } from './services/player.service';
-import { fromEvent } from 'rxjs';
+import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
+
 import * as appActions from './state/actions/app.actions';
-import * as feather from 'feather-icons';
-import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
-import { top100 } from './state/app.constants';
 
 
 declare var MusicKit: any;
@@ -19,9 +13,11 @@ declare var MusicKit: any;
   styleUrls: ['./app.component.scss']
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   sidebarOpened: boolean = false;
+  sidebarMode: string;
+  closeOnClick: boolean;
   isLoggedIn: boolean;
   title = 'music';
   public isNavCollapsed = true;
@@ -32,6 +28,10 @@ export class AppComponent {
     this.store.dispatch(new appActions.AppCheckAuthorization());
     this.store.select(selectIsLoggedIn).subscribe(isLoggedIn => this.isLoggedIn = isLoggedIn);
     this.store.select(selectToastOptiions).subscribe(toastOptions => this.toastOptions = toastOptions);
+  }
+
+  ngOnInit() {
+    this.sidebarMode = window.innerWidth <= 768 ? 'over' : 'push';
   }
 
 
@@ -54,6 +54,14 @@ export class AppComponent {
   toggleSidebar() {
     this.sidebarOpened = !this.sidebarOpened;
     console.log(this.sidebarOpened);
+  }
+
+  // change sidebar mode on resize
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    let width = event.target.innerWidth;
+    this.sidebarMode = width <= 768 ? 'over' : 'push';
+    this.closeOnClick = width <= 768 ? true : false;
   }
 
 }
