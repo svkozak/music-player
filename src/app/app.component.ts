@@ -24,14 +24,13 @@ export class AppComponent implements OnInit {
 
   toastOptions: any;
 
-  constructor(private store: Store<any>, private elRef: ElementRef) {
-    this.store.dispatch(new appActions.AppCheckAuthorization());
-    this.store.select(selectIsLoggedIn).subscribe(isLoggedIn => this.isLoggedIn = isLoggedIn);
-    this.store.select(selectToastOptiions).subscribe(toastOptions => this.toastOptions = toastOptions);
-  }
+  constructor(private store: Store<any>, private elRef: ElementRef) { }
 
   ngOnInit() {
     this.sidebarMode = window.innerWidth <= 768 ? 'over' : 'push';
+    this.store.dispatch(new appActions.AppCheckAuthorization());
+    this.store.select(selectIsLoggedIn).subscribe(isLoggedIn => this.isLoggedIn = isLoggedIn);
+    this.store.select(selectToastOptiions).subscribe(toastOptions => this.toastOptions = toastOptions);
   }
 
 

@@ -6,7 +6,7 @@ import { createSelector } from '@ngrx/store';
 
 export const selectBrowseState = (state: State) => state.browse
 
-export const selectIsLoading = createSelector(
+export const selectIsBrowseLoading = createSelector(
   selectBrowseState,
   (state: BrowseState) => state.isLoading
 )
@@ -16,7 +16,17 @@ export const selectSelectedCatalogArtist = createSelector(
   (state: BrowseState) => state.selectedArtist
 )
 
+export const selectSelectedActivity = createSelector(
+  selectBrowseState,
+  (state: BrowseState) => state.selectedActivity
+)
+
 export const selectActivities = createSelector(
   selectBrowseState,
   (state: BrowseState) => state.activities
+)
+
+export const selectActivityPlaylists = createSelector(
+  selectBrowseState,
+  (state: BrowseState) => state.activityPlaylists
 )

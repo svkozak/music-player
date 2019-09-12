@@ -4,17 +4,13 @@ ng-sidebar-container {
     height: 100vh;
 }
 
-.content {
-    
-}
-
 .compensate {
     padding-right: 220px !important;
 }
 
 .navbar {
     // background-color: rgba(239, 240, 245, 0.95);
-    background-color: rgba($color: white, $alpha: 0.9)
+    background-color: rgba($color: white, $alpha: 0.95)
     // background: transparent;
 }
 

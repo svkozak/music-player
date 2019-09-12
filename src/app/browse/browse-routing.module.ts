@@ -1,3 +1,4 @@
+import { ActivityViewComponent } from './activity-view/activity-view.component';
 import { BrowseRootComponent } from './browse-root.component';
 import { PlaylistViewComponent } from './playlist-view/playlist-view.component';
 import { AlbumViewComponent } from './album-view/album-view.component';
@@ -28,6 +29,10 @@ const browseRoutes: Routes = [
       {
         path: 'artists/:id',
         component: ArtistViewComponent
+      },
+      {
+        path: 'activities/:id',
+        component: ActivityViewComponent
       }
     ]
   }

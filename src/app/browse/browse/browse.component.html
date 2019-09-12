@@ -14,7 +14,7 @@
     <div class="scroller my-3 py-2" *ngIf="!isLoadingAlbums">
         <app-album *ngFor="let album of topAlbums" 
         [album]="album" 
-        [imgSrc]="formatArtwork(album.attributes.artwork.url, 1000)"
+        [imgSrc]="album.attributes.artwork.url | albumArt : 600"
         (onSelectAlbum)="onAlbumSelected($event)">
         </app-album>
     </div>
@@ -24,7 +24,7 @@
     <div class="scroller my-3 py-2" *ngIf="!isLoadingPlaylists">
         <app-playlist *ngFor="let playlist of topPlaylists"
         [playlist]="playlist"
-        [imgSrc]="formatArtwork(playlist.attributes.artwork.url, 1000)"
+        [imgSrc]="playlist.attributes.artwork.url | albumArt : 600"
         (onSelectPlaylist)="onPlaylistSelected($event)">
         </app-playlist>
     </div>

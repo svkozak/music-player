@@ -21,13 +21,13 @@ export class LibraryArtistsComponent implements OnInit {
   constructor(    
     private store: Store<any>,
     private router: Router
-    ) { 
-      this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLoading = isLoading);
-      this.store.select(selectLibraryArtists).subscribe(artists => this.artists = artists);
-      this.store.select(selectSelectedLibraryArtist).subscribe(artist => this.selectedArtist = artist);
+    ) {
     }
 
   ngOnInit() {
+    this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLoading = isLoading);
+    this.store.select(selectLibraryArtists).subscribe(artists => this.artists = artists);
+    this.store.select(selectSelectedLibraryArtist).subscribe(artist => this.selectedArtist = artist);
     if (this.artists.length === 0) {
       this.store.dispatch(new libraryActions.LoadLibraryArtists({offset: 0}));
     }

@@ -22,11 +22,11 @@ export class LibraryComponent implements OnInit {
     private store: Store<any>,
     private router: Router
     ) {
-      this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLoading = isLoading);
-      this.store.select(selectRecentlyAddedItems).subscribe(items => this.recentlyAddedItems = items);
     }
 
   ngOnInit() {
+    this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLoading = isLoading);
+    this.store.select(selectRecentlyAddedItems).subscribe(items => this.recentlyAddedItems = items);
     if (this.recentlyAddedItems.length === 0) {
       this.store.dispatch(new libraryActions.LoadMoreRecentlyAdded({offset: 0}));
     }

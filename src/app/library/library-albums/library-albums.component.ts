@@ -20,11 +20,11 @@ export class LibraryAlbumsComponent implements OnInit {
     private store: Store<any>,
     private router: Router
     ) { 
-      this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLoading = isLoading);
-      this.store.select(selectLibraryAlbums).subscribe(albums => this.albums = albums);
     }
 
   ngOnInit() {
+    this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLoading = isLoading);
+    this.store.select(selectLibraryAlbums).subscribe(albums => this.albums = albums);
     if (this.albums.length === 0) {
       this.store.dispatch(new libraryActions.LoadLibraryAlbums({offset: 0}));
     }

@@ -25,11 +25,12 @@ export class ArtistViewComponent implements OnInit {
     private api: ApiServiceService,
     private router: Router
     ) {
-      this.route.params.pipe(map(param => param.id)).subscribe(id => this.store.dispatch(new browseActions.LoadCatalogArtist({id: id})));
-      this.store.select(selectSelectedCatalogArtist).subscribe(artist => this.selectedArtist = artist);
+
     }
 
   ngOnInit() {
+    this.route.params.pipe(map(param => param.id)).subscribe(id => this.store.dispatch(new browseActions.LoadCatalogArtist({id: id})));
+    this.store.select(selectSelectedCatalogArtist).subscribe(artist => this.selectedArtist = artist);
   }
 
   onAlbumSelected(album: Album) {

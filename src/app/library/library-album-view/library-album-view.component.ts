@@ -33,6 +33,9 @@ export class LibraryAlbumViewComponent implements OnInit {
     private playerService: PlayerService,
     private modalService: BsModalService
   ) {
+  }
+
+  ngOnInit() {
     this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLoading = isLoading);
     this.route.params.pipe(map(param => param.id)).subscribe(id => this.store.dispatch(new libraryActions.LoadLibraryAlbum({id: id})));
     this.store.select(selectSelectedLibraryAlbum).subscribe(album => this.selectedAlbum = album);
@@ -42,9 +45,6 @@ export class LibraryAlbumViewComponent implements OnInit {
         this.nowPlayingTrackId = item._container.id;
       }
     });
-  }
-
-  ngOnInit() {
   }
 
   onPlayAlbum(album: Album) {

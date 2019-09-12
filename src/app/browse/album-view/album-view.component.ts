@@ -38,21 +38,22 @@ export class AlbumViewComponent implements OnInit, OnDestroy {
     private router: Router,
     private modalService: BsModalService
     ) {
-      this.route.params.pipe(map(param => param.id)).subscribe(id => this.store.dispatch(new LoadAlbum({id: id})));
-      this.store.select(selectSelectedAlbum).subscribe(album => this.selectedAlbum = album);
-      this.store.select(selectIsLoading).subscribe(val => this.isLoading = val);
-      this.store.select(selectNowPlayingItem).subscribe(item => {
-          if (item) {
-            // TODO!!
-            console.log(item);
-            this.nowPlayingTrackId = item.id;
-          }
-        });
-      this.playerService.getCurrentPlaybackTimeRemaining().subscribe(timeRemaining => this.currentPlaybackTimeRemaining = timeRemaining);
-      this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLibraryLoading = isLoading);
     }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.params.pipe(map(param => param.id)).subscribe(id => this.store.dispatch(new LoadAlbum({id: id})));
+    this.store.select(selectSelectedAlbum).subscribe(album => this.selectedAlbum = album);
+    this.store.select(selectIsLoading).subscribe(val => this.isLoading = val);
+    this.store.select(selectNowPlayingItem).subscribe(item => {
+        if (item) {
+          // TODO!!
+          console.log(item);
+          this.nowPlayingTrackId = item.id;
+        }
+      });
+    this.playerService.getCurrentPlaybackTimeRemaining().subscribe(timeRemaining => this.currentPlaybackTimeRemaining = timeRemaining);
+    this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLibraryLoading = isLoading);
+  }
 
   ngOnDestroy() {
   }

@@ -22,12 +22,11 @@ export class ForYouComponent implements OnInit {
   constructor(
     private store: Store<any>,
     private router: Router
-  ) {
-    this.store.select(selectIsForYouLoading).subscribe(isLoading => this.isLoading = isLoading);
-    this.store.select(selectRecommendations).subscribe(recommendations => this.recommendations = recommendations);
-  }
+  ) {}
 
   ngOnInit() {
+    this.store.select(selectIsForYouLoading).subscribe(isLoading => this.isLoading = isLoading);
+    this.store.select(selectRecommendations).subscribe(recommendations => this.recommendations = recommendations);
     if (!this.recommendations.length) {
       this.store.dispatch(new forYouActions.LoadForYou());
     }

@@ -40,6 +40,10 @@ export class PlaylistViewComponent implements OnInit {
     private playerService: PlayerService,
     private modalService: BsModalService
   ) { 
+
+  }
+
+  ngOnInit() {
     this.route.params.pipe(map(param => param.id)).subscribe(val => this.store.dispatch(new LoadPlaylist({id: val})));
     this.store.select(selectSelectedPlaylist).subscribe(playlist => this.selectedPlaylist = playlist);
     this.store.select(selectIsLoadingPlaylists).subscribe(isLoading => this.isLoading = isLoading);
@@ -48,11 +52,8 @@ export class PlaylistViewComponent implements OnInit {
         this.nowPlayingTrackId = item.id;
       }
     });
-  this.playerService.getCurrentPlaybackTimeRemaining().subscribe(timeRemaining => this.currentPlaybackTimeRemaining = timeRemaining);
-  this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLibraryLoading = isLoading);
-  }
-
-  ngOnInit() {
+    this.playerService.getCurrentPlaybackTimeRemaining().subscribe(timeRemaining => this.currentPlaybackTimeRemaining = timeRemaining);
+    this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLibraryLoading = isLoading);
   }
 
   onPlayPlaylist(playlist: Playlist) {

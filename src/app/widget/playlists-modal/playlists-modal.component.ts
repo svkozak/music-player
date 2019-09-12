@@ -21,9 +21,6 @@ export class PlaylistsModalComponent implements OnInit {
   constructor(public bsModalRef: BsModalRef, private store: Store<any>) {}
 
   ngOnInit() {
-
-    console.log(this.track);
-
     this.store.select(selectLibraryPlaylists).subscribe(playlists => {
       if (playlists.length < 1) {
         this.store.dispatch(new libraryActions.LoadLibraryPlaylists());

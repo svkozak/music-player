@@ -69,6 +69,18 @@ export class ApiServiceService {
     )
   }
 
+  getCatalogActivity(id: string) {
+    const options = {
+      headers: this.headers
+    };
+    return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/activities/${id}`, options).pipe(
+      map(response => {
+        console.log('get catalog activity', response);
+        return response.data[0];
+      })
+    )
+  }
+
   getCatalogActivities() {
     const options = {
       headers: this.headers,
@@ -77,6 +89,21 @@ export class ApiServiceService {
     return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/activities`, options).pipe(
       map(response => {
         console.log('get catalog activities', response);
+        return response.data;
+      })
+    )
+  }
+
+  getCatalogPlaylists(ids: string[]) {
+    // ids to string
+
+    const options = {
+      headers: this.headers,
+      params: new HttpParams().set('ids', `${ids.toString()}`)
+    };
+    return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/playlists`, options).pipe(
+      map(response => {
+        console.log('get catalog playlists', response);
         return response.data;
       })
     )

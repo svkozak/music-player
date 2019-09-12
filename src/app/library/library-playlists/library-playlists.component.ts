@@ -19,11 +19,12 @@ export class LibraryPlaylistsComponent implements OnInit {
     private store: Store<any>,
     private router: Router
     ) { 
-      this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLoading = isLoading);
-      this.store.select(selectLibraryPlaylists).subscribe(playlists => this.playlists = playlists);
+
     }
 
   ngOnInit() {
+    this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLoading = isLoading);
+    this.store.select(selectLibraryPlaylists).subscribe(playlists => this.playlists = playlists);
     if (this.playlists.length === 0) {
       this.store.dispatch(new libraryActions.LoadLibraryPlaylists({offset: 0}));
     }

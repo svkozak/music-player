@@ -35,7 +35,9 @@ export class LibraryPlaylistViewComponent implements OnInit {
     private store: Store<any>,
     private playerService: PlayerService,
     private modalService: BsModalService
-  ) { 
+  ) { }
+
+  ngOnInit() {
     this.route.params.pipe(map(param => param.id)).subscribe(id => this.store.dispatch(new libraryActions.LoadLibraryPlaylist({id: id})));
     this.store.select(selectSelectedLibraryPlaylist).subscribe(playlist => this.selectedPlaylist = playlist);
     this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLoading = isLoading);
@@ -45,9 +47,6 @@ export class LibraryPlaylistViewComponent implements OnInit {
         this.nowPlayingArtworkUrl = item.attributes.artwork.url;
       }
     });
-  }
-
-  ngOnInit() {
   }
 
   onPlayPlaylist(playlist: Playlist) {

@@ -1,3 +1,4 @@
+import { selectActivities } from './browse.selectors';
 import { activities } from './../../state/app.constants';
 import { Activity } from './../../models/activity.model';
 import { BrowseActions, BrowseActionTypes } from './browse.actions';
@@ -14,7 +15,9 @@ export interface BrowseState {
   playlists?: Playlist[],
   selectedAlbum?: Album,
   selectedPlaylist?: Playlist,
-  activities?: Activity[]
+  activities?: Activity[],
+  selectedActivity?: Activity,
+  activityPlaylists?: Playlist[]
 }
 
 export const initialState: BrowseState = {
@@ -25,7 +28,9 @@ export const initialState: BrowseState = {
   playlists: [],
   selectedAlbum: null,
   selectedPlaylist: null,
-  activities: []
+  activities: [],
+  selectedActivity: null,
+  activityPlaylists: []
 };
 
 export function browseReducer(state: BrowseState = initialState, action: BrowseActions): BrowseState {
@@ -59,6 +64,31 @@ export function browseReducer(state: BrowseState = initialState, action: BrowseA
       }
     }
 
+    case BrowseActionTypes.LoadActivity: {
+      return {
+        ...state,
+        isLoading: true
+      }
+    } 
+      
+    case BrowseActionTypes.LoadActivitySuccess: {
+      const { selectedActivity } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        selectedActivity: selectedActivity
+      }
+    }
+    
+    case BrowseActionTypes.LoadActivityFailure: {
+      const { error } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        error
+      }
+    }
+
     case BrowseActionTypes.LoadActivities: {
       return {
         ...state,
@@ -76,6 +106,31 @@ export function browseReducer(state: BrowseState = initialState, action: BrowseA
     }
     
     case BrowseActionTypes.LoadActivitiesFailure: {
+      const { error } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        error
+      }
+    }
+
+    case BrowseActionTypes.LoadActivityPlaylists: {
+      return {
+        ...state,
+        isLoading: true
+      }
+    } 
+      
+    case BrowseActionTypes.LoadActivityPlaylistsSuccess: {
+      const { playlists } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        activityPlaylists: playlists
+      }
+    }
+    
+    case BrowseActionTypes.LoadActivityPlaylistsFailure: {
       const { error } = action.payload
       return {
         ...state,

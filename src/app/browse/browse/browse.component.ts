@@ -1,3 +1,4 @@
+import { activities } from './../../state/app.constants';
 import { selectActivities } from './../state/browse.selectors';
 import { Activity } from './../../models/activity.model';
 import { LoadActivities } from './../state/browse.actions';
@@ -30,17 +31,19 @@ export class BrowseComponent implements OnInit {
     private store: Store<any>,
     private router: Router
     ) { 
-      this.store.dispatch(new LoadAlbums());
-      this.store.dispatch(new LoadPlaylists());
-      this.store.dispatch(new LoadActivities());
-      this.store.select(selectAlbums).subscribe(albums => this.topAlbums = albums);
-      this.store.select(selectPlaylists).subscribe(playlists => this.topPlaylists = playlists);
-      this.store.select(selectActivities).subscribe(activities => this.activities = activities);
-      this.store.select(selectIsLoading).subscribe(isLoading => this.isLoadingAlbums = isLoading);
-      this.store.select(selectIsLoadingPlaylists).subscribe(isLoading => this.isLoadingPlaylists = isLoading);
+
     }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    if (!this.topAlbums) {this.store.dispatch(new LoadAlbums())};
+    if (!this.topPlaylists) { this.store.dispatch(new LoadPlaylists())};
+    if (!this.activities) { this.store.dispatch(new LoadActivities())};
+    this.store.select(selectAlbums).subscribe(albums => this.topAlbums = albums);
+    this.store.select(selectPlaylists).subscribe(playlists => this.topPlaylists = playlists);
+    this.store.select(selectActivities).subscribe(activities => this.activities = activities);
+    this.store.select(selectIsLoading).subscribe(isLoading => this.isLoadingAlbums = isLoading);
+    this.store.select(selectIsLoadingPlaylists).subscribe(isLoading => this.isLoadingPlaylists = isLoading);
+  }
 
   formatArtwork(artwork: any, size: string): string {
     let url = "";
@@ -61,7 +64,7 @@ export class BrowseComponent implements OnInit {
 
   onActivitySelected(activity: Activity) {
     console.log(`Activity ID IS ${activity.id}`);
-    // this.router.navigate(['browse/playlists', playlist.id]);
+    this.router.navigate(['browse/activities', activity.id]);
   }
 
   toggle(popover) {
