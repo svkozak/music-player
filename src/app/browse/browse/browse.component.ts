@@ -34,25 +34,38 @@ export class BrowseComponent implements OnInit {
 
     }
 
-  ngOnInit() { 
-    if (!this.topAlbums) {this.store.dispatch(new LoadAlbums())};
-    if (!this.topPlaylists) { this.store.dispatch(new LoadPlaylists())};
-    if (!this.activities) { this.store.dispatch(new LoadActivities())};
-    this.store.select(selectAlbums).subscribe(albums => this.topAlbums = albums);
-    this.store.select(selectPlaylists).subscribe(playlists => this.topPlaylists = playlists);
-    this.store.select(selectActivities).subscribe(activities => this.activities = activities);
+  ngOnInit() {
     this.store.select(selectIsLoading).subscribe(isLoading => this.isLoadingAlbums = isLoading);
     this.store.select(selectIsLoadingPlaylists).subscribe(isLoading => this.isLoadingPlaylists = isLoading);
+    this.store.select(selectAlbums).subscribe(albums => this.loadAlbums(albums));
+    this.store.select(selectPlaylists).subscribe(playlists => this.loadPlaylists(playlists));
+    this.store.select(selectActivities).subscribe(activities => this.loadActivities(activities));
   }
 
-  formatArtwork(artwork: any, size: string): string {
-    let url = "";
-    this.musicKitService.formatArtworkURL(artwork, size).subscribe(res => {
-      url = res;
-    });
-    return url;
+  loadAlbums(albums: Album[]) {
+    if (albums.length) {
+      this.topAlbums = albums;
+    } else {
+      this.store.dispatch(new LoadAlbums());
+    }
   }
 
+  loadPlaylists(playlists: Playlist[]) {
+    if (playlists.length) {
+      this.topPlaylists = playlists;
+    } else {
+      this.store.dispatch(new LoadPlaylists());
+    }
+  }
+
+  loadActivities(activities: Activity[]) {
+    if (activities.length) {
+      this.activities = activities;
+    } else {
+      this.store.dispatch(new LoadActivities());
+    }
+  }
+  
   onAlbumSelected(album: Album) {
     this.router.navigate(['browse/albums', album.id]);
   }

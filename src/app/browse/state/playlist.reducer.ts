@@ -12,7 +12,7 @@ export interface PlaylistsState {
 export const initialState: PlaylistsState = {
   isLoading: false,
   error: null,
-  playlists: null,
+  playlists: [],
   selectedPlaylist: null
 };
 
