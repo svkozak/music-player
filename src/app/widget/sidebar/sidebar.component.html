@@ -1,13 +1,13 @@
-<div class="side-menu mt-5 px-3">
-  
-  <div class="d-flex flex-column pt-4">
-      <button (click)="onClick()" class="btn btn-light nav-link w-100 text-left mb-2" routerLink="/browse" routerLinkActive="active"><i-feather name="globe"></i-feather>browse</button>
-      <button (click)="onClick()" class="btn btn-light nav-link w-100 text-left mb-2" routerLink="/for-you" routerLinkActive="active"><i-feather name="heart"></i-feather>for you</button>
-      <button (click)="onClick()" class="btn btn-light nav-link w-100 text-left mb-2" routerLink="/library" routerLinkActive="active"><i-feather name="headphones"></i-feather>library</button>
-      <button (click)="onClick()" class="btn btn-light nav-link w-100 text-left mb-2" routerLink="/search" routerLinkActive="active"><i-feather name="search"></i-feather>search</button>
 
-      <button class="btn btn-sm btn-outline-info m-2" id="apple-music-authorize">Sign In</button>
-      <button class="btn btn-sm btn-outline-info m-2" id="apple-music-unauthorize">Sign Out</button>
+  
+  <div class="d-flex flex-column">
+    <button (click)="onClick()" class="btn btn-light nav-link w-100 text-left mb-2" routerLink="/browse" routerLinkActive="active"><i-feather name="globe"></i-feather>browse</button>
+    <button (click)="onClick()" class="btn btn-light nav-link w-100 text-left mb-2" routerLink="/for-you" routerLinkActive="active"><i-feather name="heart"></i-feather>for you</button>
+    <button (click)="onClick()" class="btn btn-light nav-link w-100 text-left mb-2" routerLink="/library" routerLinkActive="active"><i-feather name="headphones"></i-feather>library</button>
+    <button (click)="onClick()" class="btn btn-light nav-link w-100 text-left mb-2" routerLink="/search" routerLinkActive="active"><i-feather name="search"></i-feather>search</button>
+
+    <button class="btn btn-sm btn-outline-info mt-auto mb-2" id="apple-music-authorize">Sign In</button>
+    <button class="btn btn-sm btn-outline-info mt-auto mb-2" id="apple-music-unauthorize">Sign Out</button>
 
   </div>
 
@@ -18,7 +18,6 @@
   <button *ngIf="isLoggedIn" class="btn btn-sm btn-outline-secondary" (click)="onClickLogOut()"><i-feather name="log-out"></i-feather></button> -->
 
   
-</div>
 
 
 

@@ -20,13 +20,13 @@
         <div *ngFor="let item of recentlyAddedItems">
                 <app-album *ngIf="item.type === 'library-albums'"
                 [album]="item" 
-                [imgSrc]="item.attributes.artwork.url | albumArt : 1000"
+                [imgSrc]="item.attributes.artwork.url | albumArt : 600"
                 (onSelectAlbum)="onAlbumSelected(item)">
                 </app-album>
             
                 <app-playlist *ngIf="item.type === 'library-playlists'"
                 [playlist]="item"
-                [imgSrc]="item.attributes.artwork.url | albumArt : 1000"
+                [imgSrc]="item.attributes.artwork.url | albumArt : 600"
                 (onSelectPlaylist)="onPlaylistSelected(item)">
                 </app-playlist>
         </div>

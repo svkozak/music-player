@@ -5,9 +5,9 @@
   width: 5rem;
   height: 5rem;
   background-color: rgba($color: white, $alpha: 0.8);
-  // position: fixed;
-  // top: 50%;
-  margin: 30% auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
 }
 
 .spinner-border {

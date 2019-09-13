@@ -4,6 +4,12 @@ ng-sidebar-container {
     height: 100vh;
 }
 
+mat-sidenav {
+    opacity: 0.98;
+    width: 260px;
+    height: 320px;
+}
+
 .compensate {
     padding-right: 220px !important;
 }

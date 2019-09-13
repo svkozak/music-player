@@ -89,6 +89,14 @@ export function browseReducer(state: BrowseState = initialState, action: BrowseA
       }
     }
 
+    case BrowseActionTypes.ResetActivity: {
+      return {
+        ...state,
+        selectedActivity: null,
+        activityPlaylists: []
+      }
+    }
+
     case BrowseActionTypes.LoadActivities: {
       return {
         ...state,

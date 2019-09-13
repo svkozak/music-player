@@ -1,91 +1,40 @@
 <app-toast [options]="toastOptions" (alertClosed)="dismissAlert()"></app-toast>
 
-
-
-
-
-
-
   <nav class="navbar navbar-expand-md navbar-light fixed-top shadow-sm mb-1">
     
-    <button class="btn btn-light menu-toggle bg-white border-0" type="button" (click)="toggleSidebar()" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="btn btn-light menu-toggle bg-white border-0" type="button" (click)="sidenav.toggle()"  aria-expanded="false" aria-label="Toggle navigation">
       <i-feather *ngIf="sidebarOpened" name="x"></i-feather>
       <i-feather *ngIf="!sidebarOpened" name="menu"></i-feather>
     </button>
-  
-    <!--  -->
-    <!-- <div class="d-flex">
-        <a class="d-flex align-content-center  nav-link" (click)="isNavCollapsed = !isNavCollapsed" routerLink="/browse" routerLinkActive="active">
-          <i-feather name="globe"></i-feather><span class="d-none d-sm-block">browse</span>
-        </a>
-        <a class="d-flex align-content-center nav-link" (click)="isNavCollapsed = !isNavCollapsed" routerLink="/for-you" routerLinkActive="active">
-          <i-feather name="heart"></i-feather><span class="d-none d-sm-block">for you</span>
-        </a>
-        <a class="d-flex align-content-center  nav-link" (click)="isNavCollapsed = !isNavCollapsed" routerLink="/library" routerLinkActive="active">
-          <i-feather name="headphones"></i-feather><span class="d-none d-sm-block">library</span>
-        </a>
-        <a class="d-flex align-content-center  nav-link" (click)="isNavCollapsed = !isNavCollapsed" routerLink="/search" routerLinkActive="active">
-          <i-feather name="search"></i-feather><span class="d-none d-sm-block">search</span>
-        </a>
-        <button *ngIf="!isLoggedIn" class="btn btn-link nav-link" (click)="onClickLogin()">
-          <i-feather name="log-in"></i-feather><span class="d-none d-sm-block">sign in</span>
-        </button>
-        <button *ngIf="isLoggedIn" class="btn btn-link d-flex align-content-center" (click)="onClickLogin()">
-          <i-feather name="log-out"></i-feather><span class="d-none d-sm-block"></span>
-        </button>
-        
-    </div> -->
-    <a class="navbar-brand ml-auto mr-0"><i-feather name="music"></i-feather>aaplayer</a>
-
-
-      <!-- <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" (click)="isNavCollapsed = !isNavCollapsed" routerLink="/browse" routerLinkActive="active">
-            <i-feather name="menu"></i-feather><span class="d-none d-sm-block">browse</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="isNavCollapsed = !isNavCollapsed" routerLink="/for-you" routerLinkActive="active">for you</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="isNavCollapsed = !isNavCollapsed" routerLink="/library" routerLinkActive="active">library</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="isNavCollapsed = !isNavCollapsed" routerLink="/search" routerLinkActive="active">search</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="toggleSidebar()">sidebar</a>
-        </li>
-      </ul> -->
-
-      <!-- <button class="btn btn-sm btn-outline-info" id="apple-music-authorize">Sign In</button>
-      <button class="btn btn-sm btn-outline-info" id="apple-music-unauthorize">Sign Out</button> -->
-      <!-- <button *ngIf="!isLoggedIn" class="btn btn-sm btn-outline-secondary" (click)="onClickLogin()"><i-feather name="log-in"></i-feather></button>
-      <button *ngIf="isLoggedIn" class="btn btn-sm btn-outline-secondary" (click)="onClickLogOut()"><i-feather name="log-out"></i-feather></button> -->
-   
-
-    
-    
+    <a class="navbar-brand ml-auto mr-0"><i-feather name="music"></i-feather>iamplayer</a>
+ 
   </nav>
-<ng-sidebar-container>
-
-  <ng-sidebar 
-    [(opened)]="sidebarOpened" 
-    [mode]="sidebarMode" 
-    [autoFocus]="false"
-    [closeOnClickOutside]="sidebarMode === 'over' ? true : false"
-    [animate]="true"> 
-    <app-sidebar (toggle)="toggleSidebar()" [closeOnClick]="sidebarMode === 'over' ? true : false"></app-sidebar>
-  </ng-sidebar>
 
 
-  <main role="main" ng-sidebar-content>
-    <div class="content my-5 pt-4 pb-5">
-        <router-outlet></router-outlet>  
-    </div>    
-  </main>
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav 
+    class="rounded shadow-lg ml-3 bg-light p-3" 
+    [mode]="over" 
+    [(opened)]="sidebarOpened"
+    [fixedInViewport]="true"
+    [fixedTopGap]="80">
+      <app-sidebar (toggle)="sidenav.toggle()" [closeOnClick]="true"></app-sidebar>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <main role="main" ng-sidebar-content>
+          <div class="content my-5 pt-4 pb-5">
+              <router-outlet></router-outlet>  
+          </div>    
+      </main>
+    </mat-sidenav-content>
 
 
-</ng-sidebar-container>
+  </mat-sidenav-container>
+
+
+
+
 
 <app-player></app-player>
 

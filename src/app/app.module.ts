@@ -26,6 +26,7 @@ import { ForYouEffects } from './for-you/state/for-you.effects';
 import { SearchModule } from './search/search.module';
 import { FormsModule } from '@angular/forms';
 import { SearchEffects } from './search/state/search.effects';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { SearchEffects } from './search/state/search.effects';
     ForYouModule,
     SearchModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

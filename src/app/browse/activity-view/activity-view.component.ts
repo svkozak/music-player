@@ -27,15 +27,10 @@ export class ActivityViewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.pipe(map(param => param.id)).subscribe(id => this.store.dispatch(new browseActions.LoadActivity({id: id})));
-
+    this.store.dispatch(new browseActions.ResetActivity());
     this.store.select(selectIsBrowseLoading).subscribe(isLoading => this.isLoading = isLoading);
-    this.store.select(selectSelectedActivity).subscribe(activity => {
-        if (activity) {
-          this.activity = activity;
-          this.store.dispatch(new browseActions.LoadActivityPlaylists({playlists: activity.relationships.playlists.data}))
-        }
-    });
+    this.route.params.pipe(map(param => param.id)).subscribe(id => this.store.dispatch(new browseActions.LoadActivity({id: id})));
+    this.store.select(selectSelectedActivity).subscribe(activity => this.activity = activity);
     this.store.select(selectActivityPlaylists).subscribe(playlists => this.playlists = playlists);
   }
 

@@ -40,14 +40,25 @@ export class BrowseEffects {
     ))
   )
 
+  // load activity playlists after activity successfully loaded
   @Effect()
-  loadActivityPlaylists$ = this.actions$.pipe(
-    ofType<browseActions.LoadActivityPlaylists>(BrowseActionTypes.LoadActivityPlaylists),
-    map(action => action.payload.playlists.map(playlist => playlist.id)),
+  loadActivPlaylists$ = this.actions$.pipe(
+    ofType<browseActions.LoadActivitySuccess>(BrowseActionTypes.LoadActivitySuccess),
+    map(action => action.payload.selectedActivity.relationships.playlists.data.map(playlist => playlist.id)),
     mergeMap(ids => this.api.getCatalogPlaylists(ids).pipe(
       map(playlists => new browseActions.LoadActivityPlaylistsSuccess({ playlists: playlists }))
     ))
   )
+
+  // @Effect()
+  // loadActivityPlaylists$ = this.actions$.pipe(
+  //   ofType<browseActions.LoadActivityPlaylists>(BrowseActionTypes.LoadActivityPlaylists),
+  //   map(action => action.payload.playlists.map(playlist => playlist.id)),
+  //   mergeMap(ids => this.api.getCatalogPlaylists(ids).pipe(
+  //     map(playlists => new browseActions.LoadActivityPlaylistsSuccess({ playlists: playlists }))
+  //   ))
+  // )
+  
 
   
 

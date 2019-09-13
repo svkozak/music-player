@@ -16,7 +16,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
 
-  private onClick() {
+  onClick() {
     if (this.closeOnClick) {
       this.toggle.emit(true);
     }

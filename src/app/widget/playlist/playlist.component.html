@@ -1,5 +1,5 @@
 <div class="card mr-3 mb-3 shadow-sm">
-    <a (click)="onClick(playlist)"><img [src]="imgSrc" class="card-img-top" alt="..."></a>
+    <div class="card-img-top" (click)="onClick(playlist)"><img [src]="imgSrc" class="card-img-top" alt="..."></div>
     <div class="card-body">
         <a (click)="onClick(playlist)" class="card-title">{{playlist.attributes.name}}</a>
         <p class="card-text">{{playlist.attributes.curatorName}}</p>

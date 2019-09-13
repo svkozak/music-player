@@ -11,7 +11,9 @@ $active-color: #0793b7;
 $link-color: #003459;
 
 $theme-colors: (
+  "primary": #2248c5,
   "secondary": $body-color,
+  "info": #20a7a1
 );
 
 $spinner-border-width: 0.15rem;
@@ -81,7 +83,7 @@ h2 {
 
 .nav-pills .nav-link.active .btn-browse {
   background: none;
-  color: $cyan;
+  color: $info;
 }
 
 .nav-item {

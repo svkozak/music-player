@@ -10,7 +10,7 @@
 <div *ngIf="selectedArtist && selectedArtist.id === artist.id">
       <div *ngIf="selectedArtist.relationships" class="d-flex overflow-auto my-2 py-3">
           <app-album *ngFor="let album of selectedArtist.relationships.albums.data"
-          [imgSrc]="album.attributes.artwork.url | albumArt : 1000"
+          [imgSrc]="album.attributes.artwork.url | albumArt : 600"
           [album]="album"
           (onSelectAlbum)="onSelectAlbum.emit(album)">
           </app-album>
