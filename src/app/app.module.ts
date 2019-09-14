@@ -18,7 +18,6 @@ import { AppEffects } from './state/effects/app.effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
-import { Ng5SliderModule } from 'ng5-slider';
 import { PlayerComponent } from './player/player.component';
 import { PlaylistEffects } from './browse/state/playlist.effects';
 import { ForYouModule } from './for-you/for-you.module';

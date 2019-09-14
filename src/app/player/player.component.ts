@@ -6,7 +6,6 @@ import { selectPlaybackState, selectPlaybackDuration, selectNowPlayingItem } fro
 import { Store } from '@ngrx/store';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as playerActions from '../state/actions/player.actions';
-import { Options } from 'ng5-slider';
 import { Router } from '@angular/router';
 
 declare var MusicKit: any;
@@ -25,28 +24,18 @@ export class PlayerComponent implements OnInit {
   currentPlaybackTime = 0;
   currentPlaybackTimeRemaining = 0;
 
-  options: Options = {
-    floor: 0,
-    ceil: 0,
-    step: 1,
-    showSelectionBar: true,
-    hidePointerLabels: true,
-    hideLimitLabels: true
+  constructor(private store: Store<any>, private playerService: PlayerService, private router: Router) {
   }
 
-  constructor(private store: Store<any>, private playerService: PlayerService, private router: Router) {
+  ngOnInit() {
     this.store.select(selectNowPlayingItem).subscribe(item => this.nowPlayingItem = item);
     this.store.select(selectPlaybackState).subscribe(state => this.playbackState = state);
-    this.store.select(selectPlaybackDuration).subscribe(duration => this.setPlaybackDuration(duration));
+    this.store.select(selectPlaybackDuration).subscribe(duration => this.currentPlaybackDuration = duration);
 
     this.playerService.getCurrentPlaybackTime().subscribe(time => {
       this.currentPlaybackTime = time;
     });
     this.playerService.getCurrentPlaybackTimeRemaining().subscribe(timeRemaining => this.currentPlaybackTimeRemaining = timeRemaining);
-
-  }
-
-  ngOnInit() {
   }
 
   skipToPrevious(){
@@ -74,15 +63,6 @@ export class PlayerComponent implements OnInit {
 
   isPlaying(): boolean {
     return this.playbackState === PlaybackStates.playing;
-  }
-
-  // ng5-slider options setting
-  setPlaybackDuration(duration: any) {
-    this.currentPlaybackDuration = duration;
-    const newOptions: Options = Object.assign({}, this.options);
-    newOptions.ceil = duration;
-    newOptions.step = 0.1;
-    this.options = newOptions;
   }
 
   onPositionAdjust(time: any) {

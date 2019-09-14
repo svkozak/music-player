@@ -7,7 +7,7 @@
           <h2 class="mb-2">Artists</h2>
           <span *ngIf="artists" class="badge shadow-sm badge-pill badge-light mb-auto">{{ artists.length }}</span>
   
-          <button class="btn btn-link text-info ml-auto my-auto" (click)="onLoadMore()">
+          <button class="btn btn-sm btn-info rounded-pill ml-auto my-auto py-0 px-2 shadow-sm" (click)="onLoadMore()">
               <span *ngIf="isLoading" class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true"></span>
               <span *ngIf="!isLoading">more</span>
           </button>
@@ -23,7 +23,7 @@
               (onSelectAlbum)="onAlbumSelected($event)">
               </app-artist>
 
-              <button (click)="onLoadMore(artists)"  class="btn btn-browse mt-3 btn-outline-light shadow-sm w-100 text-info">
+              <button (click)="onLoadMore(artists)"  class="btn btn-browse mt-3 btn-info shadow-sm">
                   <span *ngIf="isLoading" class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true"></span>
                   <span *ngIf="!isLoading">Load 25 more</span>
               </button>

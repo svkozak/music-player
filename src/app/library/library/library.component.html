@@ -8,7 +8,7 @@
             <h2 class="mb-2">Recently added</h2>
             <span *ngIf="recentlyAddedItems" class="badge shadow-sm badge-pill badge-light mb-auto">{{ recentlyAddedItems.length }}</span>
     
-            <button class="btn btn-link text-info ml-auto my-auto" (click)="loadMore()">
+            <button class="btn btn-sm btn-info rounded-pill ml-auto my-auto py-0 px-2 shadow-sm" (click)="loadMore()">
                 <span *ngIf="isLoading" class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true"></span>
                 <span *ngIf="!isLoading">more</span>
             </button>

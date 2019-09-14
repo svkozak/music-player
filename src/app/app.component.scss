@@ -7,7 +7,11 @@ ng-sidebar-container {
 mat-sidenav {
     opacity: 0.98;
     width: 260px;
-    height: 320px;
+    max-height: 340px;
+}
+
+.logo {
+    width: 8rem;
 }
 
 .compensate {
@@ -15,13 +19,18 @@ mat-sidenav {
 }
 
 .navbar {
-    // background-color: rgba(239, 240, 245, 0.95);
     background-color: rgba($color: white, $alpha: 0.95)
     // background: transparent;
 }
 
 .nav-link.active {
     color: $cyan;
+}
+
+.btn-light:active, .btn-light:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
 }
 
 .navbar-brand {
@@ -41,3 +50,4 @@ mat-sidenav {
 a.disabled, a.disabled:hover, a.disabled:active {
     color: lightgray;
 }
+

@@ -9,6 +9,7 @@ export class SidebarComponent implements OnInit {
 
   @Input() opened: boolean;
   @Input() closeOnClick: boolean;
+  @Input() isLoggedIn: boolean;
   @Output() toggle: EventEmitter<boolean> = new EventEmitter();
 
   constructor() { }

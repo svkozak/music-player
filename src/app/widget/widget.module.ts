@@ -42,7 +42,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     LibraryArtistsComponent,
     ToastComponent,
     PlaylistsModalComponent,
-    ActivityComponent
+    ActivityComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
@@ -78,7 +79,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     PlaylistsModalComponent,
     ActivityComponent,
     BrowserAnimationsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    SidebarComponent
   ],
   entryComponents: [
     PlaylistsModalComponent
