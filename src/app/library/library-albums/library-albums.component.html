@@ -8,7 +8,7 @@
         <h2 class="mb-2">Albums</h2>
         <span *ngIf="albums" class="badge shadow-sm badge-pill badge-light mb-auto">{{ albums.length }}</span>
 
-        <button class="btn btn-link text-info ml-auto my-auto" (click)="onLoadMore()">
+        <button class="btn btn-sm btn-info rounded-pill ml-auto my-auto py-0 px-2 shadow-sm" (click)="onLoadMore()">
             <span *ngIf="isLoading" class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true"></span>
             <span *ngIf="!isLoading">more</span>
         </button>
@@ -19,7 +19,7 @@
         <div *ngFor="let album of albums">
             <app-album
             [album]="album" 
-            [imgSrc]="album.attributes.artwork.url | albumArt : 1000"
+            [imgSrc]="album.attributes.artwork.url | albumArt : 600"
             (onSelectAlbum)="onAlbumSelected(album)">
             </app-album>
         </div>

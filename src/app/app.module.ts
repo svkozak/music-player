@@ -18,7 +18,6 @@ import { AppEffects } from './state/effects/app.effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
-import { Ng5SliderModule } from 'ng5-slider';
 import { PlayerComponent } from './player/player.component';
 import { PlaylistEffects } from './browse/state/playlist.effects';
 import { ForYouModule } from './for-you/for-you.module';
@@ -26,6 +25,7 @@ import { ForYouEffects } from './for-you/state/for-you.effects';
 import { SearchModule } from './search/search.module';
 import { FormsModule } from '@angular/forms';
 import { SearchEffects } from './search/state/search.effects';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({
@@ -55,7 +55,8 @@ import { SearchEffects } from './search/state/search.effects';
     ForYouModule,
     SearchModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

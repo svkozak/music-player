@@ -9,6 +9,7 @@ export class SidebarComponent implements OnInit {
 
   @Input() opened: boolean;
   @Input() closeOnClick: boolean;
+  @Input() isLoggedIn: boolean;
   @Output() toggle: EventEmitter<boolean> = new EventEmitter();
 
   constructor() { }
@@ -16,7 +17,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
 
-  private onClick() {
+  onClick() {
     if (this.closeOnClick) {
       this.toggle.emit(true);
     }

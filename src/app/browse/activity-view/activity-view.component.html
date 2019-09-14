@@ -1,12 +1,12 @@
-<app-spinner [isLoading]="isLoading"></app-spinner>
+<app-spinner [isLoading]="isLoading || !playlists.length"></app-spinner>
 
-<div *ngIf="!isLoading && activity" class="col">
+<div class="col">
 
     <div class="row">
 
-        <div *ngIf="activity && activity.attributes" class="col mb-3">
+        <div class="col mb-3">
 
-            <div class="card text-white overflow-hidden">
+            <div *ngIf="!isLoading && activity" class="card text-white overflow-hidden">
                 <img *ngIf="activity && activity.attributes" [src]="activity.attributes.artwork.url | albumArt : 1000" class="card-img img-fluid" alt="...">
                 <div class="card-img-overlay">
                   <h2 class="card-title">{{activity.attributes.name}}</h2>
@@ -21,9 +21,9 @@
 
 
     <div class="row">
-          <div class="col">
+          <div class="col" >
 
-              <div *ngIf="activity && playlists && playlists.length" class="scroller my-1 py-3" >                 
+              <div *ngIf="playlists && playlists.length"  class="scroller my-1 py-3" >                 
                   <div *ngFor="let playlist of playlists">
                       <app-playlist
                       [playlist]='playlist'

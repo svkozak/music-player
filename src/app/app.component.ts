@@ -11,27 +11,28 @@ declare var MusicKit: any;
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
-  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
 
   sidebarOpened: boolean = false;
-  sidebarMode: string;
-  closeOnClick: boolean;
   isLoggedIn: boolean;
-  title = 'music';
-  public isNavCollapsed = true;
+  navbarShadow: boolean = false;
 
   toastOptions: any;
 
   constructor(private store: Store<any>, private elRef: ElementRef) { }
 
   ngOnInit() {
-    this.sidebarMode = window.innerWidth <= 768 ? 'over' : 'push';
+    // window.pageYOffset
     this.store.dispatch(new appActions.AppCheckAuthorization());
     this.store.select(selectIsLoggedIn).subscribe(isLoggedIn => this.isLoggedIn = isLoggedIn);
     this.store.select(selectToastOptiions).subscribe(toastOptions => this.toastOptions = toastOptions);
   }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    this.navbarShadow = window.pageYOffset > 60 ? true : false;
+ }
 
 
   onClickLogin(){
@@ -48,19 +49,6 @@ export class AppComponent implements OnInit {
 
   dismissAlert() {
     this.store.dispatch(new appActions.AppDismissToast());
-  }
-
-  toggleSidebar() {
-    this.sidebarOpened = !this.sidebarOpened;
-    console.log(this.sidebarOpened);
-  }
-
-  // change sidebar mode on resize
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    let width = event.target.innerWidth;
-    this.sidebarMode = width <= 768 ? 'over' : 'push';
-    this.closeOnClick = width <= 768 ? true : false;
   }
 
 }

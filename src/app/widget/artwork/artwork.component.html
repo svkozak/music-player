@@ -1,7 +1,9 @@
 
+    <div class="artwork-container shadow mb-3">
+        <img *ngIf="selectedPlaylist && selectedPlaylist.attributes" [src]="artworkUrl ? (artworkUrl | albumArt : 600) : (selectedPlaylist.attributes.artwork.url | albumArt : 600)" class="artwork img-fluid rounded" alt="">
+        <img *ngIf="selectedAlbum && selectedAlbum.attributes" [src]="selectedAlbum.attributes.artwork.url | albumArt : 600" class="artwork img-fluid rounded" alt="">
+    </div>
 
-    <img *ngIf="selectedPlaylist && selectedPlaylist.attributes" [src]="artworkUrl ? (artworkUrl | albumArt : 600) : (selectedPlaylist.attributes.artwork.url | albumArt : 600)" class="artwork shadow mb-3 rounded" alt="">
-    <img *ngIf="selectedAlbum && selectedAlbum.attributes" [src]="selectedAlbum.attributes.artwork.url | albumArt : 600" class="artwork shadow mb-3 rounded" alt="">
 
     <div *ngIf="selectedAlbum && selectedAlbum.attributes" class="mb-2">
         <span *ngIf="selectedAlbum.type === 'albums'" class="small">{{selectedAlbum.attributes.genreNames[0]}}  &#183;  {{parseDate(selectedAlbum.attributes.releaseDate)}}</span>

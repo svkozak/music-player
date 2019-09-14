@@ -1,9 +1,21 @@
 @import '../../../styles.scss';
 
-.top-bar {
-  height: 40px;
+.btn-light {
+  box-shadow: none;
+  border: 0;
 }
 
-.side-menu {
-  width: 220px;
+.btn-light:hover, .btn-light:active {
+  background-color: $gray-100;
+  color: $cyan;
+  border: 0;
+  box-shadow: none !important;
 }
+
+.btn-light.active, .btn-light.active:focus, .btn-light.active:active {
+  background-color: $gray-100 !important;
+  color: $cyan  !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+

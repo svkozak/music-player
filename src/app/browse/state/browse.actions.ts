@@ -12,6 +12,7 @@ export enum BrowseActionTypes {
   LoadActivity = '[Browse] Load Activity',
   LoadActivitySuccess = '[Browse] Load Activity Success',
   LoadActivityFailure = '[Browse] Load Activity Failure',
+  ResetActivity = '[Browse] Reset activity',
 
   LoadActivities = '[Browse] Load Activities',
   LoadActivitiesSuccess = '[Browse] Load Activities Success',
@@ -20,6 +21,8 @@ export enum BrowseActionTypes {
   LoadActivityPlaylists = '[Browse] Load Activity Playlists',
   LoadActivityPlaylistsSuccess = '[Browse] Load Activity Playlists Success',
   LoadActivityPlaylistsFailure = '[Browse] Load Activity Playlists Failure'
+
+  
 
 }
 
@@ -53,6 +56,10 @@ export class LoadActivitySuccess implements Action {
 export class LoadActivityFailure implements Action {
   readonly type = BrowseActionTypes.LoadActivityFailure;
   constructor(public payload?: { error: any }) { }
+}
+
+export class ResetActivity implements Action {
+  readonly type = BrowseActionTypes.ResetActivity;
 }
 
 export class LoadActivities implements Action {
@@ -96,6 +103,7 @@ LoadActivityPlaylistsSuccess |
 LoadActivityPlaylistsFailure |
 LoadActivity |
 LoadActivitySuccess |
-LoadActivityFailure
+LoadActivityFailure |
+ResetActivity
 ;
 

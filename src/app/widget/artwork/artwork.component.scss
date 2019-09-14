@@ -4,18 +4,18 @@
   transform: scale(0.95);
 }
 
-.drop {
-  
-}
-
 .albumArt {
   min-width: 10rem;
   max-width: 40rem;
 }
 
-.artwork {
+.artwork-container {
   width: 100%;
+  min-height: 10rem;
   max-width: 40rem;
+}
+
+.artwork {
   background: url(../../../assets/img/loader.svg) center no-repeat;
 }
 

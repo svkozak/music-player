@@ -1,18 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito:100,200,700');
+@import url('https://fonts.googleapis.com/css?family=Nunito:100,300,700');
 // @import "../node_modules/bootstrap/scss/functions";
 // @import "../node_modules/bootstrap/scss/variables";
 
 // override Bootstrap's global settings imported below
 $font-family-base: 'Nunito', sans-serif;
-// $font-family-base: 'SF Pro', sans-serif;
 $body-color: #2A3A4A;
 $body-color-light: #9198ab;
 $active-color: #0793b7;
 $link-color: #003459;
 
-$theme-colors: (
-  "secondary": $body-color,
-);
+// Bootstrap colours
+$red: #fe473a; // danger
+$cyan: #20a7a1; // info
+$primary: #2248c5;
+$secondary: $body-color;
+$light: #f5f5f7;
 
 $spinner-border-width: 0.15rem;
 $spinner-border-width-sm: 0.08rem;
@@ -120,5 +122,8 @@ h2 {
 //   scroll-snap-align: start;
 // }
 
+.btn-light:active, .btn-light:focus {
+  box-shadow: 0 !important;
+}
 
 $nav-color: rgba(239, 240, 245, 0.95);

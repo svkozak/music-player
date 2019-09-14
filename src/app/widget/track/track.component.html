@@ -1,4 +1,4 @@
-<div [class.text-info]="isNowPlaying"  class="track d-flex flex-row align-items-stretch p-2 my-2 shadow-sm bg-white border-0">
+<div [class.now-playing]="isNowPlaying"  class="track d-flex flex-row align-items-stretch p-2 my-2 bg-white border-bottom">
 
   
   <div class="track-info d-flex align-items-start flex-fill" (click)="onClick(track)">
@@ -27,7 +27,7 @@
       <div class="btn-group" dropdown placement="bottom right">
           <button id="button-alignment" dropdownToggle type="button"
                   class="btn btn-sm p-0" aria-controls="dropdown-alignment">
-                  <i-feather name="more-vertical"></i-feather>       
+                  <i-feather name="more-horizontal"></i-feather>       
           </button>
           <ul id="dropdown-alignment" *dropdownMenu class="dropdown-menu dropdown-menu-right shadow-sm"
               role="menu" aria-labelledby="button-alignment">
