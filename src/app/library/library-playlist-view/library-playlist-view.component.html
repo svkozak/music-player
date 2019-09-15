@@ -9,7 +9,6 @@
     <app-artwork *ngIf="selectedPlaylist"
     [selectedPlaylist]="selectedPlaylist"
     [isLoading]="isLoading"
-    [artworkUrl]="nowPlayingArtworkUrl"
     (onPlayAll)="onPlayPlaylist($event)"
     (onStop)="onStop()">
     </app-artwork>

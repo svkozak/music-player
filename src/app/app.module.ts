@@ -26,12 +26,14 @@ import { SearchModule } from './search/search.module';
 import { FormsModule } from '@angular/forms';
 import { SearchEffects } from './search/state/search.effects';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlayerComponent
+    PlayerComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
