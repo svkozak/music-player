@@ -30,7 +30,7 @@ export class AlbumEffects {
   loadAlbum$ = this.actions$.pipe(
     ofType<albumActions.LoadAlbum>(AlbumActionTypes.LoadAlbum),
     map(action => action.payload.id),
-    mergeMap(id => this.api.getAlbum(id).pipe(
+    mergeMap(id => this.api.getCatalogAlbum(id).pipe(
       map(album => new albumActions.LoadAlbumSuccess({album: album}))
     ))
   )

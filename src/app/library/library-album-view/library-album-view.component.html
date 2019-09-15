@@ -27,7 +27,9 @@
                 [isNowPlaying]="nowPlayingTrackId === track.id" 
                 [timeRemaining]="currentPlaybackTimeRemaining"
                 (onAddToPlaylist)="onAddToPlaylist($event)"
-                (onSelectTrack)="onPlayTrack(track)">
+                (onSelectTrack)="onPlayTrack(track)"
+                (onPlayLater)="onPlayLater(track)"
+                (onPlayNext)="onPlayNext(track)">
                 </app-track>
               </div>
           </div>

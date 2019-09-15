@@ -3,6 +3,7 @@ import { PlaybackStates, MediaItem } from './../../models/player.models';
 import { PlayerActions, PlayerActionTypes, NowPlayingAction, SetPlaybackStateAction, SetQueueAction } from './../actions/player.actions';
 import { Action } from '@ngrx/store';
 
+// TODO add queue
 
 export interface PlayerState {
   selectedAlbum: Album,
@@ -69,6 +70,18 @@ export function playerReducer(state: PlayerState = initialState, action: PlayerA
       return {
         ...state,
         currentPlaybackTime: action.payload.time
+      }
+    }
+
+    case PlayerActionTypes.PlayerPlayNext: {
+      return {
+        ...state
+      }
+    }
+
+    case PlayerActionTypes.PlayerPlayLater: {
+      return {
+        ...state
       }
     }
 

@@ -41,7 +41,6 @@ export class LibraryAlbumViewComponent implements OnInit {
     this.store.select(selectSelectedLibraryAlbum).subscribe(album => this.selectedAlbum = album);
     this.store.select(selectNowPlayingItem).subscribe(item => {
       if (item) {
-        console.log(item);
         this.nowPlayingTrackId = item._container.id;
       }
     });
@@ -65,6 +64,14 @@ export class LibraryAlbumViewComponent implements OnInit {
 
   onStop() {
     this.store.dispatch(new playerActions.PauseAction());
+  }
+
+  onPlayNext(track: Track) {
+    this.store.dispatch(new playerActions.PlayerPlayNext({track: track}))
+  }
+
+  onPlayLater(track: Track) {
+    this.store.dispatch(new playerActions.PlayerPlayLater({track: track}))
   }
 
 }

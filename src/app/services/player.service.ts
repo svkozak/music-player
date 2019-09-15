@@ -21,23 +21,9 @@ export class PlayerService {
     private musicKitService: MusicKitService
   ) { 
     this.player = this.musicKitService.musicKit.player;
-    // this.musicKitService.musicKit.addEventListener(MusicKit.Events.playbackStateDidChange, this.playbackStateDidChange.bind(this));
-
-    // fromEvent(this.musicKitService.musicKit, MusicKit.Events.playbackStateDidChange)
-    // .subscribe(state => this.getPlaybackState(state));
-
     this.playbackState$ = this.getPlaybackState();
-    // .subscribe((state:number) => {
-    //   console.log(`event state is ${state} and my state is ${PlaybackStates[state]}`);
-    // });
   }
 
-  // play(): Observable<any> {
-  //   const play$ = from(this.player.play());
-  //   return play$.pipe(
-  //     switchMap( () => of(this.player.nowPlayingItem).pipe(map(item => item)) )
-  //   )
-  // }
 
   play(): Observable<any> {
     return from(this.player.play()).pipe(
@@ -72,6 +58,14 @@ export class PlayerService {
     return from(this.musicKitService.musicKit.setQueue({songs: ids}));
   }
 
+  playNext(track: Track) {
+    this.player.queue.prepend(track);
+  }
+
+  playLater(track: Track) {
+    this.player.queue.append(track);
+  }
+
   // utility to return playback state observable
   getPlaybackState(): Observable<any> {
     return fromEvent(this.musicKitService.musicKit, MusicKit.Events.playbackStateDidChange)
@@ -85,7 +79,6 @@ export class PlayerService {
   getNowPlayingItem(): Observable<any> {
     return of(this.player.nowPlayingItem).pipe(
       map(item => {
-        console.log(item);
         return item;
       })
       )

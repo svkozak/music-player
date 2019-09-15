@@ -54,9 +54,12 @@
                   [searchResult]="true"
                   [track]="track" 
                   [isNowPlaying]="nowPlayingTrackId === track.id"
+                  [isLoggedIn]="isLoggedIn"
                   (onAddToLibrary)="onAddToLibrary($event)"
                   (onAddToPlaylist)="onAddToPlaylist($event)"
-                  (onSelectTrack)="onPlayTrack(track)">
+                  (onSelectTrack)="onPlayTrack(track)"
+                  (onPlayLater)="onPlayLater(track)"
+                  (onPlayNext)="onPlayNext(track)">
                   </app-track>
               </div>
             </div>
@@ -96,8 +99,11 @@
                   [searchResult]="true"
                   [track]="track" 
                   [isNowPlaying]="nowPlayingTrackId === track.id"
+                  [isLoggedIn]="isLoggedIn"
                   (onAddToPlaylist)="onAddToPlaylist($event)"
-                  (onSelectTrack)="onPlayTrack(track)">
+                  (onSelectTrack)="onPlayTrack(track)"
+                  (onPlayLater)="onPlayLater(track)"
+                  (onPlayNext)="onPlayNext(track)">
                   </app-track>
               </div>
             </div>

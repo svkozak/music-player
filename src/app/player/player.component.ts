@@ -69,10 +69,6 @@ export class PlayerComponent implements OnInit {
     this.playerService.seekToTime(time);
   }
 
-  onRangeInput(event) {
-    console.log('range input', event);
-  }
-
   onArtistClick(id: string) {
     this.router.navigate(['browse/artists', id])
   }

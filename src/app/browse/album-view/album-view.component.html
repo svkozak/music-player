@@ -8,6 +8,7 @@
         <app-artwork *ngIf="selectedAlbum"
         [selectedAlbum]="selectedAlbum"
         [isLoading]="isLoading"
+        [isLoggedIn]="isLoggedIn"
         (onAddToLibrary)="onAddToLibrary($event)"
         (onPlayAll)="onPlayAlbum($event)"
         (onStop)="onStop()">
@@ -26,13 +27,16 @@
             <div class="mt-2" *ngIf="selectedAlbum.relationships.tracks.data as tracks">
               <app-track *ngFor="let track of tracks"
               [selectedAlbum]="selectedAlbum"
-              [track]="track" 
-              [isNowPlaying]="nowPlayingTrackId === track.id" 
+              [track]="track"
+              [isLoggedIn]="isLoggedIn"
+              [isNowPlaying]="nowPlayingTrackId === track.id"
               [timeRemaining]="currentPlaybackTimeRemaining"
               [isLibraryLoading]="isLibraryLoading"
               (onAddToLibrary)="onAddToLibrary($event)"
               (onAddToPlaylist)="onAddToPlaylist($event)"
-              (onSelectTrack)="onPlayTrack(track)">
+              (onSelectTrack)="onPlayTrack(track)"
+              (onPlayNext)="onPlayNext(track)"
+              (onPlayLater)="onPlayLater(track)">
               </app-track>
             </div>
 

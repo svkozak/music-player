@@ -22,7 +22,9 @@ import {
   Heart,
   Headphones,
   Github,
-  Linkedin
+  Linkedin,
+  CornerUpRight,
+  CornerDownRight
 
 } from 'angular-feather/icons';
 
@@ -47,7 +49,9 @@ const icons = {
   Heart,
   Headphones,
   Github,
-  Linkedin
+  Linkedin,
+  CornerUpRight,
+  CornerDownRight
 }
 
 @NgModule({

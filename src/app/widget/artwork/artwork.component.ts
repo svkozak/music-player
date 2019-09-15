@@ -13,6 +13,7 @@ export class ArtworkComponent implements OnInit {
   @Input() selectedPlaylist: Playlist;
   @Input() selectedAlbum: Album;
   @Input() artworkUrl: string;
+  @Input() isLoggedIn: boolean;
 
   @Output() onPlayAll: EventEmitter<any> = new EventEmitter();
   @Output() onStop: EventEmitter<any> = new EventEmitter();
@@ -37,7 +38,6 @@ export class ArtworkComponent implements OnInit {
   }
 
   addToLibrary(album?: Album, playlist?: Playlist) {
-    console.log('Artwork component: adding to library', album || playlist)
     this.onAddToLibrary.emit(album || playlist);
   }
 

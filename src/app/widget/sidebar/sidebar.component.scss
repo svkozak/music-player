@@ -6,17 +6,21 @@
 }
 
 .btn-light:hover, .btn-light:active {
-  background-color: $gray-100;
+  background-color: $gray-300;
   color: $cyan;
   border: 0;
   box-shadow: none !important;
 }
 
 .btn-light.active, .btn-light.active:focus, .btn-light.active:active {
-  background-color: $gray-100 !important;
+  background-color: $gray-300 !important;
   color: $cyan  !important;
   border: none !important;
   box-shadow: none !important;
+}
+
+.btn-light:disabled, .btn-light:disabled:hover, .btn.light:disabled:active {
+  color: $gray-300 !important;
 }
 
 .about {

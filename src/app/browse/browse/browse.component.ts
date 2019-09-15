@@ -71,17 +71,14 @@ export class BrowseComponent implements OnInit {
   }
 
   onPlaylistSelected(playlist: Playlist) {
-    console.log(`PLAYLIST ID IS ${playlist.id}`);
     this.router.navigate(['browse/playlists', playlist.id]);
   }
 
   onActivitySelected(activity: Activity) {
-    console.log(`Activity ID IS ${activity.id}`);
     this.router.navigate(['browse/activities', activity.id]);
   }
 
   toggle(popover) {
-    console.log('toggling popover');
     popover.toggle();
   }
 

@@ -6,6 +6,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { mergeMap, map, catchError, switchMap, takeLast, last } from 'rxjs/operators';
 import { EMPTY, Observable, of } from 'rxjs';
 import * as playerActions from '../actions/player.actions';
+import * as appActions from '../actions/app.actions';
 import { PlaybackStates } from 'src/app/models/player.models';
 
 
@@ -50,6 +51,22 @@ export class PlayerEffects {
     ofType(PlayerActionTypes.PlayerSkipToPrevious),
     mergeMap(() => this.playerService.skipToPrevious()),
     switchMap(() => this.setNowPlayingItem())
+  )
+
+  @Effect()
+  playNext$ = this.actions$
+    .pipe(
+      ofType<playerActions.PlayerPlayNext>(PlayerActionTypes.PlayerPlayNext),
+      map(action => this.playerService.playNext(action.payload.track)),
+      switchMap(() => of(new appActions.AppShowToast({type: 'success'})))
+  )
+
+  @Effect()
+  playLater$ = this.actions$
+    .pipe(
+      ofType<playerActions.PlayerPlayLater>(PlayerActionTypes.PlayerPlayLater),
+      map(action => this.playerService.playLater(action.payload.track)),
+      switchMap(() => of(new appActions.AppShowToast({type: 'success'})))
   )
 
   // Effect to set playback state, listens to player actions and returns a playback state

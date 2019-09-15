@@ -1,19 +1,19 @@
 <app-toast [options]="toastOptions" (alertClosed)="dismissAlert()"></app-toast>
 
-  <nav [class.shadow-sm]="navbarShadow" class="navbar navbar-expand-md navbar-light fixed-top mb-1">
+  <nav [class.shadow-sm]="navbarShadow" class="navbar navbar-light fixed-top mb-1">
     
     <button class="btn btn-light bg-white border-0 bg-transparent" type="button" (click)="sidenav.toggle()"  aria-expanded="false" aria-label="Toggle navigation">
       <i-feather *ngIf="sidebarOpened" name="x"></i-feather>
       <i-feather *ngIf="!sidebarOpened" name="menu"></i-feather>
     </button>
-    <a class="navbar-brand ml-auto mr-0"><img src="../assets/img/iamplayer.svg" class="logo"></a>
+    <a href="#" class="navbar-brand ml-auto mr-3"><img src="../assets/img/iamplayer.svg" class="logo"></a>
  
   </nav>
 
 
 <mat-sidenav-container class="example-container">
     <mat-sidenav #sidenav 
-    class="rounded shadow ml-4 bg-white p-3" 
+    class="rounded shadow ml-4 bg-light p-3" 
     mode="over" 
     [(opened)]="sidebarOpened"
     [autoFocus]="false"
@@ -32,10 +32,6 @@
 
 
   </mat-sidenav-container>
-
-
-
-
 
 <app-player></app-player>
 

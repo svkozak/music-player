@@ -39,16 +39,6 @@ export class ApiServiceService {
     return from( this.musicKitService.musicKit.api.genres());
   }
 
-  // request using music kit method
-  // let types = ['albums', 'songs', 'playlists'];
-  getDancePlaylists(): Observable<any> {
-    let types = ['playlists'];
-    let result$ = from(this.musicKitService.musicKit.api.charts(null, { types, genre: '17', limit: 20 }));
-    return result$.pipe(map(val => val));
-  }
-
-
-  // CURRENTLY USING
   // {types: types, genre: '17', limit: 20}
   getCharts(genre: string = '', limit: number = 20): Observable<any> {
     let types = ['albums', 'songs', 'playlists'];
@@ -62,10 +52,7 @@ export class ApiServiceService {
       params: new HttpParams().set('types', 'albums,playlists,songs')
     };
     return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/charts`, options).pipe(
-      map(response => {
-        console.log('get catalog charts', response);
-        return response;
-      })
+      map(response => response)
     )
   }
 
@@ -74,10 +61,7 @@ export class ApiServiceService {
       headers: this.headers
     };
     return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/activities/${id}`, options).pipe(
-      map(response => {
-        console.log('get catalog activity', response);
-        return response.data[0];
-      })
+      map(response => response.data[0])
     )
   }
 
@@ -87,10 +71,7 @@ export class ApiServiceService {
       params: new HttpParams().set('ids', `${Object.values(this.activities).toString()}`)
     };
     return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/activities`, options).pipe(
-      map(response => {
-        console.log('get catalog activities', response);
-        return response.data;
-      })
+      map(response => response.data)
     )
   }
 
@@ -102,10 +83,7 @@ export class ApiServiceService {
       params: new HttpParams().set('ids', `${ids.toString()}`)
     };
     return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/playlists`, options).pipe(
-      map(response => {
-        console.log('get catalog playlists', response);
-        return response.data;
-      })
+      map(response => response.data)
     )
   }
 
@@ -115,23 +93,28 @@ export class ApiServiceService {
       params: new HttpParams()
     };
     return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/genres`, options).pipe(
-      map(response => {
-        console.log(response);
-        return response.data;
-      })
+      map(response => response.data)
     )
   }
 
-
-
-  getAlbum(id: string): Observable<any> {
-    console.log(`Get album called with id ${id}`);
-    return from(this.musicKitService.musicKit.api.album(id));
+  getCatalogAlbum(id: String) {
+    const options = {
+      headers: this.headers,
+      params: new HttpParams()
+    };
+    return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/albums/${id}`, options).pipe(
+      map(response => response.data[0])
+    )
   }
 
-  getPlaylist(id: string): Observable<any> {
-    console.log(`Get playlist called with id ${id}`);
-    return from(this.musicKitService.musicKit.api.playlist(id));
+  getCatalogPlaylist(id: String) {
+    const options = {
+      headers: this.headers,
+      params: new HttpParams()
+    };
+    return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/playlists/${id}`, options).pipe(
+      map(response => response.data[0])
+    )
   }
 
   getCatalogArtist(id: string) {
@@ -168,10 +151,7 @@ export class ApiServiceService {
       params: new HttpParams().set('term', term).set('limit', limit).set('offset', offset).set('types', 'artists,albums,playlists,songs')
     };
     return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/search`, options).pipe(
-      map(response => {
-        console.log('search catalog resources', response);
-        return response.results;
-      })
+      map(response => response.results)
     )
   }
 
@@ -184,10 +164,7 @@ export class ApiServiceService {
       params: new HttpParams().set('limit', limit).set('offset', offset).set('types', 'playlists,albums')
     };
     return this.http.get<any>(URLS.DEFAULT_RECOMMENDATIONS, options).pipe(
-      map(response => {
-        console.log(response);
-        return response.data
-      })
+      map(response => response.data)
     )
   }
 
@@ -197,24 +174,29 @@ export class ApiServiceService {
       params: new HttpParams().set('offset', offset)
     };
     return this.http.get<any>(`${URLS.DEFAULT_RECOMMENDATIONS}/${id}`, options).pipe(
-      map(response => {
-        console.log(response);
-        return response.data
-      })
+      map(response => response.data)
     )
   }
 
-  getLibraryAlbum(id: string): Observable<any> {
-    console.log(`GET LIBRARY ITEM CALLED`);
-    return from(this.api.library.album(id));
+  getLibraryAlbum(id: String) {
+    const options = {
+      headers: this.headers,
+      params: new HttpParams()
+    };
+    return this.http.get<any>(`${URLS.BASE_LIBRARY_URL}/albums/${id}`, options).pipe(
+      map(response => response.data[0])
+    )
   }
 
-  getLibraryPlaylist(id: string): Observable<any> {
-    console.log(`GET LIBRARY playlist CALLED`);
-    return from(this.api.library.playlist(id));
+  getLibraryPlaylist(id: String) {
+    const options = {
+      headers: this.headers,
+      params: new HttpParams().set('include', 'tracks')
+    };
+    return this.http.get<any>(`${URLS.BASE_LIBRARY_URL}/playlists/${id}`, options).pipe(
+      map(response => response.data[0])
+    )
   }
-
-
 
   getRecentlyAdded(limit: string = '10', offset: string = '0') {
     const options = {
@@ -252,10 +234,7 @@ export class ApiServiceService {
       params: new HttpParams().set('limit', limit).set('offset', offset)
     };
     return this.http.get<any>(URLS.LIBRARY_ARTISTS, options).pipe(
-      map(response => {
-        console.log(response);
-        return response.data
-      })
+      map(response => response.data)
     )
   }
 
@@ -265,10 +244,7 @@ export class ApiServiceService {
       params: new HttpParams().set('include', 'albums')
     };
     return this.http.get<any>(`${URLS.LIBRARY_ARTISTS}/${id}`, options).pipe(
-      map(response => {
-        console.log(response.data);
-        return response.data[0]
-      })
+      map(response => response.data[0])
     )
   }
 
@@ -278,15 +254,11 @@ export class ApiServiceService {
       params: new HttpParams().set('term', term).set('limit', limit).set('offset', offset).set('types', 'library-artists,library-albums,library-playlists,library-songs')
     };
     return this.http.get<any>(`${URLS.BASE_LIBRARY_URL}/search`, options).pipe(
-      map(response => {
-        console.log('search library resources', response);
-        return response.results;
-      })
+      map(response => response.results)
     )
   }
 
   addToLibrary(type: string, id: string) {
-    console.log('adding to library');
     const options = {
       headers: this.headers,
       params: new HttpParams().set(`ids[${type}]`, id)
@@ -297,7 +269,6 @@ export class ApiServiceService {
   }
 
   addToLibraryPlaylist(playlistId: string, track: Track) {
-    console.log('adding to library playlist');
     const options = { headers: this.headers };
     const data = {data:[ { id: track.id, type : track.type} ]};
     return this.http.post(`${URLS.BASE_LIBRARY_URL}/playlists/${playlistId}/tracks`, data, options).pipe(

@@ -1,11 +1,13 @@
 import { selectIsLoggedIn, selectToastOptiions } from './state/selectors/app.selectors';
 import { Store } from '@ngrx/store';
-import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 import * as appActions from './state/actions/app.actions';
+import { Router, NavigationEnd } from '@angular/router';
 
 
-declare var MusicKit: any;
+declare let MusicKit: any;
+declare let ga: Function;
 
 @Component({
   selector: 'app-root',
@@ -20,13 +22,19 @@ export class AppComponent implements OnInit {
 
   toastOptions: any;
 
-  constructor(private store: Store<any>, private elRef: ElementRef) { }
+  constructor(private store: Store<any>, private router: Router) { }
 
   ngOnInit() {
-    // window.pageYOffset
     this.store.dispatch(new appActions.AppCheckAuthorization());
     this.store.select(selectIsLoggedIn).subscribe(isLoggedIn => this.isLoggedIn = isLoggedIn);
     this.store.select(selectToastOptiions).subscribe(toastOptions => this.toastOptions = toastOptions);
+    // google analytics
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        ga('set', 'page', event.urlAfterRedirects);
+        ga('send', 'pageview');
+      }
+    });
   }
 
   @HostListener('window:scroll', ['$event'])

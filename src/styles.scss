@@ -7,7 +7,6 @@ $font-family-base: 'Nunito', sans-serif;
 $body-color: #2A3A4A;
 $body-color-light: #9198ab;
 $active-color: #0793b7;
-$link-color: #003459;
 
 // Bootstrap colours
 $red: #fe473a; // danger
@@ -15,6 +14,8 @@ $cyan: #20a7a1; // info
 $primary: #2248c5;
 $secondary: $body-color;
 $light: #f5f5f7;
+
+$link-color: $primary;
 
 $spinner-border-width: 0.15rem;
 $spinner-border-width-sm: 0.08rem;
@@ -60,7 +61,6 @@ $custom-range-thumb-active-bg: $body-color;
 }
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
-
 
 
 h2 {
@@ -124,6 +124,18 @@ h2 {
 
 .btn-light:active, .btn-light:focus {
   box-shadow: 0 !important;
+}
+
+.fixed-bottom {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1030;
+  padding-top: 1rem;
+  padding-right: env(safe-area-inset-right, 50px);
+  padding-bottom: env(safe-area-inset-bottom, 50px) ;
+  padding-left: env(safe-area-inset-left, 50px); 
 }
 
 $nav-color: rgba(239, 240, 245, 0.95);

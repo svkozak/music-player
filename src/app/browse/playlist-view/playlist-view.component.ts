@@ -13,6 +13,7 @@ import { selectIsLibraryLoading } from 'src/app/library/state/library.selectors'
 import * as libraryActions from '../../library/state/library.actions';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { PlaylistsModalComponent } from 'src/app/widget/playlists-modal/playlists-modal.component';
+import { selectIsLoggedIn } from 'src/app/state/selectors/app.selectors';
 
 @Component({
   selector: 'app-playlist-view',
@@ -21,6 +22,7 @@ import { PlaylistsModalComponent } from 'src/app/widget/playlists-modal/playlist
 })
 export class PlaylistViewComponent implements OnInit {
 
+  isLoggedIn: boolean;
   isLoading: boolean;
   isLibraryLoading: boolean;
   selectedPlaylist: Playlist;
@@ -45,6 +47,7 @@ export class PlaylistViewComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.pipe(map(param => param.id)).subscribe(val => this.store.dispatch(new LoadPlaylist({id: val})));
+    this.store.select(selectIsLoggedIn).subscribe(isLoggedIn => this.isLoggedIn = isLoggedIn);
     this.store.select(selectSelectedPlaylist).subscribe(playlist => this.selectedPlaylist = playlist);
     this.store.select(selectIsLoadingPlaylists).subscribe(isLoading => this.isLoading = isLoading);
     this.store.select(selectNowPlayingItem).subscribe(item => {
@@ -80,6 +83,14 @@ export class PlaylistViewComponent implements OnInit {
   onAddToPlaylist(track: Track) {
     const options: ModalOptions = { backdrop: false, initialState: {track: track} };
     this.bsModalRef = this.modalService.show(PlaylistsModalComponent, options);
+  }
+
+  onPlayNext(track: Track) {
+    this.store.dispatch(new playerActions.PlayerPlayNext({track: track}))
+  }
+
+  onPlayLater(track: Track) {
+    this.store.dispatch(new playerActions.PlayerPlayLater({track: track}))
   }
 
 }

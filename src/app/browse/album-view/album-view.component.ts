@@ -1,3 +1,4 @@
+import { PlaybackStates } from './../../models/player.models';
 import { Playlist } from 'src/app/models/playlist.model';
 import { PlayerService } from './../../services/player.service';
 import { LoadAlbum } from '../state/album.actions';
@@ -11,10 +12,11 @@ import { map} from 'rxjs/operators';
 import { selectSelectedAlbum } from 'src/app/browse/state/album.selectors';
 import * as playerActions from '../../state/actions/player.actions';
 import * as libraryActions from '../../library/state/library.actions';
-import { selectNowPlayingItem } from 'src/app/state/selectors/player.selectors';
+import { selectNowPlayingItem, selectPlaybackState } from 'src/app/state/selectors/player.selectors';
 import { selectIsLibraryLoading } from 'src/app/library/state/library.selectors';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { PlaylistsModalComponent } from 'src/app/widget/playlists-modal/playlists-modal.component';
+import { selectIsLoggedIn } from 'src/app/state/selectors/app.selectors';
 
 @Component({
   selector: 'app-album-view',
@@ -23,11 +25,13 @@ import { PlaylistsModalComponent } from 'src/app/widget/playlists-modal/playlist
 })
 export class AlbumViewComponent implements OnInit, OnDestroy {
 
+  isLoggedIn: boolean;
   isLoading: boolean;
   isLibraryLoading: boolean;
   selectedAlbum: Album;
   tracks: Track[] = [];
   nowPlayingTrackId: string;
+  playbackState: PlaybackStates;
   currentPlaybackTimeRemaining;
   bsModalRef: BsModalRef;
 
@@ -42,17 +46,17 @@ export class AlbumViewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.params.pipe(map(param => param.id)).subscribe(id => this.store.dispatch(new LoadAlbum({id: id})));
+    this.store.select(selectIsLoggedIn).subscribe(isLoggedIn => this.isLoggedIn = isLoggedIn);
     this.store.select(selectSelectedAlbum).subscribe(album => this.selectedAlbum = album);
     this.store.select(selectIsLoading).subscribe(val => this.isLoading = val);
     this.store.select(selectNowPlayingItem).subscribe(item => {
         if (item) {
-          // TODO!!
-          console.log(item);
           this.nowPlayingTrackId = item.id;
         }
       });
     this.playerService.getCurrentPlaybackTimeRemaining().subscribe(timeRemaining => this.currentPlaybackTimeRemaining = timeRemaining);
     this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLibraryLoading = isLoading);
+    this.store.select(selectPlaybackState).subscribe(playbackState => this.playbackState = playbackState);
   }
 
   ngOnDestroy() {
@@ -86,6 +90,14 @@ export class AlbumViewComponent implements OnInit, OnDestroy {
   onAddToPlaylist(track: Track) {
     const options: ModalOptions = { backdrop: false, initialState: {track: track} };
     this.bsModalRef = this.modalService.show(PlaylistsModalComponent, options);
+  }
+
+  onPlayNext(track: Track) {
+    this.store.dispatch(new playerActions.PlayerPlayNext({track: track}))
+  }
+
+  onPlayLater(track: Track) {
+    this.store.dispatch(new playerActions.PlayerPlayLater({track: track}))
   }
 
 

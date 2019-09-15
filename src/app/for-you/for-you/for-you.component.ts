@@ -41,13 +41,8 @@ export class ForYouComponent implements OnInit {
   }
 
   loadMore(id: string) {
-    console.log('load more recommendations for id ', id);
-    
     let recommendation = this.recommendations.find(item => item.id === id);
-    console.log(`recommendation : ${recommendation.id}`);
     this.store.dispatch(new forYouActions.LoadRecommendation({id: id, offset: '1'}));
   }
 
 }
-
-// recommendation.relationships.contents.data.length.toString()

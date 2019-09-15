@@ -1,4 +1,4 @@
-<div [class.now-playing]="isNowPlaying"  class="track d-flex flex-row align-items-stretch p-2 my-2 bg-white border-bottom">
+<div [class.now-playing]="isNowPlaying"  class="track w-100 d-flex flex-row align-items-stretch p-2 my-2 bg-white border-bottom">
 
   
   <div class="track-info d-flex align-items-start flex-fill" (click)="onClick(track)">
@@ -6,7 +6,7 @@
       <!-- if album -->
       <div *ngIf="selectedAlbum" class="track-number mr-2" >{{track.attributes.trackNumber}}. </div>
       <div *ngIf="selectedAlbum" class="track-info mr-2">
-        <span class="track-name mr-2">{{track.attributes.name}}</span><br>
+        <span class="track-name mr-2">{{track.attributes.name}}</span><sup><span *ngIf="track.attributes.contentRating === 'explicit'" class="badge shadow-sm badge-pill badge-light p-0 px-1 mb-auto">e</span></sup><br>
         <span *ngIf="track.attributes.artistName != selectedAlbum.attributes.artistName" class="artist-name mr-2">{{track.attributes.artistName}}</span>
       </div>
 
@@ -32,7 +32,8 @@
           <ul id="dropdown-alignment" *dropdownMenu class="dropdown-menu dropdown-menu-right shadow-sm"
               role="menu" aria-labelledby="button-alignment">
             <li role="menuitem">
-                <button *ngIf="track.type === 'songs'" 
+                <button *ngIf="track.type === 'songs'"
+                [disabled]="!isLoggeIn"
                 (click)="addToLibrary(track)" 
                 class="add-button btn btn-sm mx-1 mt-1">
                 <i-feather *ngIf="!isLibraryLoading" name="plus"></i-feather>
@@ -40,8 +41,16 @@
                 <span class="ml-1">add to library</span></button>
             </li>
             <li role="menuitem">
-                <button class="add-button btn btn-sm m-1" (click)="addToPlaylist(track)">
+                <button [disabled]="!isLoggedIn" class="add-button btn btn-sm m-1" (click)="addToPlaylist(track)">
                   <i-feather name="list" class="mr-1"></i-feather>add to playlist</button>
+            </li>
+            <li role="menuitem">
+                <button class="add-button btn btn-sm m-1" (click)="playNext(track)">
+                  <i-feather name="corner-up-right" class="mr-1"></i-feather>play next</button>
+            </li>
+            <li role="menuitem">
+                <button class="add-button btn btn-sm m-1" (click)="playLater(track)">
+                  <i-feather name="corner-down-right" class="mr-1"></i-feather>play later</button>
             </li>
           </ul>
         </div>

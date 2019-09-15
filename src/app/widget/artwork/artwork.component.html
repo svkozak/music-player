@@ -1,4 +1,9 @@
 
+
+<div *ngIf="isLoading"><img class="p-5 m-5" src="../../../assets/img/loader.svg" alt=""></div>
+    
+<div *ngIf="!isLoading">
+
     <div class="artwork-container shadow mb-3">
         <img *ngIf="selectedPlaylist && selectedPlaylist.attributes" [src]="artworkUrl ? (artworkUrl | albumArt : 600) : (selectedPlaylist.attributes.artwork.url | albumArt : 600)" class="artwork img-fluid rounded" alt="">
         <img *ngIf="selectedAlbum && selectedAlbum.attributes" [src]="selectedAlbum.attributes.artwork.url | albumArt : 600" class="artwork img-fluid rounded" alt="">
@@ -26,12 +31,13 @@
             <ul id="dropdown-alignment" *dropdownMenu class="dropdown-menu dropdown-menu-right shadow-sm" role="menu" aria-labelledby="button-alignment">
                 <li role="menuitem">
                     <button *ngIf="(selectedAlbum && selectedAlbum.type === 'albums') || (selectedPlaylist && selectedPlaylist.type === 'playlists')" 
-                      (click)="selectedAlbum ? addToLibrary(selectedAlbum) : addToLibrary(selectedPlaylist)" 
+                    [disabled]="!isLoggedIn"  
+                    (click)="selectedAlbum ? addToLibrary(selectedAlbum) : addToLibrary(selectedPlaylist)" 
                       class="add-button btn btn-sm mx-1 mt-1">
                       <i-feather name="plus"></i-feather>add to library</button>
                   </li>
             </ul>
         </div>
             
-
     </div>
+</div>

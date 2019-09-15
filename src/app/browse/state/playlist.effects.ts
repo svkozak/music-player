@@ -31,7 +31,7 @@ export class PlaylistEffects {
   loadPlaylist$ = this.actions$.pipe(
     ofType<playlistActions.LoadPlaylist>(PlaylistsActionTypes.LoadPlaylist),
     map(action => action.payload.id),
-    mergeMap(id => this.api.getPlaylist(id).pipe(
+    mergeMap(id => this.api.getCatalogPlaylist(id).pipe(
       map(playlist => new playlistActions.LoadPlaylistSuccess({playlist: playlist}))
     ))
   )

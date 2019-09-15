@@ -19,7 +19,6 @@ export class AlbumComponent implements OnInit {
   }
 
   onClick(album: Album) {
-    console.log(`Emitting album ${album.href}`);
     this.onSelectAlbum.emit(album);
   }
 

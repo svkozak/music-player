@@ -15,7 +15,10 @@ export enum PlayerActionTypes {
   PlayerNowPlaying = '[Player] Set now playing item',
   PlayerSetPlaybackState = '[Player] Set playback state',
   PlayerSetPlaybackDuration = '[Player] Set playback duration',
-  PlayerSetCurrentPlaybackTime = '[Player] Set playback time'
+  PlayerSetCurrentPlaybackTime = '[Player] Set playback time',
+
+  PlayerPlayNext = '[Player] Play next',
+  PlayerPlayLater = '[Player] Play later'
 }
 
 export class SetQueueAction implements Action {
@@ -72,6 +75,16 @@ export class SetPlaybackPositionAction implements Action {
   constructor(public payload: { time: any }) { }
 }
 
+export class PlayerPlayNext implements Action {
+  readonly type = PlayerActionTypes.PlayerPlayNext;
+  constructor(public payload: { track: any }) { }
+}
+
+export class PlayerPlayLater implements Action {
+  readonly type = PlayerActionTypes.PlayerPlayLater;
+  constructor(public payload: { track: any }) { }
+}
+
 
 
 export type PlayerActions = 
@@ -86,4 +99,7 @@ export type PlayerActions =
   NowPlayingAction | 
   SetPlaybackStateAction | 
   SetPlaybacTimeAction |
-  SetPlaybackPositionAction;
+  SetPlaybackPositionAction |
+  PlayerPlayNext |
+  PlayerPlayLater
+  ;

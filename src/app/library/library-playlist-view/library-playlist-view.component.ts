@@ -74,4 +74,12 @@ export class LibraryPlaylistViewComponent implements OnInit {
     this.bsModalRef = this.modalService.show(PlaylistsModalComponent, options);
   }
 
+  onPlayNext(track: Track) {
+    this.store.dispatch(new playerActions.PlayerPlayNext({track: track}))
+  }
+
+  onPlayLater(track: Track) {
+    this.store.dispatch(new playerActions.PlayerPlayLater({track: track}))
+  }
+
 }

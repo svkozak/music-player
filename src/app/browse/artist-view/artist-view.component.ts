@@ -42,7 +42,6 @@ export class ArtistViewComponent implements OnInit {
   }
 
   getArtistRelationships(event) {
-    console.log(event);
     this.api.getCatalogArtistRelatioship(this.selectedArtist.id, event)
   }
 

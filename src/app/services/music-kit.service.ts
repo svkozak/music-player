@@ -19,8 +19,8 @@ export class MusicKitService {
     MusicKit.configure({
       developerToken: TOKEN,
       app: {
-      name: 'Music Player',
-      icon: 'src/assets/img/no-art.svg',
+      name: 'iamplayer',
+      icon: '/src/assets/icons/icon-180x180.png',
       build: '1.0'
       },
       declarativeMarkup: true
@@ -45,7 +45,6 @@ export class MusicKitService {
       return from(this.musicKit.unauthorize()).pipe(
         switchMap(() => fromEvent(this.musicKit, MusicKit.Events.authorizationStatusDidChange).pipe(
           map((value: any) => {
-            console.log(value);
             return value.authorizationStatus === 1;
           })
         ))
