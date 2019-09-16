@@ -2,10 +2,10 @@ import { Track } from 'src/app/models/track.model';
 import { of } from 'rxjs';
 import { PlayerService } from './../services/player.service';
 import { PlaybackStates } from './../models/player.models';
-import { selectPlaybackState, selectPlaybackDuration, selectNowPlayingItem } from './../state/selectors/player.selectors';
+import { selectPlaybackState, selectPlaybackDuration, selectNowPlayingItem } from './state/player.selectors';
 import { Store } from '@ngrx/store';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import * as playerActions from '../state/actions/player.actions';
+import * as playerActions from './state/player.actions';
 import { Router } from '@angular/router';
 
 declare var MusicKit: any;

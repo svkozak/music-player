@@ -3,18 +3,18 @@ import { BrowseModule } from './browse/browse.module';
 import { WidgetModule } from './widget/widget.module';
 import { LibraryModule } from './library/library.module';
 import { LibraryEffects } from './library/state/library.effects';
-import { PlayerEffects } from './state/effects/player.effects';
+import { PlayerEffects } from './player/state/player.effects';
 import { AlbumEffects } from './browse/state/album.effects';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './state/reducers/index';
+import { reducers, metaReducers } from './state/index';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
-import { AppEffects } from './state/effects/app.effects';
+import { AppEffects } from './state/app.effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
@@ -27,12 +27,12 @@ import { FormsModule } from '@angular/forms';
 import { SearchEffects } from './search/state/search.effects';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AboutComponent } from './about/about.component';
+import { PlayerModule } from './player/player.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlayerComponent,
     AboutComponent
   ],
   imports: [
@@ -58,7 +58,8 @@ import { AboutComponent } from './about/about.component';
     SearchModule,
     AppRoutingModule,
     FormsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    PlayerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,8 +1,8 @@
-import { selectIsLoggedIn, selectToastOptiions } from './state/selectors/app.selectors';
+import { selectIsLoggedIn, selectToastOptiions } from './state/app.selectors';
 import { Store } from '@ngrx/store';
 import { Component, OnInit, HostListener } from '@angular/core';
 
-import * as appActions from './state/actions/app.actions';
+import * as appActions from './state/app.actions';
 import { Router, NavigationEnd } from '@angular/router';
 
 

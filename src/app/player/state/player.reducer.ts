@@ -1,6 +1,6 @@
-import { Album } from './../../models/album.model';
-import { PlaybackStates, MediaItem } from './../../models/player.models';
-import { PlayerActions, PlayerActionTypes, NowPlayingAction, SetPlaybackStateAction, SetQueueAction } from './../actions/player.actions';
+import { Album } from '../../models/album.model';
+import { PlaybackStates, MediaItem } from '../../models/player.models';
+import { PlayerActions, PlayerActionTypes, NowPlayingAction, SetPlaybackStateAction, SetQueueAction } from './player.actions';
 import { Action } from '@ngrx/store';
 
 // TODO add queue

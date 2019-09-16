@@ -7,7 +7,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { mergeMap, map, catchError, switchMap } from 'rxjs/operators';
 import { EMPTY, Observable, of } from 'rxjs';
 import * as libraryActions from './library.actions';
-import * as appActions from '../../state/actions/app.actions';
+import * as appActions from '../../state/app.actions';
 
 
 

@@ -10,13 +10,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map} from 'rxjs/operators';
 import { selectSelectedAlbum } from 'src/app/browse/state/album.selectors';
-import * as playerActions from '../../state/actions/player.actions';
+import * as playerActions from '../../player/state/player.actions';
 import * as libraryActions from '../../library/state/library.actions';
-import { selectNowPlayingItem, selectPlaybackState } from 'src/app/state/selectors/player.selectors';
+import { selectNowPlayingItem, selectPlaybackState } from 'src/app/player/state/player.selectors';
 import { selectIsLibraryLoading } from 'src/app/library/state/library.selectors';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { PlaylistsModalComponent } from 'src/app/widget/playlists-modal/playlists-modal.component';
-import { selectIsLoggedIn } from 'src/app/state/selectors/app.selectors';
+import { selectIsLoggedIn } from 'src/app/state/app.selectors';
 
 @Component({
   selector: 'app-album-view',

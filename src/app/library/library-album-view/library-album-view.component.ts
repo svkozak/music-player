@@ -1,4 +1,4 @@
-import { selectNowPlayingItem } from './../../state/selectors/player.selectors';
+import { selectNowPlayingItem } from '../../player/state/player.selectors';
 import { selectSelectedLibraryAlbum, selectIsLibraryLoading } from '../state/library.selectors';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlayerService } from 'src/app/services/player.service';
 import { map} from 'rxjs/operators';
 import * as libraryActions from '../state/library.actions';
-import * as playerActions from '../../state/actions/player.actions';
+import * as playerActions from '../../player/state/player.actions';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { PlaylistsModalComponent } from 'src/app/widget/playlists-modal/playlists-modal.component';
 

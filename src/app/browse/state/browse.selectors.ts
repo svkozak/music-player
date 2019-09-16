@@ -1,6 +1,6 @@
 import { activities } from './../../state/app.constants';
 import { BrowseState } from './browse.reducer';
-import { State } from '../../state/reducers/index';
+import { State } from '../../state/index';
 import { createSelector } from '@ngrx/store';
 
 

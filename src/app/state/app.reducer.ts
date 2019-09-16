@@ -1,5 +1,5 @@
-import { AppActionTypes, AppActions } from './../actions/app.actions';
-import { Album } from './../../models/album.model';
+import { AppActionTypes, AppActions } from './app.actions';
+import { Album } from './../models/album.model';
 
 
 export interface AppState {

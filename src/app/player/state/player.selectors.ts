@@ -1,5 +1,5 @@
-import { State } from './../reducers/index';
-import { PlayerState } from './../reducers/player.reducer';
+import { State } from '../../state/index';
+import { PlayerState } from './player.reducer';
 import { createSelector } from '@ngrx/store';
 
 

@@ -1,13 +1,13 @@
-import { PlayerActionTypes } from './../actions/player.actions';
+import { PlayerActionTypes } from '../../player/state/player.actions';
 import { Store, Action } from '@ngrx/store';
 import { PlayerService } from './../../services/player.service';
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { mergeMap, map, catchError, switchMap, takeLast, last } from 'rxjs/operators';
 import { EMPTY, Observable, of } from 'rxjs';
-import * as playerActions from '../actions/player.actions';
-import * as appActions from '../actions/app.actions';
-import { PlaybackStates } from 'src/app/models/player.models';
+import * as playerActions from './player.actions';
+import * as appActions from '../../state/app.actions';
+import { PlaybackStates } from '../../models/player.models';
 
 
 @Injectable()

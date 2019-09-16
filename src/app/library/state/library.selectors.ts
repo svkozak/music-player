@@ -1,4 +1,4 @@
-import { State } from '../../state/reducers/index';
+import { State } from '../../state/index';
 import { createSelector } from '@ngrx/store';
 import { LibraryState } from './library.reducer';
 

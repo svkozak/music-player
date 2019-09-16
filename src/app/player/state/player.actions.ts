@@ -1,5 +1,5 @@
-import { Album } from './../../models/album.model';
-import { PlaybackStates, MediaItem } from './../../models/player.models';
+import { Album } from '../../models/album.model';
+import { PlaybackStates, MediaItem } from '../../models/player.models';
 import { Action } from '@ngrx/store';
 import { Track } from 'src/app/models/track.model';
 

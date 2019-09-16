@@ -1,6 +1,6 @@
-import { SearchState, searchReducer } from './../../search/state/search.reducer';
-import { BrowseState, browseReducer } from './../../browse/state/browse.reducer';
-import { ForYouState } from './../../for-you/state/for-you.reducer';
+import { SearchState, searchReducer } from '../search/state/search.reducer';
+import { BrowseState, browseReducer } from '../browse/state/browse.reducer';
+import { ForYouState } from '../for-you/state/for-you.reducer';
 import {
   ActionReducer,
   ActionReducerMap,
@@ -9,11 +9,11 @@ import {
   MetaReducer
 } from '@ngrx/store';
 import { AppState, appReducer } from './app.reducer';
-import { environment } from '../../../environments/environment';
-import { albumReducer, AlbumsState } from '../../browse/state/album.reducer';
-import { playlistReducer, PlaylistsState } from '../../browse/state/playlist.reducer';
-import { PlayerState, playerReducer } from './player.reducer';
-import { libraryReducer, LibraryState } from '../../library/state/library.reducer';
+import { environment } from '../../environments/environment';
+import { albumReducer, AlbumsState } from '../browse/state/album.reducer';
+import { playlistReducer, PlaylistsState } from '../browse/state/playlist.reducer';
+import { PlayerState, playerReducer } from '../player/state/player.reducer';
+import { libraryReducer, LibraryState } from '../library/state/library.reducer';
 import { forYouReducer } from 'src/app/for-you/state/for-you.reducer';
 
 export interface State {

@@ -1,6 +1,6 @@
 import { Playlist } from './../../models/playlist.model';
-import * as playerActions from '../../state/actions/player.actions';
-import { selectNowPlayingItem } from '../../state/selectors/player.selectors';
+import * as playerActions from '../../player/state/player.actions';
+import { selectNowPlayingItem } from '../../player/state/player.selectors';
 import { selectSelectedPlaylist, selectIsLoadingPlaylists } from '../state/playlist.selector';
 import { LoadPlaylist } from '../state/playlists.actions';
 import { PlayerService } from '../../services/player.service';
@@ -13,7 +13,7 @@ import { selectIsLibraryLoading } from 'src/app/library/state/library.selectors'
 import * as libraryActions from '../../library/state/library.actions';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { PlaylistsModalComponent } from 'src/app/widget/playlists-modal/playlists-modal.component';
-import { selectIsLoggedIn } from 'src/app/state/selectors/app.selectors';
+import { selectIsLoggedIn } from 'src/app/state/app.selectors';
 
 @Component({
   selector: 'app-playlist-view',

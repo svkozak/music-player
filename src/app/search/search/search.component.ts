@@ -1,4 +1,4 @@
-import { selectNowPlayingItem } from './../../state/selectors/player.selectors';
+import { selectNowPlayingItem } from '../../player/state/player.selectors';
 import { selectSelectedLibraryArtist, selectIsLibraryLoading } from './../../library/state/library.selectors';
 import { Router } from '@angular/router';
 import { Track } from 'src/app/models/track.model';
@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import * as searchActions from '../state/search.actions';
 import * as libraryActions from '../../library/state/library.actions';
-import * as playerActions from '../../state/actions/player.actions';
+import * as playerActions from '../../player/state/player.actions';
 import { Playlist } from 'src/app/models/playlist.model';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { PlaylistsModalComponent } from 'src/app/widget/playlists-modal/playlists-modal.component';
@@ -21,6 +21,7 @@ import { PlaylistsModalComponent } from 'src/app/widget/playlists-modal/playlist
 })
 export class SearchComponent implements OnInit {
 
+  isLoggedIn: boolean;
   isLoading: boolean;
   isLibraryLoading: boolean;
   searchCatalog: boolean = true;
@@ -41,7 +42,9 @@ export class SearchComponent implements OnInit {
 
   searchTerm = '';
 
-  constructor(private store: Store<any>, private router: Router, private modalService: BsModalService) {
+  constructor(private store: Store<any>, private router: Router, private modalService: BsModalService) {}
+
+  ngOnInit() {
     this.store.select(selectIsSearchLoading).subscribe(isLoading => this.isLoading = isLoading);
     this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLibraryLoading = isLoading);
     this.store.select(selectSearchResults).subscribe(results => {
@@ -62,10 +65,6 @@ export class SearchComponent implements OnInit {
         this.nowPlayingTrackId = item.id;
       }
     });
-  }
-
-  ngOnInit() {
-    
   }
 
   ngOnDestroy() {

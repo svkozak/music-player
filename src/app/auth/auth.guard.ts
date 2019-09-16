@@ -1,4 +1,4 @@
-import { selectIsLoggedIn } from './../state/selectors/app.selectors';
+import { selectIsLoggedIn } from '../state/app.selectors';
 import { Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';

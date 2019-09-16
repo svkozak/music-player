@@ -4,7 +4,7 @@ import { Playlist } from './../../models/playlist.model';
 import { Album } from './../../models/album.model';
 import { Track } from './../../models/track.model';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { selectIsLoggedIn } from 'src/app/state/selectors/app.selectors';
+import { selectIsLoggedIn } from 'src/app/state/app.selectors';
 
 @Component({
   selector: 'app-track',

@@ -1,5 +1,5 @@
-import { State } from './../reducers/index';
-import { AppState } from './../reducers/app.reducer';
+import { State } from './index';
+import { AppState } from './app.reducer';
 import { createSelector } from '@ngrx/store';
 
 

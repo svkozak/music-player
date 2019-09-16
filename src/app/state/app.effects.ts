@@ -1,11 +1,11 @@
-import { MusicKitService } from './../../services/music-kit.service';
-import { ApiServiceService } from './../../services/api-service.service';
-import { AppActionTypes, AppLogInSuccess, AppCheckAuthorizationSuccess } from './../actions/app.actions';
+import { MusicKitService } from '../services/music-kit.service';
+import { ApiServiceService } from '../services/api-service.service';
+import { AppActionTypes } from './app.actions';
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { mergeMap, map, catchError, switchMap } from 'rxjs/operators';
 import { EMPTY, Observable } from 'rxjs';
-import * as appActions from '../actions/app.actions';
+import * as appActions from './app.actions';
 
 
 
