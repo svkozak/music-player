@@ -31,11 +31,9 @@ export class PlayerComponent implements OnInit {
     this.store.select(selectNowPlayingItem).subscribe(item => this.nowPlayingItem = item);
     this.store.select(selectPlaybackState).subscribe(state => this.playbackState = state);
     this.store.select(selectPlaybackDuration).subscribe(duration => this.currentPlaybackDuration = duration);
-
-    this.playerService.getCurrentPlaybackTime().subscribe(time => {
-      this.currentPlaybackTime = time;
-    });
+    this.playerService.getCurrentPlaybackTime().subscribe(time => this.currentPlaybackTime = time);
     this.playerService.getCurrentPlaybackTimeRemaining().subscribe(timeRemaining => this.currentPlaybackTimeRemaining = timeRemaining);
+    this.playerService.mediaItemDidChange$.subscribe(() => this.store.dispatch(new playerActions.PlayerGetNowPlaying()));
   }
 
   skipToPrevious(){

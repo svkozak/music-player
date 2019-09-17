@@ -13,6 +13,7 @@ export enum PlayerActionTypes {
   PlayerSkipToPrevious = '[Player] Skip to previous',
   PlayerSeekToTime = '[Player] Seek to time',
   PlayerNowPlaying = '[Player] Set now playing item',
+  PlayerGetNowPlaying = '[Player] Get now playing item',
   PlayerSetPlaybackState = '[Player] Set playback state',
   PlayerSetPlaybackDuration = '[Player] Set playback duration',
   PlayerSetCurrentPlaybackTime = '[Player] Set playback time',
@@ -60,6 +61,11 @@ export class NowPlayingAction implements Action {
   constructor(public payload: { nowPlayingItem: MediaItem }) { }
 }
 
+export class PlayerGetNowPlaying implements Action {
+  readonly type = PlayerActionTypes.PlayerGetNowPlaying;
+}
+
+
 export class SetPlaybackStateAction implements Action {
   readonly type = PlayerActionTypes.PlayerSetPlaybackState;
   constructor(public payload: { playbackState: PlaybackStates }) { }
@@ -96,7 +102,8 @@ export type PlayerActions =
   SkipToNextAction | 
   SkipToPreviousAction | 
   SeekToTimeAction | 
-  NowPlayingAction | 
+  NowPlayingAction |
+  PlayerGetNowPlaying |
   SetPlaybackStateAction | 
   SetPlaybacTimeAction |
   SetPlaybackPositionAction |

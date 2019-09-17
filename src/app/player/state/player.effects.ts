@@ -29,7 +29,8 @@ export class PlayerEffects {
   play$ = this.actions$.pipe(
     ofType(PlayerActionTypes.PlayerPlay),
     mergeMap(() => this.playerService.play()),
-    switchMap(() => this.setNowPlayingItem())
+    // switchMap(() => this.setNowPlayingItem())
+    switchMap(() => of(new playerActions.PlayerGetNowPlaying()))
   )
 
   @Effect()
@@ -69,7 +70,7 @@ export class PlayerEffects {
       switchMap(() => of(new appActions.AppShowToast({type: 'success'})))
   )
 
-  // Effect to set playback state, listens to player actions and returns a playback state
+  // Effect to set playback state
   @Effect()
   playbackState$ = this.actions$.pipe(
     ofType(
@@ -84,6 +85,14 @@ export class PlayerEffects {
     ofType(
       PlayerActionTypes.PlayerNowPlaying),
     switchMap(() => this.setPlaybackDuration())
+  )
+
+  @Effect()
+  getNowPlaying$ = this.actions$.pipe(
+    ofType(PlayerActionTypes.PlayerGetNowPlaying),
+    mergeMap(() => this.playerService.getNowPlayingItem().pipe(
+      map(item => new playerActions.NowPlayingAction({nowPlayingItem: item}))
+    ))
   )
 
   

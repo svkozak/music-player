@@ -52,6 +52,12 @@ export function playerReducer(state: PlayerState = initialState, action: PlayerA
       }
     }
 
+    case PlayerActionTypes.PlayerGetNowPlaying: {
+      return {
+        ...state
+      }
+    }
+
     case PlayerActionTypes.PlayerSetPlaybackState: {
       return {
         ...state,

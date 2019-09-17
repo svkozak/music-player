@@ -1,6 +1,6 @@
 import { Album } from './../models/album.model';
 import { PlaybackStates } from './../models/player.models';
-import { map, catchError, mergeMap, switchMap, withLatestFrom, last, delay, debounceTime } from 'rxjs/operators';
+import { map, catchError, mergeMap, switchMap, debounceTime } from 'rxjs/operators';
 import { MusicKitService } from './music-kit.service';
 import { Injectable, EventEmitter } from '@angular/core';
 import { from, Observable, EMPTY, fromEvent, of } from 'rxjs';
@@ -15,6 +15,7 @@ export class PlayerService {
 
   currentState$;
   playbackState$;
+  mediaItemDidChange$: Observable<any>;
   player;
 
   constructor(
@@ -22,6 +23,7 @@ export class PlayerService {
   ) { 
     this.player = this.musicKitService.musicKit.player;
     this.playbackState$ = this.getPlaybackState();
+    this.mediaItemDidChange$ = fromEvent(this.musicKitService.musicKit, MusicKit.Events.mediaItemDidChange);
   }
 
 
@@ -49,7 +51,6 @@ export class PlayerService {
   skipToPrevious(): Observable<any> {
     this.player.skipToPreviousItem();
     return this.getNowPlayingItemWhenChanged();
-    // return from(this.player.skipToNextItem()).pipe(switchMap(() => this.getNowPlayingItem()));
   }
 
   setQueue(tracks: Track[]): Observable<any> {
