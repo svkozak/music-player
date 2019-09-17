@@ -19,7 +19,13 @@
     [autoFocus]="false"
     [fixedInViewport]="true"
     [fixedTopGap]="60">
-      <app-sidebar (toggle)="sidenav.toggle()" [closeOnClick]="true" [isLoggedIn]="isLoggedIn"></app-sidebar>
+      <app-sidebar 
+      (toggle)="sidenav.toggle()"
+      (signIn)="onClickLogin()"
+      (signOut)="onClickLogOut()"
+      [closeOnClick]="true" 
+      [isLoggedIn]="isLoggedIn">
+      </app-sidebar>
     </mat-sidenav>
   
     <mat-sidenav-content>

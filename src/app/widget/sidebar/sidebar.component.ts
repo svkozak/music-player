@@ -11,6 +11,8 @@ export class SidebarComponent implements OnInit {
   @Input() closeOnClick: boolean;
   @Input() isLoggedIn: boolean;
   @Output() toggle: EventEmitter<boolean> = new EventEmitter();
+  @Output() signIn: EventEmitter<any> = new EventEmitter();
+  @Output() signOut: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 

@@ -12,19 +12,13 @@
     <div *ngIf="!isLoggedIn" class="small my-2">Sign in to Apple Music to see your library and personal recommendations.</div>
 
     <div class="w-100">
-      <button class="btn  btn-sm btn-outline-success mb-2" id="apple-music-authorize"></button>
-      <button class="btn btn-sm btn-outline-danger mb-2" id="apple-music-unauthorize"></button>
+      <button *ngIf="!isLoggedIn" (click)="signIn.emit()" class="btn btn-sm btn-outline-success mb-2">Sign in to Apple Music</button>
+      <button *ngIf="isLoggedIn" (click)="signOut.emit()" class="btn btn-sm btn-outline-danger mb-2" >Sign out</button>
     </div>
     <!-- <button class="btn btn-sm btn-link p-0 about" (click)="onClick()" routerLink="/about">About the app</button> -->
     <button class="btn btn-sm btn-outline-secondary" (click)="onClick()" routerLink="/about">About the app</button>
 
   </div>
-
-
-  
-
-  <!-- <button *ngIf="!isLoggedIn" class="btn btn-sm btn-outline-secondary" (click)="onClickLogin()"><i-feather name="log-in"></i-feather></button>
-  <button *ngIf="isLoggedIn" class="btn btn-sm btn-outline-secondary" (click)="onClickLogOut()"><i-feather name="log-out"></i-feather></button> -->
 
   
 

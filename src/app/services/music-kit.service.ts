@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { from , of, fromEvent, Observable } from 'rxjs';
-import { mergeMap, map, switchMap } from 'rxjs/operators';
+import { from , of, fromEvent, Observable, combineLatest } from 'rxjs';
+import { mergeMap, map, switchMap, withLatestFrom, merge } from 'rxjs/operators';
 import { TOKEN } from 'src/secret/token';
 
 declare var MusicKit: any;
@@ -11,6 +11,8 @@ declare var MusicKit: any;
 })
 export class MusicKitService {
 
+  authorizationStatus$: Observable<any>;
+  isAuthorized$: Observable<any>;
   musicKit: any;
   // isAuthorized: boolean = false;
 
@@ -27,7 +29,6 @@ export class MusicKitService {
     });
 
     this.musicKit = MusicKit.getInstance();
-    // this.isAuthorized = this.musicKit.isAuthorized;
    }
 
     isUserAuthorized(): Observable<any> {

@@ -19,7 +19,9 @@ export class AppEffects {
     ofType(AppActionTypes.AppCheckAuthorization),
     mergeMap(() => this.musicKitService.isUserAuthorized()
       .pipe(
-        map(isLoggedIn => new appActions.AppCheckAuthorizationSuccess({isLoggedIn: isLoggedIn})),
+        map(isLoggedIn => {
+          return new appActions.AppCheckAuthorizationSuccess({isLoggedIn: isLoggedIn})
+        }),
         catchError(() => EMPTY)
     ))
   )
