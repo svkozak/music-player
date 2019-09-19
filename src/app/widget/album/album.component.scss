@@ -23,3 +23,8 @@
   text-overflow: ellipsis;
 }
 
+@media (prefers-color-scheme: dark) {
+  .card-img-top {
+    background-color: $lead !important;
+  }
+}

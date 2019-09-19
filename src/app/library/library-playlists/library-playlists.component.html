@@ -19,7 +19,7 @@
           <div *ngFor="let playlist of playlists">
               <app-playlist
               [playlist]='playlist'
-              [imgSrc]="playlist.attributes.artwork.url | albumArt : 600"
+              [imgSrc]="playlist.attributes.artwork ? (playlist.attributes.artwork.url | albumArt : 600) : './assets/img/no-art.svg'"
               (onSelectPlaylist)="onPlaylistSelected(playlist)">
               </app-playlist>
           </div>

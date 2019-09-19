@@ -6,7 +6,7 @@
 
         <div class="col mb-3">
 
-            <div *ngIf="!isLoading && activity" class="card text-white overflow-hidden">
+            <div *ngIf="!isLoading && activity" class="card activity-card text-white overflow-hidden shadow">
                 <img *ngIf="activity && activity.attributes" [src]="activity.attributes.artwork.url | albumArt : 1000" class="card-img img-fluid" alt="...">
                 <div class="card-img-overlay">
                   <h2 class="card-title">{{activity.attributes.name}}</h2>

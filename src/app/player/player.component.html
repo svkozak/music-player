@@ -6,7 +6,7 @@
 
       <div class="player-artwork rounded shadow-sm ml-3" (click)="openAlbum()">
         <img *ngIf="nowPlayingItem && nowPlayingItem.attributes.artwork" class="player-artwork rounded" [src]="nowPlayingItem.attributes.artwork.url | albumArt : 50" alt="">
-        <img *ngIf="!nowPlayingItem || !nowPlayingItem.attributes.artwork" class="player-artwork rounded" src="../assets/img/no-art.svg" alt="">
+        <img *ngIf="!nowPlayingItem || !nowPlayingItem.attributes.artwork" class="no-art player-artwork rounded" src="../assets/img/no-art.svg" alt="">
       </div>
 
       <div class="track-id mx-3 align-self-center" *ngIf="nowPlayingItem">

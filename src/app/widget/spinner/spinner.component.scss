@@ -13,3 +13,12 @@
 .spinner-border {
   color: rgba($color: $body-color-light, $alpha: 0.8);
 }
+
+@media (prefers-color-scheme: dark) {
+  .new-spinner {
+    background-color: rgba($color: $lead, $alpha: 0.8);
+  }
+  .spinner-border {
+    color: $light !important;
+  }
+}

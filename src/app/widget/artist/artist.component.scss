@@ -20,3 +20,12 @@
   text-overflow: ellipsis;
 }
 
+@media (prefers-color-scheme: dark) {
+  .artist {
+    background-color: $lead !important;
+  }
+  .artist-image {
+    filter: invert(10%);
+  }
+}
+

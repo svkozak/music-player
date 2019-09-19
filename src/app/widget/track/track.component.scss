@@ -46,3 +46,21 @@
   width: 1rem;
   height: 1rem;
 }
+
+@media (prefers-color-scheme: dark) {
+  .track {
+    background-color: black !important;
+  }
+  .track:active {
+    background-color: $lead !important;
+  }
+  .dropdown-menu {
+    background-color: $lead !important;
+  }
+  .add-button {
+    color: $light !important;
+  }
+  .btn.drop {
+    color: $cyan !important;
+  }
+}

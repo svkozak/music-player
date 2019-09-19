@@ -8,6 +8,7 @@ mat-sidenav {
     opacity: 0.98;
     width: 260px;
     max-height: 340px;
+    background-color: $light;
 }
 
 .logo {
@@ -38,5 +39,9 @@ mat-sidenav {
 
 a.disabled, a.disabled:hover, a.disabled:active {
     color: lightgray;
+}
+
+@media (prefers-color-scheme: dark) {
+
 }
 

@@ -35,6 +35,11 @@ export class AppComponent implements OnInit {
         ga('send', 'pageview');
       }
     });
+
+    // TODO
+    if (window.matchMedia('(prefers-color-scheme:dark)').matches) {
+      console.log('🎉 Dark mode is on');
+    } else { console.log('Light mode is on')}
   }
 
   @HostListener('window:scroll', ['$event'])

@@ -22,3 +22,26 @@
   height: 1rem;
   width: 1rem;
 }
+
+@media (prefers-color-scheme: dark) {
+
+  .btn.play-all {
+    color: $light !important;
+  }
+  .btn.play-all:hover {
+    background-color: black !important;
+    color: $cyan !important;
+  }
+  .btn.play-all:active, .dropdown-menu, .btn.drop:hover{
+    background-color: $lead !important;
+  }
+
+  .btn.drop {
+    color: $cyan !important;
+  }
+
+  .add-button {
+    color: $light !important;
+  }
+
+}

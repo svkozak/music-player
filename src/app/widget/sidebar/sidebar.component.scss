@@ -23,7 +23,17 @@
   color: $gray-300 !important;
 }
 
-.about {
-  color: $gray-500 !important;
+@media (prefers-color-scheme: dark) {
+  .btn-light {
+    background-color: $lead !important;
+    color: $light;
+  }
+  .btn-light.active {
+    background-color: $lead !important;
+  }
+  .about {
+    color: $light;
+    border-color: $light;
+  }
 }
 
