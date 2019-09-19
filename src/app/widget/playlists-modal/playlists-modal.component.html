@@ -11,14 +11,14 @@
     <div *ngIf="libraryPlaylists.length">
       <button
       (click)="addToPlaylist(playlist, track)"
-      class="btn btn-outline-light text-primary text-left p-2 mr-2 mb-2 shadow-sm w-100" 
+      class="btn btn-outline-light text-info text-left p-2 mr-2 mb-2 shadow-sm w-100" 
       *ngFor="let playlist of libraryPlaylists">
         <i-feather name="list" class="mr-1"></i-feather> {{playlist.attributes.name}}
       </button>
-      <button class="btn btn-outline-primary mt-3 shadow-sm w-100 mt-2" (click)="loadMore()">Load more</button>
+      <button class="btn more btn-info mt-3 shadow-sm w-100 mt-2" (click)="loadMore()">Load more</button>
     </div>
 </div>
 
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">cancel</button>
+    <button type="button" class="btn cancel btn-default" (click)="bsModalRef.hide()">cancel</button>
 </div>

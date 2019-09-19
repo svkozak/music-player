@@ -8,3 +8,29 @@
   max-height: 20rem;
   overflow: scroll;
 }
+
+@media (prefers-color-scheme: dark) {
+
+  .modal-header, .modal-body, .modal-footer {
+    background-color: $lead !important;
+    color: $light !important;
+  }
+  
+  .btn {
+    color: $light !important;
+  }
+
+  .btn:hover, .btn:active {
+    background-color: $lead !important;
+    color: $cyan !important;
+  }
+
+  .more {
+    border-color: $cyan !important;
+  }
+
+  .cancel, .close {
+    color: $light !important;
+  }
+
+}

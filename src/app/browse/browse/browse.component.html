@@ -1,6 +1,6 @@
 <app-spinner [isLoading]="isLoadingAlbums || isLoadingPlaylists"></app-spinner>
 
-<div class="col">
+<div class="col pb-3">
         
     <div class="single-scroller mb-3 py-2" *ngIf="!isLoadingAlbums">
         <app-activity *ngFor="let activity of activities"

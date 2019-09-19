@@ -21,3 +21,9 @@ a.active .btn-browse {
 .btn-browse:active {
   transform: scale(0.95);
 }
+
+@media (prefers-color-scheme: dark) {
+  .nav-item a.nav-link.active {
+    color: $cyan !important;
+  }
+}

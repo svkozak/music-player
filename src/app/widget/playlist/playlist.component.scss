@@ -11,6 +11,17 @@
   background: url(../../../assets/img/loader.svg) center no-repeat;
 }
 
+.card.compact {
+  min-width: 20rem !important;
+  max-width: 28rem !important;
+  max-height: 6rem !important;
+}
+
+.compact-card-img-top {
+  max-width: 4rem !important;
+  max-height: 4rem !important;
+}
+
 .card-title, .card-title:hover {
   color: $body-color;
   font-weight: $font-weight-bold;
@@ -18,6 +29,10 @@
 
 .card-body {
   min-height: 4rem;
+}
+
+.card-body.compact {
+  height: 4rem !important;
 }
 
 .card-body, .card-text {
@@ -28,7 +43,11 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .card-img-top {
+  .card-img-top, .compact-card-img-top {
     background-color: $lead !important;
   }
+  .row {
+    background-color: $lead !important;
+  }
+  
 }

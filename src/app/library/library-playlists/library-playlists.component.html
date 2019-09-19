@@ -1,6 +1,6 @@
 <app-spinner [isLoading]="isLoading"></app-spinner>
 
-<div class="col">
+<div class="col pb-3">
 
     <app-library-nav></app-library-nav>
   
@@ -18,10 +18,13 @@
       <div *ngIf="playlists" class="scroller my-1 py-3" >                 
           <div *ngFor="let playlist of playlists">
               <app-playlist
+              [compact]="true"
               [playlist]='playlist'
               [imgSrc]="playlist.attributes.artwork ? (playlist.attributes.artwork.url | albumArt : 600) : './assets/img/no-art.svg'"
               (onSelectPlaylist)="onPlaylistSelected(playlist)">
               </app-playlist>
           </div>
       </div>
+
+      <p class="small">Note: iTunes smart playlists are not supported by Apple Music API and will appear empty.</p>
   </div>

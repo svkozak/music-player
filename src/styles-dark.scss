@@ -43,9 +43,22 @@ $lead: #212121;
     color: $light !important;
   }   
 
-  .btn-browse:hover {
+  a.active {
+    color: $cyan !important;
+  }
+
+  .btn-browse {
     background-color: black !important;
     color: $light !important;
+  }
+
+  .btn-browse:hover, .btn-browse:active, .btn-browse.active {
+    background-color: black !important;
+    color: $cyan !important;
+  }
+
+  .nav-link.active .btn-browse {
+    color: $cyan !important;
   }
 
   .logo {

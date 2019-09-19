@@ -1,7 +1,22 @@
-<div class="card mr-3 mb-3 shadow-sm">
+<div *ngIf="!compact" class="card mr-3 mb-3 shadow-sm">
     <div class="card-img-top" (click)="onClick(playlist)"><img [src]="imgSrc" class="card-img-top" alt="..."></div>
     <div class="card-body">
         <a (click)="onClick(playlist)" class="card-title">{{playlist.attributes.name}}</a>
         <p class="card-text">{{playlist.attributes.curatorName}}</p>
+    </div>
+</div>
+
+<!-- show compact playlists in library -->
+<div *ngIf="compact" (click)="onClick(playlist)" class="card compact mr-4 mb-3 shadow-sm rounded">
+    <div class="row no-gutters">
+        <div class="col-md-4 compact-card-img-top">
+            <img [src]="imgSrc" class="compact-card-img-top" alt="...">
+        </div>
+          <div class="col-md-8">
+            <div class="card-body compact">
+                <a (click)="onClick(playlist)" class="card-title">{{playlist.attributes.name}}</a>
+                <p class="card-text">{{playlist.attributes.curatorName}}</p>
+            </div>
+        </div>
     </div>
 </div>

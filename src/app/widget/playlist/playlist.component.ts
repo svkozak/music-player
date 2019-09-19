@@ -10,6 +10,7 @@ export class PlaylistComponent implements OnInit {
 
   @Input() playlist: Playlist;
   @Input() imgSrc: string;
+  @Input() compact?: boolean;
 
   @Output() onSelectPlaylist: EventEmitter<any> = new EventEmitter();
 
