@@ -122,16 +122,6 @@ h2 {
   box-shadow: 0 !important;
 }
 
-.fixed-bottom {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1030;
-  padding-top: 1rem;
-  padding-right: env(safe-area-inset-right, 50px);
-  padding-bottom: env(safe-area-inset-bottom, 50px) ;
-  padding-left: env(safe-area-inset-left, 50px); 
-}
+
 
 $nav-color: rgba(239, 240, 245, 0.95);

@@ -56,7 +56,8 @@ export class LibraryEffects {
     ofType<libraryActions.LoadLibraryPlaylist>(LibraryActionTypes.LoadLibraryPlaylist),
     map(action => action.payload.id),
     mergeMap(id => this.api.getLibraryPlaylist(id).pipe(
-      map(playlist => new libraryActions.LoadLibraryPlaylistSuccess({playlist: playlist}))
+      map(playlist => new libraryActions.LoadLibraryPlaylistSuccess({playlist: playlist})),
+      catchError(err => of(new libraryActions.LoadLibraryPlaylistFailure({error: err})))
     ))
   )
   
@@ -128,7 +129,11 @@ export class LibraryEffects {
 
   @Effect()
   errorToast$ = this.actions$.pipe(
-    ofType(LibraryActionTypes.AddToLibraryFailure, LibraryActionTypes.AddToPlaylistFailure),
+    ofType(
+      LibraryActionTypes.AddToLibraryFailure, 
+      LibraryActionTypes.AddToPlaylistFailure,
+      LibraryActionTypes.LoadLibraryPlaylistFailure
+      ),
     map(() => new appActions.AppShowToast({type: 'danger'}))
   )
 
