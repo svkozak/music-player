@@ -3,9 +3,9 @@
   <div class="side d-flex align-items-start flex-column h-100">
 
     <div class="w-100 mb-auto">
-        <button (click)="onClick()" class="btn btn-light w-100 text-left mb-2" routerLink="/browse" routerLinkActive="active"><i-feather name="globe"></i-feather>browse</button>
         <button *ngIf="isLoggedIn" (click)="onClick()" class="btn btn-light w-100 text-left mb-2" [disabled]="!isLoggedIn"  routerLink="/for-you" routerLinkActive="active"><i-feather name="heart"></i-feather>for you</button>
         <button *ngIf="isLoggedIn" (click)="onClick()" class="btn btn-light w-100 text-left mb-2" [disabled]="!isLoggedIn"  routerLink="/library" routerLinkActive="active"><i-feather name="headphones"></i-feather>library</button>
+        <button (click)="onClick()" class="btn btn-light w-100 text-left mb-2" routerLink="/browse" routerLinkActive="active"><i-feather name="globe"></i-feather>browse</button>
         <button (click)="onClick()" class="btn btn-light w-100 text-left mb-2" routerLink="/search" routerLinkActive="active"><i-feather name="search"></i-feather>search</button>
     </div>
 

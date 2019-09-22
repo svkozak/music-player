@@ -1,5 +1,3 @@
-<app-spinner [isLoading]="isLoading"></app-spinner>
-
 <div class="col pb-3">
 
     <app-library-nav></app-library-nav>
@@ -26,7 +24,7 @@
             
                 <app-playlist *ngIf="item.type === 'library-playlists'"
                 [playlist]="item"
-                [imgSrc]="item.attributes.artwork.url | albumArt : 600"
+                [imgSrc]="item.attributes.artwork ? (item.attributes.artwork.url | albumArt : 600) : './assets/img/no-art.svg'"
                 (onSelectPlaylist)="onPlaylistSelected(item)">
                 </app-playlist>
         </div>

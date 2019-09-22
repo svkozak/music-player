@@ -31,7 +31,6 @@ export class TrackComponent implements OnInit {
   constructor(private store: Store<any>) { }
 
   ngOnInit() {
-    this.store.select(selectIsLoggedIn).subscribe(isLoggedIn => this.isLoggedIn = isLoggedIn);
   }
 
   onClick(track: Track) {

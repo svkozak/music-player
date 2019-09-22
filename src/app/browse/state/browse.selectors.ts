@@ -30,3 +30,13 @@ export const selectActivityPlaylists = createSelector(
   selectBrowseState,
   (state: BrowseState) => state.activityPlaylists
 )
+
+export const selectGenres = createSelector(
+  selectBrowseState,
+  (state: BrowseState) => state.genres
+)
+
+export const selectSelectedGenre = createSelector(
+  selectBrowseState,
+  (state: BrowseState) => state.selectedGenre
+)

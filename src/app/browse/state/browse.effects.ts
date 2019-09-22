@@ -1,5 +1,5 @@
 import { activities } from './../../state/app.constants';
-import { BrowseActionTypes } from './browse.actions';
+import { BrowseActionTypes, LoadCatalogGenres } from './browse.actions';
 import { ApiServiceService } from '../../services/api-service.service';
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
@@ -50,14 +50,22 @@ export class BrowseEffects {
     ))
   )
 
-  // @Effect()
-  // loadActivityPlaylists$ = this.actions$.pipe(
-  //   ofType<browseActions.LoadActivityPlaylists>(BrowseActionTypes.LoadActivityPlaylists),
-  //   map(action => action.payload.playlists.map(playlist => playlist.id)),
-  //   mergeMap(ids => this.api.getCatalogPlaylists(ids).pipe(
-  //     map(playlists => new browseActions.LoadActivityPlaylistsSuccess({ playlists: playlists }))
-  //   ))
-  // )
+  @Effect()
+  loadGenres$ = this.actions$.pipe(
+    ofType<browseActions.LoadCatalogGenres>(BrowseActionTypes.LoadCatalogGenres),
+    mergeMap(() => this.api.getCatalogGenres().pipe(
+      map(genres => new browseActions.LoadCatalogGenresSuccess({ genres: genres }))
+    ))
+  )
+
+  @Effect()
+  loadGenre$ = this.actions$.pipe(
+    ofType<browseActions.LoadCatalogGenre>(BrowseActionTypes.LoadCatalogGenre),
+    map(action => action.payload.id),
+    mergeMap(id => this.api.getCatalogCharts(id, 20).pipe(
+      map(response => new browseActions.LoadCatalogGenreSuccess({ selectedGenre: response.results }))
+    ))
+  )
   
 
   

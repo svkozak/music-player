@@ -7,3 +7,11 @@
 .single-scroller {
     @include single-scroller;
 }
+
+@media (prefers-color-scheme: dark) {
+
+    .custom-select {
+        background-color: $lead !important;
+    }
+
+}

@@ -13,6 +13,7 @@ import * as playerActions from '../../player/state/player.actions';
 import { Playlist } from 'src/app/models/playlist.model';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { PlaylistsModalComponent } from 'src/app/widget/playlists-modal/playlists-modal.component';
+import { selectIsLoggedIn } from 'src/app/state/app.selectors';
 
 @Component({
   selector: 'app-search',
@@ -45,6 +46,7 @@ export class SearchComponent implements OnInit {
   constructor(private store: Store<any>, private router: Router, private modalService: BsModalService) {}
 
   ngOnInit() {
+    this.store.select(selectIsLoggedIn).subscribe(isLoggedIn => this.isLoggedIn = isLoggedIn);
     this.store.select(selectIsSearchLoading).subscribe(isLoading => this.isLoading = isLoading);
     this.store.select(selectIsLibraryLoading).subscribe(isLoading => this.isLibraryLoading = isLoading);
     this.store.select(selectSearchResults).subscribe(results => {

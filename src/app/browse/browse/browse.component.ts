@@ -1,7 +1,8 @@
+import { Genre } from './../../models/genre.model';
 import { activities } from './../../state/app.constants';
-import { selectActivities } from './../state/browse.selectors';
+import { selectActivities, selectGenres, selectIsBrowseLoading } from './../state/browse.selectors';
 import { Activity } from './../../models/activity.model';
-import { LoadActivities } from './../state/browse.actions';
+import { LoadActivities, LoadCatalogGenres } from './../state/browse.actions';
 import { selectIsLoadingPlaylists, selectPlaylists } from '../state/playlist.selector';
 import { selectAlbums, selectIsLoading } from '../state/album.selectors';
 import { LoadAlbums, LoadAlbum } from '../state/album.actions';
@@ -22,9 +23,11 @@ export class BrowseComponent implements OnInit {
 
   isLoadingAlbums: boolean;
   isLoadingPlaylists: boolean;
+  isBrowseLoading: boolean;
   topAlbums: Album[];
   topPlaylists: Playlist[];
   activities: Activity[];
+  genres: Genre[];
 
   constructor(
     private musicKitService: MusicKitService,
@@ -37,9 +40,11 @@ export class BrowseComponent implements OnInit {
   ngOnInit() {
     this.store.select(selectIsLoading).subscribe(isLoading => this.isLoadingAlbums = isLoading);
     this.store.select(selectIsLoadingPlaylists).subscribe(isLoading => this.isLoadingPlaylists = isLoading);
+    this.store.select(selectIsBrowseLoading).subscribe(isLoading => this.isBrowseLoading = isLoading);
     this.store.select(selectAlbums).subscribe(albums => this.loadAlbums(albums));
     this.store.select(selectPlaylists).subscribe(playlists => this.loadPlaylists(playlists));
     this.store.select(selectActivities).subscribe(activities => this.loadActivities(activities));
+    this.store.select(selectGenres).subscribe(genres => this.loadGenres(genres));
   }
 
   loadAlbums(albums: Album[]) {
@@ -65,6 +70,14 @@ export class BrowseComponent implements OnInit {
       this.store.dispatch(new LoadActivities());
     }
   }
+
+  loadGenres(genres: Genre[]) {
+    if (genres.length) {
+      this.genres = genres;
+    } else {
+      this.store.dispatch(new LoadCatalogGenres());
+    }
+  }
   
   onAlbumSelected(album: Album) {
     this.router.navigate(['browse/albums', album.id]);
@@ -78,8 +91,11 @@ export class BrowseComponent implements OnInit {
     this.router.navigate(['browse/activities', activity.id]);
   }
 
-  toggle(popover) {
-    popover.toggle();
+  onGenreSelected(id: string) {
+    if (id) {
+      this.router.navigate(['browse/genres', id]);
+    }
   }
+
 
 }

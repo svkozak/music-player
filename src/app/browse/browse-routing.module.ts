@@ -6,6 +6,7 @@ import { BrowseComponent } from './browse/browse.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ArtistViewComponent } from './artist-view/artist-view.component';
+import { GenreViewComponent } from './genre-view/genre-view.component';
 
 
 
@@ -33,6 +34,10 @@ const browseRoutes: Routes = [
       {
         path: 'activities/:id',
         component: ActivityViewComponent
+      },
+      {
+        path: 'genres/:id',
+        component: GenreViewComponent
       }
     ]
   }

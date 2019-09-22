@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { ArtistViewComponent } from './artist-view/artist-view.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ActivityViewComponent } from './activity-view/activity-view.component';
+import { GenreViewComponent } from './genre-view/genre-view.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ActivityViewComponent } from './activity-view/activity-view.component';
     AlbumViewComponent,
     PlaylistViewComponent,
     ArtistViewComponent,
-    ActivityViewComponent
+    ActivityViewComponent,
+    GenreViewComponent
   ],
   imports: [
     // NgbModule,

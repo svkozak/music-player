@@ -1,3 +1,4 @@
+import { Genre } from './../../models/genre.model';
 import { selectActivities } from './browse.selectors';
 import { activities } from './../../state/app.constants';
 import { Activity } from './../../models/activity.model';
@@ -18,6 +19,8 @@ export interface BrowseState {
   activities?: Activity[],
   selectedActivity?: Activity,
   activityPlaylists?: Playlist[]
+  genres?: Genre[],
+  selectedGenre?: Genre
 }
 
 export const initialState: BrowseState = {
@@ -30,7 +33,9 @@ export const initialState: BrowseState = {
   selectedPlaylist: null,
   activities: [],
   selectedActivity: null,
-  activityPlaylists: []
+  activityPlaylists: [],
+  genres: [],
+  selectedGenre: null
 };
 
 export function browseReducer(state: BrowseState = initialState, action: BrowseActions): BrowseState {
@@ -139,6 +144,58 @@ export function browseReducer(state: BrowseState = initialState, action: BrowseA
     }
     
     case BrowseActionTypes.LoadActivityPlaylistsFailure: {
+      const { error } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        error
+      }
+    }
+
+    case BrowseActionTypes.LoadCatalogGenres: {
+      return {
+        ...state,
+        isLoading: true
+      }
+    } 
+      
+    case BrowseActionTypes.LoadCatalogGenresSuccess: {
+      const { genres } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        genres: genres
+      }
+    }
+    
+    case BrowseActionTypes.LoadCatalogGenresFailure: {
+      const { error } = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        error
+      }
+    }
+
+    case BrowseActionTypes.LoadCatalogGenre: {
+      return {
+        ...state,
+        isLoading: true
+      }
+    } 
+      
+    case BrowseActionTypes.LoadCatalogGenreSuccess: {
+      let genre: Genre = {};
+      const { selectedGenre } = action.payload
+      genre.relationships = selectedGenre;
+      return {
+        ...state,
+        isLoading: false,
+        selectedGenre: genre
+      }
+    }
+    
+    case BrowseActionTypes.LoadCatalogGenreFailure: {
       const { error } = action.payload
       return {
         ...state,

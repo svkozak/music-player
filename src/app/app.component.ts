@@ -1,4 +1,4 @@
-import { selectIsLoggedIn, selectToastOptiions } from './state/app.selectors';
+import { selectIsLoggedIn, selectToastOptiions, selectGlobalLoading } from './state/app.selectors';
 import { Store } from '@ngrx/store';
 import { Component, OnInit, HostListener } from '@angular/core';
 
@@ -16,6 +16,7 @@ declare let ga: Function;
 })
 export class AppComponent implements OnInit {
 
+  isLoading: boolean = false;
   sidebarOpened: boolean = false;
   isLoggedIn: boolean;
   navbarShadow: boolean = false;
@@ -27,6 +28,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new appActions.AppCheckAuthorization());
     this.store.select(selectIsLoggedIn).subscribe(isLoggedIn => this.isLoggedIn = isLoggedIn);
+    this.store.select(selectGlobalLoading).subscribe(isLoading => setTimeout(() => this.isLoading = isLoading));
     this.store.select(selectToastOptiions).subscribe(toastOptions => this.toastOptions = toastOptions);
     // google analytics
     this.router.events.subscribe(event => {

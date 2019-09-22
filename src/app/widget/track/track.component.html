@@ -33,7 +33,7 @@
               role="menu" aria-labelledby="button-alignment">
             <li role="menuitem">
                 <button *ngIf="track.type === 'songs'"
-                [disabled]="!isLoggeIn"
+                [disabled]="!isLoggedIn"
                 (click)="addToLibrary(track)" 
                 class="add-button btn btn-sm mx-1 mt-1">
                 <i-feather *ngIf="!isLibraryLoading" name="plus"></i-feather>

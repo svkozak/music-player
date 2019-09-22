@@ -1,4 +1,4 @@
-<app-spinner [isLoading]="isLoadingAlbums || isLoadingPlaylists"></app-spinner>
+
 
 <div class="col pb-3">
         
@@ -9,7 +9,7 @@
         </app-activity>
     </div>
  
-    <h2 *ngIf="!isLoadingAlbums" class="mb-4">Top albums</h2>
+    <h2 *ngIf="!isLoadingAlbums" class="mb-4">Top albums chart</h2>
         
     <div class="scroller my-3 py-2" *ngIf="!isLoadingAlbums">
         <app-album *ngFor="let album of topAlbums" 
@@ -19,7 +19,7 @@
         </app-album>
     </div>
     
-    <h2 *ngIf="!isLoadingPlaylists && topPlaylists" class="mb-4">Top playlists</h2>
+    <h2 *ngIf="!isLoadingPlaylists && topPlaylists" class="mb-4">Top playlists chart</h2>
     
     <div class="scroller my-3 py-2" *ngIf="!isLoadingPlaylists">
         <app-playlist *ngFor="let playlist of topPlaylists"
@@ -28,5 +28,17 @@
         (onSelectPlaylist)="onPlaylistSelected($event)">
         </app-playlist>
     </div>
+
+        
+    <div *ngIf="!isBrowseLoading && !isLoadingAlbums && !isLoadingPlaylists" class="mb-3">
+            <h2 class="pb-3">Charts by genre</h2>
+                <select class="custom-select custom-select-lg mb-3 text-info" (input)="onGenreSelected($event.target.value)">
+                    <option value="null" selected>Select from list</option>
+                    <option *ngFor="let genre of genres" [value]="genre.id">{{genre.attributes.name}}</option>
+                </select>
+    </div>
+    
+    
+
 
 </div>

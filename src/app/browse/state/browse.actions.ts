@@ -1,3 +1,4 @@
+import { Genre } from './../../models/genre.model';
 import { Playlist } from 'src/app/models/playlist.model';
 import { Activity } from './../../models/activity.model';
 import { Artist } from '../../models/artist.model';
@@ -20,9 +21,15 @@ export enum BrowseActionTypes {
   
   LoadActivityPlaylists = '[Browse] Load Activity Playlists',
   LoadActivityPlaylistsSuccess = '[Browse] Load Activity Playlists Success',
-  LoadActivityPlaylistsFailure = '[Browse] Load Activity Playlists Failure'
+  LoadActivityPlaylistsFailure = '[Browse] Load Activity Playlists Failure',
 
-  
+  LoadCatalogGenres = '[Browse] Load Genres',
+  LoadCatalogGenresSuccess = '[Browse] Load Genres Success',
+  LoadCatalogGenresFailure = '[Browse] Load Genres Failure',
+
+  LoadCatalogGenre = '[Browse] Load Genre',
+  LoadCatalogGenreSuccess = '[Browse] Load Genre Success',
+  LoadCatalogGenreFailure = '[Browse] Load Genre Failure'
 
 }
 
@@ -91,6 +98,37 @@ export class LoadActivityPlaylistsFailure implements Action {
   constructor(public payload?: { error: any }) { }
 }
 
+export class LoadCatalogGenres implements Action {
+  readonly type = BrowseActionTypes.LoadCatalogGenres;
+}
+
+export class LoadCatalogGenresSuccess implements Action {
+  readonly type = BrowseActionTypes.LoadCatalogGenresSuccess;
+  constructor(public payload?: { genres: Genre[] }) { }
+}
+
+export class LoadCatalogGenresFailure implements Action {
+  readonly type = BrowseActionTypes.LoadCatalogGenresFailure;
+  constructor(public payload?: { error: any }) { }
+}
+
+export class LoadCatalogGenre implements Action {
+  readonly type = BrowseActionTypes.LoadCatalogGenre;
+  constructor(public payload?: { id: string }) { }
+}
+
+export class LoadCatalogGenreSuccess implements Action {
+  readonly type = BrowseActionTypes.LoadCatalogGenreSuccess;
+  constructor(public payload?: { selectedGenre: any }) { }
+}
+
+export class LoadCatalogGenreFailure implements Action {
+  readonly type = BrowseActionTypes.LoadCatalogGenreFailure;
+  constructor(public payload?: { error: any }) { }
+}
+
+
+
 export type BrowseActions = 
 LoadCatalogArtist | 
 LoadCatalogArtistSuccess | 
@@ -104,6 +142,12 @@ LoadActivityPlaylistsFailure |
 LoadActivity |
 LoadActivitySuccess |
 LoadActivityFailure |
-ResetActivity
+ResetActivity |
+LoadCatalogGenres |
+LoadCatalogGenresSuccess |
+LoadCatalogGenresFailure |
+LoadCatalogGenre |
+LoadCatalogGenreSuccess |
+LoadCatalogGenreFailure
 ;
 

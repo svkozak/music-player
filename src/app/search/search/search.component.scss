@@ -36,3 +36,12 @@ a.active .btn-browse {
   min-width: 15rem;
   max-width: 20rem;
 }
+
+@media (prefers-color-scheme: dark) {
+
+  .form-control {
+      background-color: $lead !important;
+      color: $light !important;
+  }
+
+}

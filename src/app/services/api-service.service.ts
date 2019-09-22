@@ -49,7 +49,7 @@ export class ApiServiceService {
   getCatalogCharts(genre: string = '', limit: number = 20) {
     const options = {
       headers: this.headers,
-      params: new HttpParams().set('types', 'albums,playlists,songs')
+      params: new HttpParams().set('types', 'albums,playlists,songs').set('genre', genre)
     };
     return this.http.get<any>(`${URLS.BASE_CATALOG_URL}/${this.storefront}/charts`, options).pipe(
       map(response => response)

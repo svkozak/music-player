@@ -1,0 +1,50 @@
+<div class="col pb-3">
+
+  <h1 *ngIf="!isLoading && genre">{{genre.attributes.name}}</h1>
+
+  <div *ngIf="!isLoading && albums.length">
+
+      <h2 class="mb-4">Top albums</h2>
+
+      <div class="scroller my-3 py-2" *ngIf="!isLoading">
+          <app-album *ngFor="let album of albums" 
+          [album]="album" 
+          [imgSrc]="album.attributes.artwork.url | albumArt : 600"
+          (onSelectAlbum)="onAlbumSelected($event)">
+          </app-album>
+      </div>
+
+  </div>
+ 
+  <div *ngIf="!isLoading && playlists.length">
+
+    <h2 class="mb-4">Top playlists</h2>
+    
+    <div class="scroller my-3 py-2" *ngIf="!isLoading">
+        <app-playlist *ngFor="let playlist of playlists"
+        [playlist]="playlist"
+        [imgSrc]="playlist.attributes.artwork.url | albumArt : 600"
+        (onSelectPlaylist)="onPlaylistSelected($event)">
+        </app-playlist>
+    </div>
+  
+  </div>
+
+  <h2 *ngIf="!isLoading && tracks.length" class="my-3">Top tracks</h2>
+  <div *ngIf="!isLoading && tracks.length" class="artist-track-scroller my-3 py-2">
+    <div *ngFor="let track of tracks" class="search-track mr-2">
+        <app-track
+        [searchResult]="true"
+        [isLoggedIn]="isLoggedIn"
+        [track]="track"
+        [isNowPlaying]="nowPlayingTrackId === track.id"
+        (onAddToPlaylist)="onAddToPlaylist($event)"
+        (onSelectTrack)="onPlayTrack(track)"
+        (onPlayLater)="onPlayLater(track)"
+        (onPlayNext)="onPlayNext(track)">
+        </app-track>
+    </div>
+  </div>
+
+
+</div>
