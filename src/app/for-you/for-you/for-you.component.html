@@ -19,13 +19,13 @@
           <div *ngFor="let item of recommendation.relationships.contents.data">
                   <app-album *ngIf="item.type === 'albums'"
                   [album]="item" 
-                  [imgSrc]="item.attributes.artwork.url | albumArt : 600"
+                  [imgSrc]="item.attributes.artwork ? (item.attributes.artwork.url | albumArt : 600) : './assets/img/no-art.svg'"
                   (onSelectAlbum)="onAlbumSelected(item)">
                   </app-album>
               
                   <app-playlist *ngIf="item.type === 'playlists'"
                   [playlist]="item"
-                  [imgSrc]="item.attributes.artwork.url | albumArt : 600"
+                  [imgSrc]="item.attributes.artwork ? (item.attributes.artwork.url | albumArt : 600) : './assets/img/no-art.svg'"
                   (onSelectPlaylist)="onPlaylistSelected(item)">
                   </app-playlist>
           </div>

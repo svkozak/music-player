@@ -17,7 +17,7 @@
         <div *ngFor="let album of albums">
             <app-album
             [album]="album" 
-            [imgSrc]="album.attributes.artwork.url | albumArt : 600"
+            [imgSrc]="album.attributes.artwork ? (album.attributes.artwork.url | albumArt : 600) : './assets/img/no-art.svg'"
             (onSelectAlbum)="onAlbumSelected(album)">
             </app-album>
         </div>

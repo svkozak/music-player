@@ -10,7 +10,6 @@
     </div>
  
     <h2 *ngIf="!isLoadingAlbums" class="mb-4">Top albums chart</h2>
-        
     <div class="scroller my-3 py-2" *ngIf="!isLoadingAlbums">
         <app-album *ngFor="let album of topAlbums" 
         [album]="album" 
@@ -20,7 +19,6 @@
     </div>
     
     <h2 *ngIf="!isLoadingPlaylists && topPlaylists" class="mb-4">Top playlists chart</h2>
-    
     <div class="scroller my-3 py-2" *ngIf="!isLoadingPlaylists">
         <app-playlist *ngFor="let playlist of topPlaylists"
         [playlist]="playlist"

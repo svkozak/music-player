@@ -35,7 +35,7 @@
   height: 4rem !important;
 }
 
-.card-body, .card-text {
+.card-body, .card-text, .card-body.compact, .row.no-gutters, .row.no-gutters .col {
   white-space: nowrap;
   overflow: hidden;
   word-wrap: none;
