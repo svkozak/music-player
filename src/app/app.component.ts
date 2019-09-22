@@ -1,3 +1,4 @@
+import { MusicKitService } from './services/music-kit.service';
 import { selectIsLoggedIn, selectToastOptiions, selectGlobalLoading } from './state/app.selectors';
 import { Store } from '@ngrx/store';
 import { Component, OnInit, HostListener } from '@angular/core';
@@ -23,7 +24,7 @@ export class AppComponent implements OnInit {
 
   toastOptions: any;
 
-  constructor(private store: Store<any>, private router: Router) { }
+  constructor(private store: Store<any>, private router: Router, private musicKitService: MusicKitService) { }
 
   ngOnInit() {
     this.store.dispatch(new appActions.AppCheckAuthorization());
