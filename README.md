@@ -1,6 +1,6 @@
 # iamplayer (beta)
 
-An unofficial Apple Music web player built with Angular, NgRX and Bootstrap using the official Apple Music API and MusicKit JS to connect to Apple Music catalog and iCloud music library. Inspired by [Musi.sh](https://musi.sh/) and [@naveedgol's player](https://github.com/naveedgol/music-web-player).
+An unofficial Apple Music web player built with Angular, NgRx and Bootstrap using the official Apple Music API and MusicKit JS to connect to Apple Music catalog and iCloud music library. Inspired by [Musi.sh](https://musi.sh/) and [@naveedgol's player](https://github.com/naveedgol/music-web-player).
 
 ## What I used
 
