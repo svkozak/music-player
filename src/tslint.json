@@ -1,5 +1,6 @@
 {
-  "extends": "../tslint.json",
+  "extends": "tslint-angular",
+  "rulesDirectory": ["../node_modules/codelyzer"],
   "rules": {
     "directive-selector": [
       true,
@@ -12,6 +13,16 @@
       "element",
       "app",
       "kebab-case"
-    ]
+    ],
+    "typedef": [
+      true,
+      "call-signature",
+      "parameter",
+      "property-declaration",
+      "member-variable-declaration"
+    ],
+    "no-duplicate-variable": true,
+    "no-inferrable-types": [true, "ignore-params", "ignore-properties"],
+    "max-classes-per-file": false
   }
 }
