@@ -1,5 +1,5 @@
-<app-toast [options]="toastOptions" (alertClosed)="dismissAlert()"></app-toast>
-<app-spinner [isLoading]="isLoading"></app-spinner>
+<app-toast [options]="toastOptions$ | async" (alertClosed)="dismissAlert()"></app-toast>
+<app-spinner [isLoading]="isLoading$ | async"></app-spinner>
 
   <nav [class.shadow-sm]="navbarShadow" class="navbar navbar-light fixed-top mb-1">
     
@@ -25,7 +25,7 @@
       (signIn)="onClickLogin()"
       (signOut)="onClickLogOut()"
       [closeOnClick]="true" 
-      [isLoggedIn]="isLoggedIn">
+      [isLoggedIn]="isLoggedIn$ | async">
       </app-sidebar>
     </mat-sidenav>
   

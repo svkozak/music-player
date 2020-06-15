@@ -1,5 +1,9 @@
 import { Action } from '@ngrx/store';
 
+export interface ToastOptions {
+  type: string;
+}
+
 export enum AppActionTypes {
   AppCheckAuthorization = '[App] Check authorization',
   AppCheckAuthorizationSuccess = '[App] Check authorization success',
@@ -59,7 +63,7 @@ export class AppLogOutFailure implements Action {
 // add errors, etc
 export class AppShowToast implements Action {
   readonly type = AppActionTypes.AppShowToast;
-  constructor(public payload?: { type: any }) { }
+  constructor(public payload?: ToastOptions) { }
 }
 
 export class AppDismissToast implements Action {
@@ -74,7 +78,7 @@ AppCheckAuthorizationFailure |
 AppLogIn |
 AppLogInSuccess |
 AppLogInFailure |
-AppLogOut | 
+AppLogOut |
 AppLogOutSuccess |
 AppLogOutFailure |
 AppShowToast |
