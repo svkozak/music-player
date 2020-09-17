@@ -17,8 +17,11 @@ export class MusicKitService {
   // isAuthorized: boolean = false;
 
   constructor() {
+    this.configureMusicKit();
+   }
 
-    MusicKit.configure({
+   configureMusicKit(): void {
+    const conf = MusicKit.configure({
       developerToken: TOKEN,
       app: {
       name: 'iamplayer',
@@ -28,8 +31,12 @@ export class MusicKitService {
       declarativeMarkup: true
     });
 
+    console.log(conf);
+
     this.musicKit = MusicKit.getInstance();
+    console.log(this.musicKit);
    }
+
 
     isUserAuthorized(): Observable<any> {
       return of(this.musicKit.isAuthorized);
