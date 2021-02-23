@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   navbarShadow: boolean = false;
 
 
-  constructor(private store: Store<any>, private router: Router, private musicKitService: MusicKitService) { }
+  constructor(private store: Store<any>, private router: Router, private musicKitService: MusicKitService) {}
 
   ngOnInit(): void {
     this.store.dispatch(new appActions.AppCheckAuthorization());
@@ -34,13 +34,7 @@ export class AppComponent implements OnInit {
     this.isLoading$ = this.store.select(selectGlobalLoading);
     this.toastOptions$ = this.store.select(selectToastOptiions);
 
-    // google analytics
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        ga('set', 'page', event.urlAfterRedirects);
-        ga('send', 'pageview');
-      }
-    });
+
   }
 
   @HostListener('window:scroll', ['$event'])
